@@ -2,22 +2,24 @@
 import Layout from '../../layouts/Layout.astro';
 export function getStaticPaths() {
   return [
-    {params: {invitado: '1'}},
-    {params: {invitado: '2'}},
+    {params: {character: '1'}},
+    {params: {character: '2'}},
+    {params: {character: '3'}},
+    {params: {character: '4'}},
+    {params: {character: '5'}},
   ];
 }
 
-const { invitado } = Astro.params;
+const { character } = Astro.params;
 
-const characterRequest = await fetch(`https://rickandmortyapi.com/api/character/${invitado}`);
+const characterRequest = await fetch(`https://rickandmortyapi.com/api/character/${character}`);
 const characterInfo = await characterRequest.json();
 ---
 <Layout title="Welcome to Astro.">
 	<main>
 		<h1>Daniel y Ayde se van a <span class="text-gradient">casar Xddddd</span></h1>
 
-		{invitado && <p>bienvenido {invitado}</p>}
-		{characterInfo && <p>y también bienvenido {characterInfo.name}</p>}
+		{characterInfo && <p>bienvenido {characterInfo.name}</p>}
 		vas a venir o que?
 		<input type="checkbox">
 		<button>Que si que no</button>
