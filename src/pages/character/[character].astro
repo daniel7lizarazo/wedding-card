@@ -15,7 +15,7 @@ const { character } = Astro.params;
 const characterRequest = await fetch(`https://rickandmortyapi.com/api/character/${character}`);
 const characterInfo = await characterRequest.json();
 ---
-<Layout title="Welcome to Astro.">
+<Layout>
 	<main>
 		<h1>Daniel y Ayde se van a <span class="text-gradient">casar Xddddd</span></h1>
 
