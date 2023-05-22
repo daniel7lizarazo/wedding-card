@@ -5,14 +5,13 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<div class="seccion seccion-main">
+	<div class="seccion seccion-main" id="main" data-index="0" data-status="active">
 	</div>
-	<div class="seccion seccion-our-story">
+	<div class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 	</div>
-	<div class="seccion seccion-info">
+	<div class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
 	</div>
 </Layout>
-
 
 <style>
 	.seccion {
@@ -29,3 +28,69 @@ import Layout from '../layouts/Layout.astro';
 		background-color: chocolate;
 	}
 </style>
+
+<script>
+	let lastPosition = 0;
+	const debounce = function(callback: Function, waitTime: number) {
+		let timerId: ReturnType<typeof setTimeout>;
+		console.log(`Timer created value`)
+		return () => {
+			// console.log(`Timer pre timer: ${timerID}`)
+			if(timerId) {
+				console.log(`Timer detected: ${timerId}`)
+				clearTimeout(timerId);
+				console.log(`Timer reseted: ${timerId}`)
+			}
+			timerId = setTimeout(callback, waitTime) 
+			console.log(`Timer asigned: ${timerId}`)
+
+		}
+	}
+
+	const upOrDown = () => {
+		const relativePosition = lastPosition - window.scrollY;
+		lastPosition = window.scrollY;
+
+		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
+		if(!currentSection || !currentSection.getAttribute('data-index')) return;
+
+		if(relativePosition > 0) {
+			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
+			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
+			if(!nextSection) return;
+			currentSection.dataset.status = "unknown";
+			nextSection.dataset.status = "active";
+			nextSection.scrollIntoView(true);
+			// document.removeEventListener('scroll', onScroll);
+			console.log(nextSection);
+			console.log(relativePosition);
+			return;
+		}
+		if(relativePosition < 0) {
+			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
+			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
+			if(!nextSection) return;
+			currentSection.dataset.status = "unknown";
+			nextSection.dataset.status = "active";
+			nextSection.scrollIntoView(true);
+			// document.removeEventListener('scroll', onScroll);
+			console.log(nextSection);
+			console.log(relativePosition);
+			return;
+		}
+	}
+
+	const debounceUpOrDown = debounce(upOrDown, 200);
+	
+	const onScroll = () => {
+		// upOrDown();
+		debounceUpOrDown();
+		// setTimeout(() => {
+		// 	document.addEventListener('scroll', onScroll);
+		// }, 1000)
+	}
+
+	document.addEventListener('scroll', onScroll)
+
+</script>
+
