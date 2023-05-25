@@ -5,92 +5,114 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<div class="seccion seccion-main" id="main" data-index="0" data-status="active">
-	</div>
-	<div class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
-	</div>
-	<div class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
-	</div>
+	<section class="seccion seccion-main" id="main" data-index="0" data-status="active">
+	</section>
+	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
+	</section>
+	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
+	</section>
 </Layout>
 
 <style>
 	.seccion {
 		width: 100%;
 		height: 100vh;
+		position: absolute;
 	}
 	.seccion-main {
 		background-color: #da62c4;
+		top: 200vh;
 	}
 	.seccion-our-story {
 		background-color: blue;
+		top: 300vh;
 	}
 	.seccion-info {
 		background-color: chocolate;
+		top: 300vh;
+	}
+	.move-up{
+		top: 0vh;
+		transition: all 1s;
+	}
+	.move-down{
+		top: 200vh;
+		transition: all 1s;
+	}
+	.move-center{
+		top: 100vh;
+		transition: top 1s;
 	}
 </style>
 
 <script>
-	let lastPosition = 0;
-	const debounce = function(callback: Function, waitTime: number) {
-		let timerId: ReturnType<typeof setTimeout>;
-		console.log(`Timer created value`)
-		return () => {
-			// console.log(`Timer pre timer: ${timerID}`)
-			if(timerId) {
-				console.log(`Timer detected: ${timerId}`)
-				clearTimeout(timerId);
-				console.log(`Timer reseted: ${timerId}`)
-			}
-			timerId = setTimeout(callback, waitTime) 
-			console.log(`Timer asigned: ${timerId}`)
+	let deltaY: number;
 
+	function debounce (callback: Function, waitTime: number) {
+		let timerId: ReturnType<typeof setTimeout>;
+		let execute = true;
+		console.log('Entra en debounce')
+		return () => {
+			console.log('entre en return')
+			if(execute) {
+				const executed = callback();
+				if(executed) {
+					execute = false;
+				}
+			}
+			clearTimeout(timerId);
+			timerId = setTimeout(() => {
+				execute = true
+			}, waitTime) 
 		}
 	}
 
-	const upOrDown = () => {
-		const relativePosition = lastPosition - window.scrollY;
-		lastPosition = window.scrollY;
-
+	const upOrDown = () : boolean => {
+		console.log(deltaY)
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
-		if(!currentSection || !currentSection.getAttribute('data-index')) return;
 
-		if(relativePosition > 0) {
+		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
+
+		if(deltaY < 0) {
+			console.log('sube')
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
-			if(!nextSection) return;
+			if(!nextSection) return false;
 			currentSection.dataset.status = "unknown";
+			currentSection.classList.remove('move-center');
+			currentSection.classList.add('move-down');
 			nextSection.dataset.status = "active";
-			nextSection.scrollIntoView(true);
-			// document.removeEventListener('scroll', onScroll);
-			console.log(nextSection);
-			console.log(relativePosition);
-			return;
+			nextSection.classList.remove('move-up');
+			nextSection.classList.add('move-center');
+
+			return true;
 		}
-		if(relativePosition < 0) {
+		if(deltaY > 0) {
+			console.log('baja')
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
-			if(!nextSection) return;
+			if(!nextSection) return false;
 			currentSection.dataset.status = "unknown";
+			currentSection.classList.remove('move-center');
+			currentSection.classList.add('move-up');
 			nextSection.dataset.status = "active";
-			nextSection.scrollIntoView(true);
-			// document.removeEventListener('scroll', onScroll);
-			console.log(nextSection);
-			console.log(relativePosition);
-			return;
+			nextSection.classList.remove('move-down');
+			nextSection.classList.add('move-center');
+			return true;
+
 		}
+		return false;
 	}
 
-	const debounceUpOrDown = debounce(upOrDown, 200);
+	const debounceUpOrDown = debounce(upOrDown, 500);
 	
-	const onScroll = () => {
-		// upOrDown();
-		debounceUpOrDown();
-		// setTimeout(() => {
-		// 	document.addEventListener('scroll', onScroll);
-		// }, 1000)
+	const onScroll = (e: WheelEvent) => {
+		deltaY = e.deltaY;
+		debounceUpOrDown()
+		// debounce(upOrDown, e.deltaY, 200);
 	}
 
-	document.addEventListener('scroll', onScroll)
+	document.addEventListener('wheel', onScroll)
 
 </script>
 
