@@ -1,11 +1,19 @@
+t add .
+
 ---
 import Layout from '../layouts/Layout.astro';
-
-
 ---
 
 <Layout>
 	<section class="seccion seccion-main" id="main" data-index="0" data-status="active">
+		<div class="background-frame"></div>
+		<picture class="main-photo">
+			<img src="../public/img/imagen_portada_high.jpeg" alt="">
+		</picture>
+		<div class="our-names">
+			<h1 class="his-name">Daniel</h1>
+			<h1 class="her-name">Ayde</h1>
+		</div>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 	</section>
@@ -20,7 +28,7 @@ import Layout from '../layouts/Layout.astro';
 		position: absolute;
 	}
 	.seccion-main {
-		background-color: #da62c4;
+		background-color: rgba(241,240,238,255);
 		top: 0px;
 	}
 	.seccion-our-story {
@@ -43,6 +51,48 @@ import Layout from '../layouts/Layout.astro';
 		top: 0px;
 		transition: top 1s;
 	}
+	.background-frame{
+		height: 70vh;
+		width: 40vw;
+		background-color: rgba(247,247,247,255);
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		position: absolute;
+		bottom: 0px;
+		left: 20vw;
+	}
+
+	.main-photo{
+		position: absolute;
+		bottom: 0px;
+		left: 40vw;
+	}
+	.main-photo img{
+		height: 110vh;
+		width: 50vw;
+		object-fit: cover;
+		border-top-left-radius: 90%;
+		border-top-right-radius: 90%;
+	}
+
+	.our-names{
+		position: absolute;
+		top: 35vh;
+		left: 12vw;
+		display: flex;	
+		gap: 2.5rem;
+		font-size: 5rem;
+		font-weight: lighter;
+	}
+	.his-name{
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		color: rgba(217,203,194,255);
+	}
+	.her-name{
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		color: rgba(251,255,255,255);
+	}
+
 </style>
 
 <script>
@@ -50,7 +100,7 @@ import Layout from '../layouts/Layout.astro';
 	let touchStartY: number = 0;
 	let deltaY: number = 0;
 
-	function debounce (callback: Function, waitTime: number) {
+	const debounce = (callback: Function, waitTime: number) => {
 		let timerId: ReturnType<typeof setTimeout>;
 		let execute = true;
 		return () => {
@@ -118,7 +168,7 @@ import Layout from '../layouts/Layout.astro';
 		touchPositionY = e.touches[0].clientY;
 	})
 
-	document.addEventListener('touchend', (e: TouchEvent) => {
+	document.addEventListener('touchend', () => {
 		deltaY = touchStartY - touchPositionY;
 		debounceUpOrDown();
 	})
