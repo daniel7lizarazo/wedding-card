@@ -6,12 +6,14 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
 	<section class="seccion seccion-main" id="main" data-index="0" data-status="active">
-		<div class="background-frame"></div>
+		<div class="background-arc"></div>
 		<picture class="main-photo">
-			<img src="../public/img/imagen_portada_high.jpeg" alt="">
+			<img src="../public/img/imagen_portada_high_1.jpeg" alt="">
 		</picture>
+		<div class="decoration-arc"></div>
 		<div class="our-names">
 			<span class="his-name">Daniel</span>
+			<span class="our-and">&</span>
 			<span class="her-name">Ayde</span>
 		</div>
 		<span class="sub-titulo-portada">Nos casaremooos!</span>
@@ -33,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
 		position: absolute;
 	}
 	.seccion-main {
-		background-color: rgba(241,240,238,255);
+		background-color: rgba(245,240,240,255);
 		top: 0px;
 	}
 	.seccion-our-story {
@@ -56,8 +58,9 @@ import Layout from '../layouts/Layout.astro';
 		top: 0px;
 		transition: top 1s;
 	}
-	.background-frame{
-		height: 70vh;
+
+	.background-arc{
+		height: 80vh;
 		width: 40vw;
 		padding: 0;
 		background-color: rgba(247,247,247,255);
@@ -82,18 +85,32 @@ import Layout from '../layouts/Layout.astro';
 		border-top-right-radius: 90%;
 	}
 
+	.decoration-arc{
+		position: absolute;
+		bottom: 0px;
+		left: 42.5vw;
+		height: 105vh;
+		width: 45vw;
+		border-top-left-radius: 90%;
+		border-top-right-radius: 90%;
+		border: solid 2px rgba(247,247,247,255);
+		border-bottom: none;
+	}
+
 	.our-names{
 		position: absolute;
 		top: 35vh;
 		left: 12vw;
 		display: flex;	
-		gap: 2.5rem;
-		font-size: 9.2vw;
-		font-weight: lighter;
+		gap: 0rem;
+		font-size: 8.6vw;
 	}
 	.his-name{
 		font-family: Georgia, 'Times New Roman', Times, serif;
 		color: rgba(217,203,194,255);
+	}
+	.our-and{
+		color: rgba(76,64,84,255);
 	}
 	.her-name{
 		font-family: Georgia, 'Times New Roman', Times, serif;
@@ -105,19 +122,85 @@ import Layout from '../layouts/Layout.astro';
 		color: rgba(76,64,84,255);
 		font-size: 2vw;
 		position: absolute;
-		top: 57vh;
+		top: 55vh;
 		left: 12.5vw;
 	}
 	.texto-portada{
 		font-family: Arial, Helvetica, sans-serif;
-		line-height: 3vh;
+		line-height: 3.5vh;
 		color: rgba(76,64,84,255);
-		font-size: 1vw;
-		width: 35vw;
+		font-size: 1.2vw;
+		width: 40vw;
 		position: absolute;
-		top: 67vh;
+		top: 64vh;
 		left: 12.5vw;
 	}
+
+	@media (max-width: 2300px){
+		.main-photo img{
+			height: 100vh;
+			width: 55vw;
+		}
+
+		.background-arc{
+			height: 75vh;
+		}
+
+		.decoration-arc{
+			left: 42.5vw;
+			height: 95vh;
+			width: 50vw;
+		}
+		
+		.our-names{
+			top: 45vh;
+		}
+		
+		.sub-titulo-portada{
+			top: 61vh;
+			font-size: 2vw;
+		}
+
+		.texto-portada{
+			top: 68vh;
+			font-size: 1.5vw;
+			width: 45vw;
+		}
+
+	}
+
+	@media (max-width: 1750px){
+		
+		.main-photo img{
+			height: 90vh;
+			width: 60vw;
+		}
+
+		.decoration-arc{
+			left: 42.5vw;
+			height: 85vh;
+			width: 55vw;
+		}
+
+		.background-arc{
+			height: 70vh;
+		}
+
+		.our-names{
+			top: 45vh;
+		}
+
+		.sub-titulo-portada{
+			top: 60vh;
+			font-size: 2.5vw;
+		}
+		
+		.texto-portada{
+			font-size: 2vw;
+			width: 40vw;
+		}
+	}
+
 
 </style>
 
