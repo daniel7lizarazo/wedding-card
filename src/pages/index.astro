@@ -46,14 +46,14 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-	let deltaY: number;
+	let touchPositionY: number = 0;
+	let touchStartY: number = 0;
+	let deltaY: number = 0;
 
 	function debounce (callback: Function, waitTime: number) {
 		let timerId: ReturnType<typeof setTimeout>;
 		let execute = true;
-		console.log('Entra en debounce')
 		return () => {
-			console.log('entre en return')
 			if(execute) {
 				const executed = callback();
 				if(executed) {
@@ -68,13 +68,11 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	const upOrDown = () : boolean => {
-		console.log(deltaY)
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
 
 		if(deltaY < 0) {
-			console.log('sube')
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -88,7 +86,6 @@ import Layout from '../layouts/Layout.astro';
 			return true;
 		}
 		if(deltaY > 0) {
-			console.log('baja')
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -109,10 +106,22 @@ import Layout from '../layouts/Layout.astro';
 	const onScroll = (e: WheelEvent) => {
 		deltaY = e.deltaY;
 		debounceUpOrDown()
-		// debounce(upOrDown, e.deltaY, 200);
 	}
 
 	document.addEventListener('wheel', onScroll)
+
+	document.addEventListener('touchstart', (e: TouchEvent) => {
+		touchStartY	= e.touches[0].clientY;
+	})
+
+	document.addEventListener('touchmove', (e: TouchEvent) => {
+		touchPositionY = e.touches[0].clientY;
+	})
+
+	document.addEventListener('touchend', (e: TouchEvent) => {
+		deltaY = touchStartY - touchPositionY;
+		debounceUpOrDown();
+	})
 
 </script>
 
