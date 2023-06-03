@@ -22,8 +22,16 @@
 </html>
 
 <style is:global>
+	@font-face {
+		font-family: 'alex_brushregular';
+		src: url('fonts/AlexBrush/alexbrush-regular-webfont.woff2') format('woff2'),
+			url('fonts/AlexBrush/alexbrush-regular-webfont.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
 	:root {
-		--accent: 124, 58, 237;
+		--accent: #6B1C18;
+		--basic: #895F5F;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 	}
 	html, h1 {
