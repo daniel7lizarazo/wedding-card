@@ -4,6 +4,14 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
 	<section class="seccion seccion-main" id="main" data-index="0" data-status="active">
+		<picture class="top-frame top-frame-left">
+			<source srcset="../public/img/FloresMarcoSuperior_1.png">
+			<img src="../public/img/FloresMarcoSuperior_1.png" alt="Marco superior">
+		</picture>
+		<picture class="top-frame top-frame-right">
+			<source srcset="../public/img/FloresMarcoSuperior_1.png">
+			<img src="../public/img/FloresMarcoSuperior_1.png" alt="Marco superior">
+		</picture>
 		<span class="sub-titulo-portada">¡Nos casaremooos!</span>
 		<picture class="main-photo">
 			<source srcset="../public/img/imagen_portada_high_1.jpeg">
@@ -63,6 +71,25 @@ import Layout from '../layouts/Layout.astro';
 	.move-center{
 		top: 0px;
 		transition: top 1s;
+	}
+	
+	.top-frame {
+		position: absolute;
+		top: -8vh;
+	}
+	.top-frame img {
+		/* width: 20vw; */
+		height: 33vw;
+		scale: 1;
+		object-fit: cover;
+	}
+	.top-frame-left {
+		left: -7vw;
+
+	}
+	.top-frame-right {
+		right: -7vw;
+		rotate: y 180deg;
 	}
 
 	.main-photo{
