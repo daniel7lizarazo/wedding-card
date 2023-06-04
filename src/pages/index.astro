@@ -13,9 +13,17 @@ import Layout from '../layouts/Layout.astro';
 			<img src="../public/img/FloresMarcoSuperior_1.png" alt="Marco superior">
 		</picture>
 		<span class="sub-titulo-portada">¡Nos casaremooos!</span>
-		<picture class="main-photo">
+		<picture class="main-content main-photo">
 			<source srcset="../public/img/imagen_portada_high_1.jpeg">
 			<img src="../public/img/imagen_portada_high_1.jpeg" alt="Foto de los novios">
+		</picture>
+		<picture class="main-content golden-frame">
+			<source srcset="../public/img/MarcoDorado_1.png">
+			<img src="../public/img/MarcoDorado_1.png" alt="Marco superior">
+		</picture>
+		<picture class="golden-frame-decoration">
+			<source srcset="../public/img/FloresDecoracionMarco_1.png">
+			<img src="../public/img/FloresDecoracionMarco_1.png" alt="Marco superior">
 		</picture>
 		<div class="our-names">
 			<span>Daniel & Ayde</span>
@@ -27,6 +35,14 @@ import Layout from '../layouts/Layout.astro';
 			Santa Teresita del Niño Jesús
 		</span>
 		<span class="fecha">ENE | 19 | 2024</span>
+		<picture class="bottom-frame bottom-frame-left">
+			<source srcset="../public/img/FloresMarcoInferior_1.png">
+			<img src="../public/img/FloresMarcoInferior_1.png" alt="Marco superior">
+		</picture>
+		<picture class="bottom-frame bottom-frame-right">
+			<source srcset="../public/img/FloresMarcoInferior_1.png">
+			<img src="../public/img/FloresMarcoInferior_1.png" alt="Marco superior">
+		</picture>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 	</section>
@@ -50,7 +66,10 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.seccion-main {
 		background-image: url(../public/img/BackgroundImage.png);
-		top: 0px;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 
+  		cover;top: 0px;
 	}
 	.seccion-our-story {
 		background-color: blue;
@@ -79,25 +98,66 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.top-frame img {
 		/* width: 20vw; */
-		height: 33vw;
+		height: 30vw;
 		scale: 1;
 		object-fit: cover;
 	}
 	.top-frame-left {
-		left: -7vw;
-
+		left: -6vw;
 	}
 	.top-frame-right {
-		right: -7vw;
+		right: -6vw;
 		rotate: y 180deg;
 	}
 
-	.main-photo{
+	.bottom-frame {
+		position: absolute;
+		bottom: -18vh;
+	}
+	.bottom-frame img {
+		height: 27vw;
+		scale: 1;
+		object-fit: cover;
+	}
+	.bottom-frame-left {
+		left: -7vw;
+		rotate: -10deg;
+	}
+	.bottom-frame-right {
+		right: -7vw;
+		transform: rotateY(180deg) rotate(-10deg);
+	}
+	
+	.main-content {
 		position: absolute;
 		top: 35vh;
 		left: 50vw;
 	}
 
+	.golden-frame {
+	}
+	.golden-frame img {
+		height: 22vw;
+		scale: 1;
+		object-fit: cover;
+		translate: -50% -50%;
+	}
+	
+	.golden-frame-decoration{
+		position: absolute;
+		top: 28vh;
+		left: 37vw;
+	}
+	.golden-frame-decoration img{
+		height: 18vw;
+		scale: 1;
+		object-fit: cover;
+		rotate: -15deg;
+		/* translate: -50% -50%;		 */
+	}
+
+	.main-photo{
+	}
 	.main-photo img{
 		width: 20vw;
 		height: 20vw;
@@ -110,7 +170,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.our-names{
 		position: absolute;
-		top: 55vh;
+		top: 62vh;
 		left: 36vw;
 		gap: 0rem;
 		font-size: 5vw;
@@ -132,34 +192,35 @@ import Layout from '../layouts/Layout.astro';
 		font-family: Arial, Helvetica, sans-serif;
 		line-height: 3.5vh;
 		color: var(--basic);
-		font-size: 15px;
+		font-size: 18px;
 		text-align: center;
-		width: 40vw;
+		width: 43vw;
 		position: absolute;
-		top: 70vh;
+		top: 77vh;
 		left: 50vw;
 		translate: -50%;
 	}
 
 	.autor-cita	{
 		position: absolute;
-		top: 80vh;
+		top: 86vh;
 		left: 50vw;
 		translate: -50%;
 		font-size: 15px;
 		color: var(--accent);
-		font-family: 'alex_brushregular', cursive;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.fecha{
 		position: absolute;
-		top: 90vh;
+		top: 92vh;
 		left: 50vw;
 		translate: -50%;
 		gap: 0rem;
-		font-size: 25px;
 		color: var(--accent);
+		font-size: 30px;
 		font-family: 'Trebuchet MS', sans-serif;
+		font-weight: bolder;
 	}
 
 	@media (max-width: 1920px){
