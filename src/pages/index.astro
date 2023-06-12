@@ -45,6 +45,17 @@ import Layout from '../layouts/Layout.astro';
 		</picture>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
+
+		<picture class="decoracion-horizontal-superior">
+			<source srcset="../public/img/SeparadorHorizontal_1.png">
+			<img src="../public/img/SeparadorHorizontal_1.png" alt="Divisor superior">
+		</picture>
+
+		<picture class="decoracion-horizontal-inferior">
+			<source srcset="../public/img/SeparadorHorizontal_1.png">
+			<img src="../public/img/SeparadorHorizontal_1.png" alt="Divisor inferior">
+		</picture>
+
 		<span class="mensaje">
 			Comenzamos una nueva aventura y no sería posible celebrar esta unión sin la compañía de nuestros familiares y amigos. Por eso, queremos que hagas parte de nuestro gran día.
 		</span>
@@ -265,13 +276,39 @@ import Layout from '../layouts/Layout.astro';
 		font-family: 'Trebuchet MS', sans-serif;
 		font-weight: bolder;
 	}
+	
+	.decoracion-horizontal-superior{
+		position: absolute;
+		top: 5vh;
+		left: 50vw;
+		translate: -50%;
+	}
+
+	.decoracion-horizontal-superior img{
+		width: 37rem;
+		scale: 1;
+		object-fit: cover;
+		rotate: 180deg;
+	}
+	
+	.decoracion-horizontal-inferior{
+		position: absolute;
+		top: 45vh;
+		left: 50vw;
+		translate: -50%;
+	}
+	.decoracion-horizontal-inferior img{
+		width: 37rem;
+		scale: 1;
+		object-fit: cover;
+	}
 
 	.seccion-our-story .mensaje {
 		font-family: Arial, Helvetica, sans-serif;
 		color: var(--basic);
-		font-size: 30px;
+		font-size: 2.2rem;
 		text-align: center;
-		width: 43vw;
+		width: 55vw;
 		position: absolute;
 		top: 20vh;
 		left: 50vw;
@@ -280,12 +317,12 @@ import Layout from '../layouts/Layout.astro';
 
 	.contador {
 		position: absolute;
-		bottom: 5rem;
+		bottom: 2rem;
 		left: 50vw;
 		translate: -50%;		
 		background-color: var(--basic-light);
-		width: 29rem;
-		height: 14rem;
+		width: 30rem;
+		height: 12rem;
 		border-radius: 25px;
 		font-family: Arial, Helvetica, sans-serif;
 	}
@@ -296,13 +333,13 @@ import Layout from '../layouts/Layout.astro';
 		color: var(--secondary);
 		text-align: center;
 		position: relative;
-		top: 1.5rem;
+		top: 1.2rem;
 		width: 100%;
 	}
 
 	.contador-reloj {
 		position: relative;
-		top: 2.2rem;
+		top: 1.8rem;
 		color: var(--secondary);
 		font-size: 2.6rem;
 		width: 100%;
@@ -315,7 +352,7 @@ import Layout from '../layouts/Layout.astro';
 		display: table;
 		background-color: var(--secondary);
 		color: var(--accent);
-		opacity: .8;
+		opacity: .69;
 		width: 3rem;
 		height: 3.7rem;
 		border-radius: 5px;
@@ -329,7 +366,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.contador-nombres {
 		position: relative;
-		top: 3.2rem;
+		top: 2.3rem;
 		display: flex;
 		justify-content: center;
 		gap: 5.5rem;
@@ -341,9 +378,9 @@ import Layout from '../layouts/Layout.astro';
 
 	.decoracion-contador{
 		position: absolute;
-		bottom: 14.5rem;
+		bottom: 9rem;
 		left: 50vw;
-		translate: -20.2rem;
+		translate: -20.5rem;
 	}
 
 	.decoracion-contador img{
