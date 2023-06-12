@@ -45,6 +45,46 @@ import Layout from '../layouts/Layout.astro';
 		</picture>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
+		<span class="mensaje">
+			Comenzamos una nueva aventura y no sería posible celebrar esta unión sin la compañía de nuestros familiares y amigos. Por eso, queremos que hagas parte de nuestro gran día.
+		</span>
+		<div class="contador">
+			<span class="contador-texto">
+				CUENTA ATRÁS 
+			</span>
+			<div class="contador-reloj">
+				<div class="digito">
+					<p>0</p>
+				</div>
+				<div class="digito">
+					<p>0</p>
+				</div>
+				<span class="separacion-digitos">:</span>
+				<div class="digito">
+					<p>0</p>
+				</div>
+				<div class="digito">
+					<p>0</p>
+				</div>
+				<span class="separacion-digitos">:</span>
+				<div class="digito">
+					<p>0</p>
+				</div>
+				<div class="digito">
+					<p>0</p>
+				</div>
+			</div>
+			<div class="contador-nombres">
+				<span class="contador-nombre">MESES</span>
+				<span class="contador-nombre">DÍAS</span>
+				<span class="contador-nombre">HORAS</span>
+			</div>
+		</div>
+		<picture class="decoracion-contador">
+			<source srcset="../public/img/DecoracionTemporizador_1.png">
+			<img src="../public/img/DecoracionTemporizador_1.png" alt="Decoración Contador">
+		</picture>
+
 	</section>
 	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
 	</section>
@@ -68,11 +108,14 @@ import Layout from '../layouts/Layout.astro';
 		background-image: url(../public/img/BackgroundImage.png);
 		background-repeat: no-repeat;
 		background-attachment: fixed;
-		background-size: 
-  		cover;top: 0px;
+		background-size: cover;
+		top: 0px;
 	}
 	.seccion-our-story {
-		background-color: blue;
+		background-image: url(../public/img/Manos.png);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-info {
@@ -222,6 +265,95 @@ import Layout from '../layouts/Layout.astro';
 		font-family: 'Trebuchet MS', sans-serif;
 		font-weight: bolder;
 	}
+
+	.seccion-our-story .mensaje {
+		font-family: Arial, Helvetica, sans-serif;
+		color: var(--basic);
+		font-size: 30px;
+		text-align: center;
+		width: 43vw;
+		position: absolute;
+		top: 20vh;
+		left: 50vw;
+		translate: -50%;		
+	}
+
+	.contador {
+		position: absolute;
+		bottom: 5rem;
+		left: 50vw;
+		translate: -50%;		
+		background-color: var(--basic-light);
+		width: 29rem;
+		height: 14rem;
+		border-radius: 25px;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	.contador .contador-texto{
+		font-size: 3rem;
+		font-weight: bold;
+		color: var(--secondary);
+		text-align: center;
+		position: relative;
+		top: 1.5rem;
+		width: 100%;
+	}
+
+	.contador-reloj {
+		position: relative;
+		top: 2.2rem;
+		color: var(--secondary);
+		font-size: 2.6rem;
+		width: 100%;
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	.contador-reloj .digito {
+		display: table;
+		background-color: var(--secondary);
+		color: var(--accent);
+		opacity: .8;
+		width: 3rem;
+		height: 3.7rem;
+		border-radius: 5px;
+		text-align: center;
+	}
+
+	.digito p {
+		display: inline;
+		vertical-align: middle;
+	}
+
+	.contador-nombres {
+		position: relative;
+		top: 3.2rem;
+		display: flex;
+		justify-content: center;
+		gap: 5.5rem;
+		width: 100%;
+		color: var(--secondary);
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+	.decoracion-contador{
+		position: absolute;
+		bottom: 14.5rem;
+		left: 50vw;
+		translate: -20.2rem;
+	}
+
+	.decoracion-contador img{
+		width: 11rem;
+		scale: 1;
+		object-fit: cover;
+		rotate: 130deg;
+	}
+
+	
 
 	@media (max-width: 1920px){
 		/* .main-photo img{
