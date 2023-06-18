@@ -46,12 +46,12 @@ import Layout from '../layouts/Layout.astro';
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 
-		<picture class="decoracion-horizontal-superior">
+		<picture class="decoracion-horizontal-superior decoracion-horizontal-size">
 			<source srcset="/img/SeparadorHorizontal_1.png">
 			<img src="/img/SeparadorHorizontal_1.png" alt="Divisor superior">
 		</picture>
 
-		<picture class="decoracion-horizontal-inferior">
+		<picture class="decoracion-horizontal-inferior decoracion-horizontal-size">
 			<source srcset="/img/SeparadorHorizontal_1.png">
 			<img src="/img/SeparadorHorizontal_1.png" alt="Divisor inferior">
 		</picture>
@@ -98,6 +98,49 @@ import Layout from '../layouts/Layout.astro';
 
 	</section>
 	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
+		<picture class="decoracion-info-superior decoracion-info-size">
+			<source srcset="/img/DecoracionLinealFlores.png">
+			<img src="/img/DecoracionLinealFlores.png" alt="Decoracion Flores">
+		</picture>
+		<picture class="decoracion-info-inferior decoracion-info-size">
+			<source srcset="/img/DecoracionLinealFlores.png">
+			<img src="/img/DecoracionLinealFlores.png" alt="Decoracion Flores">
+		</picture>
+
+		<picture class="copas">
+			<source srcset="/img/Copas.png">
+			<img src="/img/Copas.png" alt="Copas">
+		</picture>
+		<picture class="Iglesia">
+			<source srcset="/img/Iglesia.png">
+			<img src="/img/Iglesia.png" alt="Iglesia">
+		</picture>
+
+		<div class="detalles-info detalles-ceremonia">
+			<h3>CEREMONIA</h3>
+			<p>Parroquia San José de Torices</p>
+			<p>Torices Cr 16 # 44-10</p>
+			<span>5:00 P.M</span>
+		</div>
+		<div class="detalles-info detalles-recepcion">
+			<h3>RECEPCIÓN</h3>
+			<p>Club Naval de Suboficiales</p>
+			<p>Crespo Cll. 71</p>
+			<span>8:00 P.M</span>
+		</div>
+
+		<picture class="mapa mapa-parroquia">
+			<source srcset="/img/MapaParroquia.png">
+			<img src="/img/MapaParroquia.png" alt="Mapa Parroquia">
+		</picture>
+		<picture class="mapa mapa-club">
+			<source srcset="/img/MapaClub.png">
+			<img src="/img/MapaClub.png" alt="Mapa Club">
+		</picture>
+		<a href="https://www.google.com/maps/place/Parroquia+San+Jos%C3%A9+De+Torices/@10.4305892,-75.5342436,15z/data=!4m6!3m5!1s0x8ef62f85c4c655db:0x7a346b2519cb1b3f!8m2!3d10.4305892!4d-75.5342436!16s%2Fg%2F11ggs2yn4s?entry=ttu" 
+			target="_blank" class="link-maps link-ceremonia">Ver en Google Maps</a>
+		<a href="https://www.google.com/maps/place/Club+Naval+de+Suboficiales/@10.4521671,-75.5170632,17z/data=!3m1!4b1!4m6!3m5!1s0x8ef62545650955c1:0xf82cfbd931505b17!8m2!3d10.4521618!4d-75.5144883!16s%2Fg%2F1tykwfx2?entry=ttu" 
+			target="_blank" class="link-maps link-recepcion">Ver en Google Maps</a>
 	</section>
 </Layout>
 
@@ -274,18 +317,21 @@ import Layout from '../layouts/Layout.astro';
 		font-family: 'Trebuchet MS', sans-serif;
 		font-weight: bolder;
 	}
-	
+
+	.decoracion-horizontal-size img{
+		width: 95vh;
+		scale: 1;
+		object-fit: cover;
+	}
+
 	.decoracion-horizontal-superior{
 		position: absolute;
-		top: 5vh;
+		top: 3vh;
 		left: 50vw;
 		translate: -50%;
 	}
 
 	.decoracion-horizontal-superior img{
-		width: 80vh;
-		scale: 1;
-		object-fit: cover;
 		rotate: 180deg;
 	}
 	
@@ -295,18 +341,13 @@ import Layout from '../layouts/Layout.astro';
 		left: 50vw;
 		translate: -50%;
 	}
-	.decoracion-horizontal-inferior img{
-		width: 80vh;
-		scale: 1;
-		object-fit: cover;
-	}
 
 	.seccion-our-story .mensaje {
 		font-family: Arial, Helvetica, sans-serif;
 		color: var(--basic);
 		font-size: 5vh;
 		text-align: center;
-		width: 55vw;
+		width: 110vh;
 		position: absolute;
 		top: 19vh;
 		left: 50vw;
@@ -320,29 +361,29 @@ import Layout from '../layouts/Layout.astro';
 		translate: -50%;		
 		background-color: var(--basic-light);
 		width: 30vw;
-		height: 25vh;
+		height: 27vh;
 		border-radius: 25px;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.contador .contador-texto{
-		font-size: 3rem;
+		font-size: 7vh;
 		font-weight: bold;
 		color: var(--secondary);
 		text-align: center;
 		position: relative;
-		top: 1.2rem;
+		top: 2vh;
 		width: 100%;
 	}
 
 	.contador-reloj {
 		position: relative;
-		top: 1.8rem;
+		top: 3vh;
 		color: var(--secondary);
-		font-size: 2.6rem;
+		font-size: 6vh;
 		width: 100%;
 		display: flex;
-		gap: 1rem;
+		gap: 1vw;
 		justify-content: center;
 	}
 
@@ -351,8 +392,7 @@ import Layout from '../layouts/Layout.astro';
 		background-color: var(--secondary);
 		color: var(--accent);
 		opacity: .69;
-		width: 3rem;
-		height: 3.7rem;
+		width: 3vw;
 		border-radius: 5px;
 		text-align: center;
 	}
@@ -364,13 +404,13 @@ import Layout from '../layouts/Layout.astro';
 
 	.contador-nombres {
 		position: relative;
-		top: 2.3rem;
+		top: 5vh;
 		display: flex;
 		justify-content: center;
-		gap: 5.5rem;
+		gap: 5vw;
 		width: 100%;
 		color: var(--secondary);
-		font-size: 1.5rem;
+		font-size: 3.3vh;
 		font-weight: bold;
 	}
 
@@ -387,8 +427,105 @@ import Layout from '../layouts/Layout.astro';
 		rotate: 130deg;
 	}
 
-	
+	.decoracion-info-size img{
+		width: 100vw;
+		scale: 1;
+		object-fit: cover;
+	}
 
+	.decoracion-info-superior {
+		position: absolute;
+		top: -5px;
+		rotate: 180deg;
+		left: 0vw;
+	}
+	.decoracion-info-inferior {
+		position: absolute;
+		bottom: -5px;
+		left: 0vw;
+	}
+
+	.Iglesia{
+		position: absolute;
+		top: 20vh;
+		left: 32.5vw;
+	}
+	.Iglesia img{
+		width: 5vw;
+		scale: 1;
+		object-fit: cover;	
+	}
+	.copas{
+		position: absolute;
+		top: 18.5vh;
+		left: 62vw;
+
+	}
+	.copas img{
+		width: 6vw;
+		scale: 1;
+		object-fit: cover;	
+	}
+
+	.mapa img{
+		width: 20vw;
+		scale: 1;
+		object-fit: cover;
+	}
+	.mapa-parroquia{
+		position: absolute;
+		top: 50vh;
+		left: 25vw;
+	}
+	.mapa-club{
+		position: absolute;
+		top: 50vh;
+		left: 55vw;
+	}
+	
+	.detalles-info {
+		position: absolute;
+		top: 32vh;
+		translate: -50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1vh;
+		font-size: 2.8vh;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	.detalles-info h3{
+		margin: 0px;
+		color: var(--basic);
+	}
+	.detalles-info p{
+		color: var(--accent);
+	}
+	.detalles-info span{
+		color: var(--accent);
+		font-weight: bold;
+	}
+	.detalles-ceremonia	{
+		left: 35vw;
+	}
+	.detalles-recepcion {
+		left: 65vw;
+	}
+
+	.link-maps {
+		position: absolute;
+		top: 75vh;
+		color: var(--accent);
+		font-family: Arial, Helvetica, sans-serif;
+		translate: -50%;
+	}
+	.link-ceremonia	{
+		left: 35vw;
+	}
+	.link-recepcion {
+		left: 65vw;
+	}
+	
 	@media (max-width: 1920px){
 		/* .main-photo img{
 			height: 100vh;
