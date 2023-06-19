@@ -99,12 +99,12 @@ import Layout from '../layouts/Layout.astro';
 	</section>
 	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
 		<picture class="decoracion-info-superior decoracion-info-size">
-			<source srcset="/img/DecoracionLinealFlores.png">
-			<img src="/img/DecoracionLinealFlores.png" alt="Decoracion Flores">
+			<source srcset="/img/DecoFlorarlLarga.png">
+			<img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores">
 		</picture>
 		<picture class="decoracion-info-inferior decoracion-info-size">
-			<source srcset="/img/DecoracionLinealFlores.png">
-			<img src="/img/DecoracionLinealFlores.png" alt="Decoracion Flores">
+			<source srcset="/img/DecoFlorarlLarga.png">
+			<img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores">
 		</picture>
 
 		<picture class="copas">
@@ -128,19 +128,52 @@ import Layout from '../layouts/Layout.astro';
 			<p>Crespo Cll. 71</p>
 			<span>8:00 P.M</span>
 		</div>
-
-		<picture class="mapa mapa-parroquia">
-			<source srcset="/img/MapaParroquia.png">
-			<img src="/img/MapaParroquia.png" alt="Mapa Parroquia">
-		</picture>
-		<picture class="mapa mapa-club">
-			<source srcset="/img/MapaClub.png">
-			<img src="/img/MapaClub.png" alt="Mapa Club">
-		</picture>
+		<a href="https://www.google.com/maps/place/Parroquia+San+Jos%C3%A9+De+Torices/@10.4305892,-75.5342436,15z/data=!4m6!3m5!1s0x8ef62f85c4c655db:0x7a346b2519cb1b3f!8m2!3d10.4305892!4d-75.5342436!16s%2Fg%2F11ggs2yn4s?entry=ttu" 
+			target="_blank">
+			<picture class="mapa mapa-parroquia">
+				<source srcset="/img/MapaParroquia.png">
+				<img src="/img/MapaParroquia.png" alt="Mapa Parroquia">
+			</picture>
+		</a>
+		<a href="https://www.google.com/maps/place/Club+Naval+de+Suboficiales/@10.4521671,-75.5170632,17z/data=!3m1!4b1!4m6!3m5!1s0x8ef62545650955c1:0xf82cfbd931505b17!8m2!3d10.4521618!4d-75.5144883!16s%2Fg%2F1tykwfx2?entry=ttu" 
+			target="_blank">
+			<picture class="mapa mapa-club">
+				<source srcset="/img/MapaClub.png">
+				<img src="/img/MapaClub.png" alt="Mapa Club">
+			</picture>
+		</a>
 		<a href="https://www.google.com/maps/place/Parroquia+San+Jos%C3%A9+De+Torices/@10.4305892,-75.5342436,15z/data=!4m6!3m5!1s0x8ef62f85c4c655db:0x7a346b2519cb1b3f!8m2!3d10.4305892!4d-75.5342436!16s%2Fg%2F11ggs2yn4s?entry=ttu" 
 			target="_blank" class="link-maps link-ceremonia">Ver en Google Maps</a>
 		<a href="https://www.google.com/maps/place/Club+Naval+de+Suboficiales/@10.4521671,-75.5170632,17z/data=!3m1!4b1!4m6!3m5!1s0x8ef62545650955c1:0xf82cfbd931505b17!8m2!3d10.4521618!4d-75.5144883!16s%2Fg%2F1tykwfx2?entry=ttu" 
 			target="_blank" class="link-maps link-recepcion">Ver en Google Maps</a>
+	</section>
+	<section class="seccion seccion-dresscode" id="info" data-index="3" data-status="unknown">
+		<div class="deco1">
+			<picture class="deco1-flores">
+				<source srcset="/img/SeparadorHorizontal_1.png">
+				<img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+			</picture>
+		</div>
+		<div class="titulo-dresscode"></div>
+		<div class="colores"></div>
+		<div class="mujer">
+			<picture class="dc-mujer">
+				<source srcset="/img/DCMujer.png">
+				<img src="/img/DCMujer.png" alt="Decoracion Floral">
+			</picture>
+		</div>
+		<div class="hombre">
+			<picture class="dc-hombre">
+				<source srcset="/img/DCHombre.png">
+				<img src="/img/DCHombre.png" alt="Decoracion Floral">
+			</picture>
+		</div>
+		<div class="deco2">
+			<picture class="deco2-flores">
+				<source srcset="/img/SeparadorHorizontal_1.png">
+				<img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+			</picture>
+		</div>
 	</section>
 </Layout>
 
@@ -176,6 +209,13 @@ import Layout from '../layouts/Layout.astro';
 		background-size: cover;
 		top: 100vh;
 	}
+	.seccion-dresscode{
+		background-image: url(/img/BackgroundImage.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		top: 100vh;
+	}
+
 	.move-up{
 		top: -100vh;
 		transition: all 1s;
@@ -459,7 +499,6 @@ import Layout from '../layouts/Layout.astro';
 		position: absolute;
 		top: 18.5vh;
 		left: 62vw;
-
 	}
 	.copas img{
 		width: 6vw;
@@ -525,7 +564,56 @@ import Layout from '../layouts/Layout.astro';
 	.link-recepcion {
 		left: 65vw;
 	}
-	
+
+	.seccion-dresscode{
+		display: grid;
+		grid-template-areas: 
+		"deco1 titulo colores colores deco2"
+		"deco1 titulo mujer hombre deco2";
+		grid-template-columns: 15vw 25vw 22.5vw 22.5vw 15vw;
+		grid-template-rows: 30vh 70vh;
+	}
+
+	.deco1 {
+		background-color: aqua;
+		grid-area: deco1;
+	}
+	.deco1 picture{
+		position: relative;
+		top: 50vh;
+		right: 0px;
+	}
+	.deco1 picture img{
+		width: 40vw;
+		scale: 1;
+		object-fit: cover;	
+		rotate: 90deg;
+		translate: -8.2vw -50%;
+	}
+	.titulo-dresscode {
+		background-color: blueviolet;
+		grid-area: titulo;
+	}
+	.colores {
+		background-color: cadetblue;
+		grid-area: colores;
+
+	}
+	.mujer {
+		background-color: coral;
+		grid-area: mujer;
+
+	}
+	.hombre {
+		background-color: burlywood;
+		grid-area: hombre;
+
+	}
+	.deco2 {
+		background-color: blue;
+		grid-area: deco2;
+	}
+
 	@media (max-width: 1920px){
 		/* .main-photo img{
 			height: 100vh;
