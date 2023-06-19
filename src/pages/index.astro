@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import '@fontsource/great-vibes';
+import '@fontsource-variable/montserrat';
 ---
 
 <Layout>
@@ -154,19 +156,36 @@ import Layout from '../layouts/Layout.astro';
 				<img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
 			</picture>
 		</div>
-		<div class="titulo-dresscode"></div>
-		<div class="colores"></div>
+		<div class="titulo-dresscode">
+			<h1>
+				DRESSCODE
+			</h1>
+			<h2>
+				Formal
+			</h2>
+		</div>
+		<div class="colores">
+			<h4>COLORES RESERVADOS</h4>
+			<div class="color c1"></div>
+			<div class="color c2"></div>
+			<div class="color c3"></div>
+		</div>
 		<div class="mujer">
-			<picture class="dc-mujer">
+			<h4 class="titulo-mujer-hombre">MUJERES</h4>
+			<picture class="figura">
 				<source srcset="/img/DCMujer.png">
 				<img src="/img/DCMujer.png" alt="Decoracion Floral">
 			</picture>
+			<p class="indicacion-desscode">Vestido largo</p>
 		</div>
+		<div class="hom-muj-separador"></div>
 		<div class="hombre">
-			<picture class="dc-hombre">
+			<h4 class="titulo-mujer-hombre">HOMBRES</h4>
+			<picture class="figura">
 				<source srcset="/img/DCHombre.png">
 				<img src="/img/DCHombre.png" alt="Decoracion Floral">
 			</picture>
+			<p class="indicacion-desscode">Traje</p>
 		</div>
 		<div class="deco2">
 			<picture class="deco2-flores">
@@ -307,16 +326,17 @@ import Layout from '../layouts/Layout.astro';
 		position: absolute;
 		top: 62vh;
 		left: 36vw;
-		gap: 0rem;
+		width: 100%;
 		font-size: 5vw;
 		color: var(--accent);
-		font-family:  'alex_brushregular';
+		font-family: 'Great Vibes', sans-serif;;
 	}
 
 	.sub-titulo-portada{
-		font-family: 'Trebuchet MS', sans-serif;
+		font-family: 'Montserrat Variable', sans-serif;
 		color: var(--accent);
 		font-size: 30px;
+		font-weight: 500;
 		position: absolute;
 		top: 5vh;
 		left: 50vw;
@@ -324,10 +344,10 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.texto-portada{
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		line-height: 3.5vh;
 		color: var(--basic);
-		font-size: 18px;
+		font-size: 15px;
 		text-align: center;
 		width: 43vw;
 		position: absolute;
@@ -337,13 +357,13 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.autor-cita	{
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		position: absolute;
 		top: 86vh;
 		left: 50vw;
 		translate: -50%;
 		font-size: 15px;
 		color: var(--accent);
-		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.fecha{
@@ -383,13 +403,14 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.seccion-our-story .mensaje {
-		font-family: Arial, Helvetica, sans-serif;
-		color: var(--basic);
-		font-size: 5vh;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+		color: var(--accent);
+		font-size: 4.8vh;
+		font-weight: 500;
 		text-align: center;
-		width: 110vh;
+		width: 120vh;
 		position: absolute;
-		top: 19vh;
+		top: 20vh;
 		left: 50vw;
 		translate: -50%;		
 	}
@@ -403,13 +424,13 @@ import Layout from '../layouts/Layout.astro';
 		width: 30vw;
 		height: 27vh;
 		border-radius: 25px;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 	}
 
 	.contador .contador-texto{
 		font-size: 7vh;
 		font-weight: bold;
-		color: var(--secondary);
+		color: var(--secondary-light);
 		text-align: center;
 		position: relative;
 		top: 2vh;
@@ -419,7 +440,7 @@ import Layout from '../layouts/Layout.astro';
 	.contador-reloj {
 		position: relative;
 		top: 3vh;
-		color: var(--secondary);
+		color: var(--secondary-light);
 		font-size: 6vh;
 		width: 100%;
 		display: flex;
@@ -429,7 +450,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.contador-reloj .digito {
 		display: table;
-		background-color: var(--secondary);
+		background-color: var(--secondary-light);
 		color: var(--accent);
 		opacity: .69;
 		width: 3vw;
@@ -449,7 +470,7 @@ import Layout from '../layouts/Layout.astro';
 		justify-content: center;
 		gap: 5vw;
 		width: 100%;
-		color: var(--secondary);
+		color: var(--secondary-light);
 		font-size: 3.3vh;
 		font-weight: bold;
 	}
@@ -531,11 +552,11 @@ import Layout from '../layouts/Layout.astro';
 		align-items: center;
 		gap: 1vh;
 		font-size: 2.8vh;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 	}
 	.detalles-info h3{
 		margin: 0px;
-		color: var(--basic);
+		color: var(--accent-light);
 	}
 	.detalles-info p{
 		color: var(--accent);
@@ -555,7 +576,7 @@ import Layout from '../layouts/Layout.astro';
 		position: absolute;
 		top: 75vh;
 		color: var(--accent);
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		translate: -50%;
 	}
 	.link-ceremonia	{
@@ -575,12 +596,12 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.deco1 {
-		background-color: aqua;
 		grid-area: deco1;
+		border-right: solid 3px var(--accent);
 	}
 	.deco1 picture{
 		position: relative;
-		top: 50vh;
+		top: 50%;
 		right: 0px;
 	}
 	.deco1 picture img{
@@ -591,29 +612,116 @@ import Layout from '../layouts/Layout.astro';
 		translate: -8.2vw -50%;
 	}
 	.titulo-dresscode {
-		background-color: blueviolet;
 		grid-area: titulo;
+		border-right: solid 3px var(--accent);
+	}
+	.titulo-dresscode h1{
+		position: relative;
+		top: 40vh;
+		left: 1.5vw;
+		font-size: 3.4vw;
+		color: var(--accent-light);
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+	}
+	.titulo-dresscode h2{
+		position: relative;
+		top: 28vh;
+		left: 8vw;
+		font-size: 5.5vw;
+		color: var(--accent);
+		font-family: 'Great Vibes', sans-serif;;
 	}
 	.colores {
-		background-color: cadetblue;
 		grid-area: colores;
-
+		border-bottom: solid 3px var(--accent);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		column-gap: 4vw;
+	}
+	.colores h4{
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+		font-weight: 500;
+		color: var(--accent);
+		font-size: 2vw;
+		width: 100%;
+		text-align: center;
+		margin-bottom: .5vh;
+	}
+	.colores .color{
+		width: 6vw;
+		height: 6vw;
+		scale: 1;
+		border-radius: 50%;
+	}
+	.colores .c1{
+		background-color: white;
+	}
+	.colores .c2{
+		background-color: var(--accent-light);
+	}
+	.colores .c3{
+		background-color: var(--secondary);
 	}
 	.mujer {
-		background-color: coral;
 		grid-area: mujer;
-
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 	}
 	.hombre {
-		background-color: burlywood;
 		grid-area: hombre;
-
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+	}
+	.hom-muj-separador{
+		position: absolute;
+		top: 35vh;
+		left: 62.5vw;
+		height: 60vh;
+		border-left: solid 3px var(--accent);
+	}
+	.figura{
+		position: relative;
+		top: 30%;
+		left: 50%;
+	}
+	.figura img{
+		translate: -50% -50%;
+		height: 35vh;
+		object-fit: cover;	
+	}
+	.titulo-mujer-hombre{
+		width: 100%;
+		text-align: center;
+		position: relative;
+		top: 10%;
+		font-size: 4vh;
+		font-weight: 500;
+		color: var(--accent)
+	}
+	.indicacion-desscode{
+		width: 100%;
+		text-align: center;
+		position: relative;
+		top: 8%;
+		font-size: 3vh;
+		color: var(--accent)		
 	}
 	.deco2 {
-		background-color: blue;
 		grid-area: deco2;
+		border-left: solid 3px var(--accent);
 	}
-
+	.deco2 picture{
+		position: relative;
+		top: 50vh;
+		left: 0px;
+	}
+	.deco2 picture img{
+		width: 40vw;
+		scale: 1;
+		object-fit: cover;	
+		rotate: y 180deg;
+		transform: rotate(90deg);
+		translate: -16.8vw -50%;
+	}
 	@media (max-width: 1920px){
 		/* .main-photo img{
 			height: 100vh;
