@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Presentation from './Presentation.astro';
-import Main from './Main.astro';
+import Intro from './Intro.astro';
 import OurStory from './OurStory.astro';
 import Info from './Info.astro';
 import LluviaSobres from './LluviaSobres.astro';
@@ -16,8 +16,8 @@ import '@fontsource-variable/montserrat';
 	<section class="seccion seccion-presentation" id="presentation" data-index="-1" data-status="active">
 		<Presentation></Presentation>
 	</section>
-	<section class="seccion seccion-main" id="main" data-index="0" data-status="unknown">
-		<Main></Main>
+	<section class="seccion seccion-intro" id="intro" data-index="0" data-status="unknown">
+		<Intro></Intro>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 		<OurStory></OurStory>
@@ -59,7 +59,7 @@ import '@fontsource-variable/montserrat';
 		background-size: cover;
 		top: 0px;
 	}
-	.seccion-main {
+	.seccion-intro {
 		background-image: url(/img/BackgroundImage.png);
 		background-repeat: no-repeat;
 		background-size: cover;
