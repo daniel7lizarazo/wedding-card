@@ -1,5 +1,9 @@
 ---
-const invitados = ["Pepito Carbrera", "Angelano Buenavida", "Constancia Variable"];
+// const invitados = ["Pepito Carbrera", "Angelano Buenavida", "Constancia Variable"];
+import type { IInvitados } from '../schemas/Invitados.js';
+let idCharacter = Math.round(Math.random()*10);
+const invitados = await fetch(`https://rickandmortyapi.com/api/character/${idCharacter},${idCharacter+1},${idCharacter+2},${idCharacter+3},${idCharacter+4}`);
+const invitadosInfo: IInvitados[] = await invitados.json();
 ---
 <div class="pareja-container">
     <picture class="pareja-rsvp">
@@ -39,9 +43,9 @@ const invitados = ["Pepito Carbrera", "Angelano Buenavida", "Constancia Variable
     </picture>
     <ul>
         {
-        invitados.map((invitado) => (
+        invitadosInfo.map((invitado) => (
             <li>
-                <span>{invitado}</span>
+                <span>{invitado.name}</span>
                 <button class="aceptar">
                     <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
                     <defs>

@@ -131,11 +131,13 @@ import '@fontsource-variable/montserrat';
 	let touchStartY: number = 0;
 	let deltaY: number = 0;
 
+
 	const debounce = (callback: Function, waitTime: number) => {
 		let timerId: ReturnType<typeof setTimeout>;
 		let execute = true;
 		return () => {
 			if(execute) {
+
 				const executed = callback();
 				if(executed) {
 					execute = false;
@@ -143,7 +145,7 @@ import '@fontsource-variable/montserrat';
 			}
 			clearTimeout(timerId);
 			timerId = setTimeout(() => {
-				execute = true
+				execute = true;
 			}, waitTime) 
 		}
 	}
@@ -205,4 +207,3 @@ import '@fontsource-variable/montserrat';
 	})
 
 </script>
-
