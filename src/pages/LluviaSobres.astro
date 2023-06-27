@@ -67,18 +67,22 @@
 </g>
 </svg>
 
-<picture class="deco-flores deco-flores-lluvia-der">
-    <source srcset="/img/SeparadorHorizontal_1.png">
-    <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
-</picture>
+<div class="deco-flores-izq-container">
+    <picture class="deco-flores deco-flores-lluvia-izq">
+        <source srcset="/img/SeparadorHorizontal_1.png">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+    </picture>
+</div>
 <picture class="deco-flores deco-flores-lluvia-bot">
     <source srcset="/img/SeparadorHorizontal_1.png">
     <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
 </picture>
-<picture class="deco-flores deco-flores-lluvia-izq">
-    <source srcset="/img/SeparadorHorizontal_1.png">
-    <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
-</picture>
+<div class="deco-flores-der-container">
+    <picture class="deco-flores deco-flores-lluvia-der">
+        <source srcset="/img/SeparadorHorizontal_1.png">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+    </picture>
+</div>
 
 <style>
     .base-lluvia{
@@ -134,30 +138,42 @@
 
 
 	.deco-flores{
-		position: absolute;
+        position: relative;
 	}
 	.deco-flores img{
 		object-fit: cover;
 	}
-
+    
+    .deco-flores-izq-container{
+		position: absolute;
+		top: 0%;
+		left: -8vw;
+        height: 70vh;
+    }
 	.deco-flores-lluvia-izq{
-		top: 29vh;
-		left: -8.2vw;
+        top: 27vh;
+		right: 0%;
 	}
 	.deco-flores-lluvia-izq img{
-		width: 73vh;
+		height: 5.5vw;
 		rotate: 90deg;
 	}
+
+    .deco-flores-der-container{
+		position: absolute;
+		top: 0%;
+		left: 22.4vw;
+        height: 70vh;
+    }
 	.deco-flores-lluvia-der{
-		top: 25vh;
-		left: 22.3vw;
+		top: 26vh;
 	}
 	.deco-flores-lluvia-der img{
-		width: 73vh;
+		height: 5.5vw;
 		rotate: -90deg;
 	}
+
 	.deco-flores-lluvia-bot{
-		top: 60vh;
 		left: 9vw;
 	}
 	.deco-flores-lluvia-bot img{

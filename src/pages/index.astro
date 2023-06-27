@@ -1,17 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Main from './main.astro';
+import Presentation from './Presentation.astro';
+import Main from './Main.astro';
 import OurStory from './OurStory.astro';
 import Info from './Info.astro';
 import LluviaSobres from './LluviaSobres.astro';
 import DressCode from './DressCode.astro';
 import MusicaMensaje from './MusicaMensaje.astro'
+import Rsvp from './Rsvp.astro'
 import '@fontsource/great-vibes';
 import '@fontsource-variable/montserrat';
 ---
 
 <Layout>
-	<section class="seccion seccion-main" id="main" data-index="0" data-status="active">
+	<section class="seccion seccion-presentation" id="presentation" data-index="-1" data-status="active">
+		<Presentation></Presentation>
+	</section>
+	<section class="seccion seccion-main" id="main" data-index="0" data-status="unknown">
 		<Main></Main>
 	</section>
 	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
@@ -20,23 +25,25 @@ import '@fontsource-variable/montserrat';
 	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
 		<Info></Info>
 	</section>
-	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
-		<LluviaSobres></LluviaSobres>
-	</section>
 	<section class="seccion seccion-dresscode" id="dress-code" data-index="3" data-status="unknown">
 		<DressCode></DressCode>
+	</section>
+	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
+		<LluviaSobres></LluviaSobres>
 	</section>
 	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
 		<MusicaMensaje></MusicaMensaje>
 	</section>
-	
+	<section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
+		<Rsvp></Rsvp>
+	</section>
 </Layout>
 
 <style>
 
-	/* -1920×1080 (9.94%)
-	-1366×768 (6.22%)
-	-360×640 (5.88%)
+	/* 1920×1080 (9.94%)
+	1366×768 (6.22%)
+	360×640 (5.88%)
 	414×896 (4.21%)
 	1536×864 (3.94%)
 	375×667 (3.74%) */
@@ -46,11 +53,17 @@ import '@fontsource-variable/montserrat';
 		height: 100vh;
 		position: absolute;
 	}
+	.seccion-presentation{
+		background-color: var(--third);
+		background-repeat: no-repeat;
+		background-size: cover;
+		top: 0px;
+	}
 	.seccion-main {
 		background-image: url(/img/BackgroundImage.png);
 		background-repeat: no-repeat;
 		background-size: cover;
-		top: 0px;
+		top: 100vh;
 	}
 	.seccion-our-story {
 		background-image: url(/img/Manos.png);
@@ -82,6 +95,12 @@ import '@fontsource-variable/montserrat';
 		background-size: cover;
 		top: 100vh;
 	}
+	.seccion-rsvp{
+		background-image: url(/img/BackgroundImage.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		top: 100vh;
+	}
 
 	.move-up{
 		top: -100vh;
@@ -93,7 +112,7 @@ import '@fontsource-variable/montserrat';
 	}
 	.move-center{
 		top: 0px;
-		transition: top 1s;
+		transition: all 1s;
 	}
 
 	@media (max-width: 1920px){

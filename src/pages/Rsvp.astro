@@ -1,0 +1,256 @@
+---
+const invitados = ["Pepito Carbrera", "Angelano Buenavida", "Constancia Variable"];
+---
+<div class="pareja-container">
+    <picture class="pareja-rsvp">
+        <source srcset="/img/ParejaRSVP.png">
+        <img src="/img/ParejaRSVP.png" alt="Pareja abrazandose">
+    </picture>
+</div>
+
+<picture class="deco-grande deco-grande-izq">
+    <source srcset="/img/DecoGrandeRSVP.png">
+    <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral">
+</picture>
+
+<picture class="deco-grande deco-grande-der">
+    <source srcset="/img/DecoGrandeRSVP.png">
+    <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral">
+</picture>
+
+<h1>
+    RSPV
+</h1>
+<picture class="deco-peque deco-peque-der">
+    <source srcset="/img/DecoPequeRSVP.png">
+    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral">
+</picture>
+<picture class="deco-peque deco-peque-izq">
+    <source srcset="/img/DecoPequeRSVP.png">
+    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral">
+</picture>
+
+<p>¿Vienes a celebrar con nosotros?</p>
+
+<div class="seccion-invitados">
+    <picture class="deco-invitados deco-invitados-superior">
+        <source srcset="/img/SeparadorHorizontal_1.png">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+    </picture>
+    <ul>
+        {
+        invitados.map((invitado) => (
+            <li>
+                <span>{invitado}</span>
+                <button class="aceptar">
+                    <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                    <clipPath id="21d8b0576d-0">
+                    <path d="m550.25 1h473.75v492h-473.75z"/>
+                    </clipPath>
+                    </defs>
+                    <metadata>
+                    <rdf:RDF>
+                    <cc:Work rdf:about="">
+                        <dc:format>image/svg+xml</dc:format>
+                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                        <dc:title/>
+                    </cc:Work>
+                    </rdf:RDF>
+                    </metadata>
+                    <g transform="translate(-143.57 -26.461)">
+                    <g transform="matrix(.35278 0 0 .35278 -50.548 25.877)" clip-path="url(#21d8b0576d-0)">
+                    <path d="m1006.1 1.6562-21.289 14.574c-111.31 76.172-225.3 233.87-282.17 362.08-8.7852-12.301-11.438-16.375-19.949-30.051-34.766-46.977-78.848-87.293-99.766-102.18l-32.684 13.664 1.0352 1.9414c22.566 24.711 62.164 79.543 121.84 200.37 3.6602 5.2188 7.5625 10.34 12.004 15.117 11.68 12.512 23.652 15.145 31.641 15.145h0.0117c22.781 0 36.215-17.992 45.465-39.055 59.77-221.92 201.01-374.69 262.09-427.02z" fill="#f9eae6"/>
+                    </g>
+                    </g>
+                    </svg>
+
+                </button>
+                <button class="rechazar">
+                    <svg version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                    <clipPath id="577a602fa9">
+                    <path d="m3 4h516v514.39h-516z"/>
+                    </clipPath>
+                    </defs>
+                    <metadata>
+                    <rdf:RDF>
+                    <cc:Work rdf:about="">
+                    <dc:format>image/svg+xml</dc:format>
+                    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                    <dc:title/>
+                    </cc:Work>
+                    </rdf:RDF>
+                    </metadata>
+                    <g transform="translate(34.777 -51.84)">
+                    <g transform="matrix(.35278 0 0 .35278 -36.182 50.389)" clip-path="url(#577a602fa9)">
+                    <path d="m317.32 261.29 189.34-189.36c15.516-15.516 15.516-40.672 0-56.184-15.516-15.516-40.668-15.516-56.18 0l-189.34 189.36-189.34-189.36c-15.516-15.516-40.664-15.516-56.18 0-15.512 15.516-15.512 40.668 0 56.184l189.34 189.36-189.34 189.36c-15.512 15.516-15.512 40.668 0 56.18 7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637l189.34-189.36 189.34 189.36c7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637c15.516-15.516 15.516-40.668 0-56.18z" fill="#f9eae6"/>
+                    </g>
+                    </g>
+                    </svg>
+                </button>
+            </li>
+        ))
+        }
+    </ul>
+    <picture class="deco-invitados deco-invitados-inferior">
+        <source srcset="/img/SeparadorHorizontal_1.png">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+    </picture>
+</div>
+
+
+<style>
+    .pareja-container{
+        position: relative;
+        left: 10%;
+        top: 0%;
+        width: 40%;
+        height: 90%;
+        border-bottom-left-radius: 50% 25%;
+        border-bottom-right-radius: 50% 20%;
+    }
+    .pareja-rsvp img{
+        position: relative;
+        top: -20%;
+    }
+    .pareja-rsvp img{
+		object-fit: cover;	
+        width: 100%;
+    }
+
+    .deco-grande {
+        position: absolute;
+        top: 60%;
+    }
+    .deco-grande img{
+		object-fit: cover;	
+        width: 15vw
+    }
+    .deco-grande-izq {
+        left: 10%;
+    }
+    .deco-grande-izq img {
+        rotate: -20deg;
+    }
+
+    .deco-grande-der {
+        left: 35%;        
+    }
+    .deco-grande-der img {
+        rotate: y 180deg;
+        transform: rotate(-20deg);
+    }
+
+    h1{
+        position: absolute;
+        top: 20%;
+        right: 10%;
+        color: var(--accent-light);
+        font-size: 10vw;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+    }
+
+    .deco-peque {
+        position:absolute;
+    }
+    .deco-peque img {
+		object-fit: cover;	
+        width: 10vw;
+    }
+    .deco-peque-der {
+        top: 29%;
+        right: 34%;
+    }
+    .deco-peque-der img {
+        rotate: -90deg;
+
+    }
+    .deco-peque-izq {
+        top: 30%;
+        right: 4.9%;
+    }
+    .deco-peque-izq img {
+        rotate: 114deg;
+    }
+
+    p{
+        position: absolute;
+        top: 45%;
+        right: 12%;
+        color: var(--accent);
+        font-size: 1.5vw;
+        font-weight: 500;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+    }
+    
+    .seccion-invitados{
+        position: absolute;
+        top: 55%;
+        right: 12%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .deco-invitados {
+        align-self: center;
+    }
+    .deco-invitados img {
+        object-fit: cover;
+        width: 20vw;
+    }
+    .deco-invitados-superior img{
+        rotate: 180deg;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        width: 25vw;
+    }
+    ul li{
+        display: flex;
+        list-style: none;
+        
+        font-size: 1.2vw;
+        font-weight: 500;
+		font-family: 'Montserrat Variable', Helvetica, sans-serif;
+        color: var(--accent-light);
+
+        margin-bottom: 2vh;
+
+        height: 30px;
+
+    }
+    ul li:last-child{
+        margin-bottom: 0;
+    }
+    ul li span {
+        flex-grow: 1;
+        padding-left: 15px;
+        background-color: var(--secondary-light);
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    ul li button {
+        border: none;
+        width: 50px;
+        color: var(--secondary-light) 
+    }
+    ul li .aceptar{
+        background-color: var(--accept);
+    }
+    ul li .aceptar svg{
+        width: 16px;
+    }
+    ul li .rechazar {
+        background-color: var(--decline);
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    ul li .rechazar svg {
+        width: 14px;
+    }
+
+
+</style>
