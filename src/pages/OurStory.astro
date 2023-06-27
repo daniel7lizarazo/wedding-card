@@ -17,24 +17,24 @@
     </span>
     <div class="contador-reloj">
         <div class="digito">
-            <p>0</p>
+            <p id="mes01">0</p>
         </div>
         <div class="digito">
-            <p>0</p>
-        </div>
-        <span class="separacion-digitos">:</span>
-        <div class="digito">
-            <p>0</p>
-        </div>
-        <div class="digito">
-            <p>0</p>
+            <p id="mes02">0</p>
         </div>
         <span class="separacion-digitos">:</span>
         <div class="digito">
-            <p>0</p>
+            <p id="dia01">0</p>
         </div>
         <div class="digito">
-            <p>0</p>
+            <p id="dia02">0</p>
+        </div>
+        <span class="separacion-digitos">:</span>
+        <div class="digito">
+            <p id="hora01">0</p>
+        </div>
+        <div class="digito">
+            <p id="hora02">0</p>
         </div>
     </div>
     <div class="contador-nombres">
@@ -159,3 +159,52 @@
 		rotate: 130deg;
 	}
 </style> 
+
+<script>
+	const ourDate = new Date(2024, 0, 19, 17, 30);
+	const mes01Element : HTMLElement = document.getElementById('mes01') ?? new HTMLElement;
+	const mes02Element : HTMLElement = document.getElementById('mes02') ?? new HTMLElement;
+	const dia01Element : HTMLElement = document.getElementById('dia01') ?? new HTMLElement;
+	const dia02Element : HTMLElement = document.getElementById('dia02') ?? new HTMLElement;
+	const hora01Element : HTMLElement = document.getElementById('hora01') ?? new HTMLElement;
+	const hora02Element : HTMLElement = document.getElementById('hora02') ?? new HTMLElement;
+
+	function updateDate(){
+		const timeDif = ourDate.getTime() - new Date().getTime();
+		console.log(timeDif);
+		if(timeDif < 0) {
+			clearInterval(interval);
+			updateVisualTimer(0, 0, 0, 0, 0, 0);
+			return;
+		}
+		const monthsDif = timeDif / 1000 / 60 / 60 / 24 / 30;
+		const completeMonts = Math.trunc(monthsDif);
+		const remainingMonth = monthsDif % 1;
+		const daysDif = remainingMonth * 30;
+		const completeDays = Math.trunc(daysDif);
+		const remainingDays = daysDif % 1;
+		const hoursDif = remainingDays * 24;
+		const completeHours = Math.round(hoursDif);
+		
+		const mes01 = Math.trunc(completeMonts / 10);
+		const mes02 = completeMonts % 10;
+		const dia01 = Math.trunc(completeDays / 10);
+		const dia02 = completeDays % 10;
+		const horas01 = Math.trunc(completeHours / 10);
+		const horas02 = completeHours % 10;
+		
+		updateVisualTimer(mes01, mes02, dia01, dia02, horas01, horas02);
+	}
+
+	function updateVisualTimer(mes01: number, mes02: number, dia01: number, dia02: number, hora01: number, hora02: number){
+		mes01Element.innerHTML = `${mes01}`;
+		mes02Element.innerHTML = `${mes02}`;
+		dia01Element.innerHTML = `${dia01}`;
+		dia02Element.innerHTML = `${dia02}`;
+		hora01Element.innerHTML = `${hora01}`;
+		hora02Element.innerHTML = `${hora02}`;
+	}
+	
+	updateDate();
+	let interval = setInterval(updateDate, 20000);
+</script>
