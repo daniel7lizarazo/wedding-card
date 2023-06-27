@@ -171,7 +171,6 @@
 
 	function updateDate(){
 		const timeDif = ourDate.getTime() - new Date().getTime();
-		console.log(timeDif);
 		if(timeDif < 0) {
 			clearInterval(interval);
 			updateVisualTimer(0, 0, 0, 0, 0, 0);
