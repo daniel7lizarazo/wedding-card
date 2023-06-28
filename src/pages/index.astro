@@ -42,14 +42,14 @@ import '@fontsource-variable/montserrat';
 <style>
 
 	/* 1920×1080 (9.94%)
-	1366×768 (6.22%)
-	360×640 (5.88%)
-	414×896 (4.21%)
 	1536×864 (3.94%)
-	375×667 (3.74%) */
+	1366×768 (6.22%)
+	414×896 (4.21%)
+	375×667 (3.74%) 
+	360×640 (5.88%) */
 
 	.seccion {
-		width: 100%;
+		width: 100vw;
 		height: 100vh;
 		position: absolute;
 	}
@@ -121,7 +121,13 @@ import '@fontsource-variable/montserrat';
 	@media (max-width: 1366px){
 	}
 
-	@media (max-width: 375px){
+	@media (max-width: 414px){
+		.seccion {
+			min-height: -webkit-fill-available;
+			width: 100vw;
+			height: 100vh;
+			position: absolute;
+		}
 	}
 
 </style>
