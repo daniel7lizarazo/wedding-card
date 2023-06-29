@@ -19,24 +19,24 @@ import '@fontsource-variable/montserrat';
 	<section class="seccion seccion-intro" id="intro" data-index="0" data-status="unknown">
 		<Intro></Intro>
 	</section>
-	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
+	<!-- <section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
 		<OurStory></OurStory>
-	</section>
-	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
+	</section> -->
+	<!-- <section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
 		<Info></Info>
-	</section>
-	<section class="seccion seccion-dresscode" id="dress-code" data-index="3" data-status="unknown">
+	</section> -->
+	<!-- <section class="seccion seccion-dresscode" id="dress-code" data-index="3" data-status="unknown">
 		<DressCode></DressCode>
-	</section>
-	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
+	</section> -->
+	<!-- <section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
 		<LluviaSobres></LluviaSobres>
-	</section>
-	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
+	</section> -->
+	<!-- <section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
 		<MusicaMensaje></MusicaMensaje>
-	</section>
-	<section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
+	</section> -->
+	<!-- <section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
 		<Rsvp></Rsvp>
-	</section>
+	</section> -->
 </Layout>
 
 <style>
@@ -50,55 +50,42 @@ import '@fontsource-variable/montserrat';
 
 	.seccion {
 		width: 100vw;
-		height: 100vh;
+		height: calc(var(--vh)*100);
 		position: absolute;
+		background-repeat: no-repeat;
+		background-position-x: center;
+		background-size: cover;
 	}
 	.seccion-presentation{
 		background-color: var(--third);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 0px;
 	}
 	.seccion-intro {
 		background-image: url(/img/BackgroundImage.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-our-story {
 		background-image: url(/img/Manos.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-info {
 		background-image: url(/img/BackgroundImage.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-dresscode{
 		background-image: url(/img/BackgroundImage.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-lluvia{
 		background-image: url(/img/LluviaBackgroud.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-musica-mensaje{
 		background-image: url(/img/BackgroundImage.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 	.seccion-rsvp{
 		background-image: url(/img/BackgroundImage.png);
-		background-repeat: no-repeat;
-		background-size: cover;
 		top: 100vh;
 	}
 
@@ -108,6 +95,7 @@ import '@fontsource-variable/montserrat';
 	}
 	.move-down{
 		top: 100vh;
+		/* top: calc(var(--vh) * 100); */
 		transition: all 1s;
 	}
 	.move-center{
@@ -122,12 +110,6 @@ import '@fontsource-variable/montserrat';
 	}
 
 	@media (max-width: 414px){
-		.seccion {
-			min-height: -webkit-fill-available;
-			width: 100vw;
-			height: 100vh;
-			position: absolute;
-		}
 	}
 
 </style>
@@ -137,6 +119,14 @@ import '@fontsource-variable/montserrat';
 	let touchStartY: number = 0;
 	let deltaY: number = 0;
 
+	function setVisualHeight() {
+		const vh = window.innerHeight * .01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`)
+	};
+
+	setVisualHeight();
+
+	window.addEventListener('resize', setVisualHeight);
 
 	const debounce = (callback: Function, waitTime: number) => {
 		let timerId: ReturnType<typeof setTimeout>;
@@ -211,5 +201,7 @@ import '@fontsource-variable/montserrat';
 		deltaY = touchStartY - touchPositionY;
 		debounceUpOrDown();
 	})
+
+
 
 </script>

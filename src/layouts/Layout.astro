@@ -24,6 +24,7 @@
 <style is:global>
 
 	:root {
+		--vh: 1px;
 		--accent: #6B1C18;
 		--accent-light: #946161;
 		--basic: #895F5F;
@@ -35,15 +36,13 @@
 		--decline: #741611;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 	}
-	body {
+	/* body {
 		min-height: 100vh;
-		min-height: fill-available;
-		min-height: -webkit-fill-available;
+		min-height: -webkit-fill-available;	
 	}
 	html {
-		height: fill-available;
-		height: -webkit-fill-available;
-	}
+		min-height: -webkit-fill-available;	
+	} */
 	html, h1, span, div, p {
 		scroll-behavior: smooth;
 		display: block;
