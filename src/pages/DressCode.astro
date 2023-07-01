@@ -185,4 +185,137 @@
 		transform: rotate(90deg);
 		translate: -16.8vw -50%;
 	}
+
+	@media (max-width: 430px){
+		.container-dresscode{
+			display: grid;
+			grid-template-areas: 
+			"deco1 deco1" 
+			"titulo titulo"
+			"colores colores"
+			"mujer hombre"
+			"deco2 deco2";
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr 1.5fr 5fr 1fr;
+		}
+
+		.deco1 {
+			border-right: none;
+			border-bottom: solid 3px var(--accent);
+		}
+		.deco1 picture{
+			top: 6.8vh;
+			right: -8vw;
+		}
+		.deco1 picture img{
+			width: 100vw;
+			rotate: 180deg;
+		}
+
+		.titulo-dresscode {
+			border-right: none;
+			border-bottom: solid 3px var(--accent);
+		}
+		.titulo-dresscode h1{
+			font-size: 1.8em;
+			top: 15%;
+			left: 20%;
+		}
+		.titulo-dresscode h2{
+			font-size: 3em;
+			top: -40%;
+			left: 48%;
+		}
+		.colores {
+			grid-area: colores;
+			border-bottom: solid 3px var(--accent);
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			column-gap: 4vw;
+		}
+		.colores h4{
+			font-family: 'Montserrat Variable', Helvetica, sans-serif;
+			font-weight: 500;
+			color: var(--accent);
+			font-size: 2vw;
+			width: 100%;
+			text-align: center;
+			margin-bottom: .5vh;
+		}
+		.colores .color{
+			width: 6vw;
+			height: 6vw;
+			scale: 1;
+			border-radius: 50%;
+		}
+		.colores .c1{
+			background-color: white;
+		}
+		.colores .c2{
+			background-color: var(--accent-light);
+		}
+		.colores .c3{
+			background-color: var(--secondary);
+		}
+		.mujer {
+			grid-area: mujer;
+			font-family: 'Montserrat Variable', Helvetica, sans-serif;
+		}
+		.hombre {
+			grid-area: hombre;
+			font-family: 'Montserrat Variable', Helvetica, sans-serif;
+		}
+		.hom-muj-separador{
+			position: absolute;
+			top: 35vh;
+			left: 62.5vw;
+			height: 60vh;
+			border-left: solid 3px var(--accent);
+		}
+		.figura{
+			position: relative;
+			top: 30%;
+			left: 50%;
+		}
+		.figura img{
+			translate: -50% -50%;
+			height: 35vh;
+			object-fit: cover;	
+		}
+		.titulo-mujer-hombre{
+			width: 100%;
+			text-align: center;
+			position: relative;
+			top: 10%;
+			font-size: 4vh;
+			font-weight: 500;
+			color: var(--accent)
+		}
+		.indicacion-desscode{
+			width: 100%;
+			text-align: center;
+			position: relative;
+			top: 8%;
+			font-size: 3vh;
+			color: var(--accent)		
+		}
+		.deco2 {
+			grid-area: deco2;
+			border-left: solid 3px var(--accent);
+		}
+		.deco2 picture{
+			position: relative;
+			top: 50vh;
+			left: 0px;
+		}
+		.deco2 picture img{
+			width: 40vw;
+			scale: 1;
+			object-fit: cover;	
+			/* rotate: y 180deg; */
+			/* transform: rotate(90deg); */
+			translate: -16.8vw -50%;
+		}
+	}
 </style>
