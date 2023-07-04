@@ -31,9 +31,9 @@ import '@fontsource-variable/montserrat';
 	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
 		<LluviaSobres></LluviaSobres>
 	</section>
-	<!-- <section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
+	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
 		<MusicaMensaje></MusicaMensaje>
-	</section> -->
+	</section>
 	<!-- <section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
 		<Rsvp></Rsvp>
 	</section> -->
@@ -95,7 +95,6 @@ import '@fontsource-variable/montserrat';
 	}
 	.move-down{
 		top: 100vh;
-		/* top: calc(var(--vh) * 100); */
 		transition: all 1s;
 	}
 	.move-center{
@@ -122,15 +121,6 @@ import '@fontsource-variable/montserrat';
 	let touchPositionY: number = 0;
 	let touchStartY: number = 0;
 	let deltaY: number = 0;
-
-	function setVisualHeight() {
-		const vh = window.innerHeight * .01;
-		document.documentElement.style.setProperty('--vh', `${vh}px`)
-	};
-
-	setVisualHeight();
-
-	window.addEventListener('resize', setVisualHeight);
 
 	const debounce = (callback: Function, waitTime: number) => {
 		let timerId: ReturnType<typeof setTimeout>;

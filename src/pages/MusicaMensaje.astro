@@ -81,14 +81,18 @@
     </div>
 </div>
 
-<picture class="deco-grande deco-grande-musica">
-    <source srcset="/img/DecoGrandeMusicaMensaje.png">
-    <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral">
-</picture>
-<picture class="deco-peque deco-peque-musica">
-    <source srcset="/img/DecoPequeMusicaMensaje.png">
-    <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
-</picture>
+<div class="container-deco-grande-musica">
+    <picture class="deco-grande deco-grande-musica">
+        <source srcset="/img/DecoGrandeMusicaMensaje.png">
+        <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral">
+    </picture>
+</div>
+<div class="container-deco-peque-musica">
+    <picture class="deco-peque deco-peque-musica">
+        <source srcset="/img/DecoPequeMusicaMensaje.png">
+        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
+    </picture>
+</div>
 
 <div class="seccion-mensaje">
     <svg class="icono-mensaje-sobre" version="1.1" viewBox="0 0 178.6 150.85" xmlns="http://www.w3.org/2000/svg">
@@ -197,10 +201,12 @@
     <source srcset="/img/DecoGrandeMusicaMensaje.png">
     <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral">
 </picture>
-<picture class="deco-peque deco-peque-mensaje">
-    <source srcset="/img/DecoPequeMusicaMensaje.png">
-    <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
-</picture>
+<div class="container-deco-peque-mensaje">
+    <picture class="deco-peque deco-peque-mensaje">
+        <source srcset="/img/DecoPequeMusicaMensaje.png">
+        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
+    </picture>
+</div>
 
 <style>
     .seccion-musica{
@@ -234,9 +240,16 @@
         width: 22vw;
 		object-fit: cover;	
     }
-    .deco-grande-musica{
+    
+    .container-deco-grande-musica{
+        position: absolute;
         left: 19vw;
         top: 7.5vh;
+        width: 25vw;
+        height: 26vw;
+    }
+    .deco-grande-musica{
+        position: relative;
     }
     .deco-grande-musica img{
         rotate: -27deg;
@@ -248,21 +261,29 @@
     .deco-grande-mensaje img{
         rotate: 155deg;
     }
-
-    .deco-peque {
-        position: absolute;
-    }
+    
     .deco-peque img{
 		width: 15vw;
 		object-fit: cover;	
     }
 
-    .deco-peque-musica{
+    .container-deco-peque-musica{
+        position: absolute;
         top: 57vh;
+        left: 0px;
+    }
+    .deco-peque-musica{
+        position: relative;
         left: -6vw;
     }
-    .deco-peque-mensaje{
+
+    .container-deco-peque-mensaje{
+        position: absolute;
         top: 81vh;
+        right: 0px;
+    }
+    .deco-peque-mensaje{
+        position: relative;
         right: -7vw;
     }
 
@@ -317,6 +338,7 @@
     }
 
     .ingreso-cancion {
+        z-index: 1;
         position: relative;
         top: 5%;
         left: 18%;
@@ -343,6 +365,7 @@
     }
 
     .ingreso-mensaje {
+        z-index: 1;
         position: relative;
         top: 15%;
         left: 35%;
@@ -369,6 +392,120 @@
     .ingreso-mensaje textarea:focus {
         outline: solid 2px var(--third);
         outline-offset: -3px;
+    }
+
+	@media (max-width: 430px){
+        .seccion-musica{
+            top: 10vh;
+            height: 35vh;
+            width: 75vw;
+            border: solid 3px var(--accent);
+            border-left: none;
+        }
+
+        .seccion-mensaje{
+            top: 55vh;
+            height: 35vh;
+            width: 75vw;
+            border: solid 3px var(--accent);
+            border-right: none;
+        }
+        
+        .deco-grande img{
+            width: 60vw;
+        }
+        .container-deco-grande-musica{
+            left: 35vw;
+            top: 11vh;
+            width: 64vw;
+            height: 70.5vw;
+        }
+        .deco-grande-mensaje{
+            right: 31vw;
+            top: 56vh;
+        }
+
+        .deco-peque img{
+            width: 45vw;
+        }
+
+        .container-deco-peque-musica{
+            z-index: 2;
+            top: 39.4vh;
+        }
+        .deco-peque-musica{
+            left: -19vw;
+        }
+
+        .container-deco-peque-mensaje{
+            z-index: 2;
+            top: 83vh;
+        }
+        .deco-peque-mensaje{
+            right: -23vw;
+        }
+
+        .icono-disco-musica{
+            left: 25%;
+            height: 40%;
+        }
+        .icono-mensaje-sobre{
+            height: 25%;
+        }
+
+        .subtitulo {
+            font-size: 1.2vh;
+            width: 70%;
+        }
+        .titulo {
+            font-size: 1.2vh;
+            width: 70%;
+        }
+
+        .ingreso-cancion {
+            top: 8%;
+            left: 13%;
+            width: 80vw;
+        }
+        .ingreso-cancion svg {
+            top: 13%;
+            left: 1%;
+            width: 15px;
+        }
+        .ingreso-cancion input {
+            width: 45%;
+            height: 30px;
+        }
+        .ingreso-cancion input:focus {
+            outline: solid 2px var(--third);
+            outline-offset: -4px;
+        }
+
+        .ingreso-mensaje {
+            top: 13%;
+            left: 30%;
+            width: 90vw;
+        }
+        .ingreso-mensaje svg {
+            position: absolute;
+            top: 6%;
+            left: 1%;
+            width: 15px;
+        }
+        .ingreso-mensaje textarea {
+            resize: none;
+            width: 40%;
+            height: 16vw;
+            padding-top: 6px;
+            padding-right: 8px;
+            border: none;
+            border-radius: 10px;
+            padding-left: 25px;
+        }
+        .ingreso-mensaje textarea:focus {
+            outline: solid 2px var(--third);
+            outline-offset: -3px;
+        }
     }
 
 </style>
