@@ -1,14 +1,27 @@
 ---
-// const invitados = ["Pepito Carbrera", "Angelano Buenavida", "Constancia Variable"];
+
+const { tipo, id } = Astro.props;
+let tipoInvitacion;
+switch(tipo) {
+    case 'I':
+    case 'i':
+        tipoInvitacion = "invitados"
+        break;
+    case 'F':
+    case 'f':
+        tipoInvitacion = "invitados/byfamilia"
+        break;
+    default:
+}
 import type { IInvitados } from '../schemas/Invitados.js';
-let idCharacter = Math.round(Math.random()*10);
-const invitados = await fetch(`https://rickandmortyapi.com/api/character/${idCharacter},${idCharacter+1},${idCharacter+2},${idCharacter+3},${idCharacter+4}`);
-const invitadosInfo: IInvitados[] = await invitados.json();
+// const invitados = await fetch(`https://weddingback-daniel7lizarazo.b4a.run/${tipoInvitacion}/${id}`);
+// const invitadosInfo: IInvitados[] = await invitados?.json();
+
 ---
 <div class="pareja-container">
     <picture class="pareja-rsvp">
-        <source srcset="/img/ParejaRSVP.png">
-        <img src="/img/ParejaRSVP.png" alt="Pareja abrazandose">
+        <source srcset="/img/FotoEsquina.avif">
+        <img src="/img/FotoEsquina.avif" alt="Pareja abrazandose">
     </picture>
 </div>
 
@@ -47,9 +60,10 @@ const invitadosInfo: IInvitados[] = await invitados.json();
     </picture>
     <ul>
         {
-        invitadosInfo.map((invitado) => (
+        // invitadosInfo.map((invitado) => (
             <li>
-                <span>{invitado.name}</span>
+                <!--<span>{invitado.Nombre}</span>-->
+                <span>{id}</span>
                 <button class="aceptar">
                     <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -98,7 +112,7 @@ const invitadosInfo: IInvitados[] = await invitados.json();
                     </svg>
                 </button>
             </li>
-        ))
+        // ))
         }
     </ul>
     <picture class="deco-invitados deco-invitados-inferior">
@@ -124,7 +138,7 @@ const invitadosInfo: IInvitados[] = await invitados.json();
     }
     .pareja-rsvp img{
         position: relative;
-        top: -20%;
+        top: -10%;
     }
     .pareja-rsvp img{
 		object-fit: cover;	
@@ -302,7 +316,7 @@ const invitadosInfo: IInvitados[] = await invitados.json();
             border-bottom-right-radius: 50%;
         }
         .pareja-rsvp img{
-            top: -30%;
+            top: -15%;
         }
 
         .deco-grande img{
@@ -371,7 +385,7 @@ const invitadosInfo: IInvitados[] = await invitados.json();
             width: 60vw;
         }
         .deco-invitados-superior{
-            margin-bottom: -0.8vw;
+            margin-bottom: -0.5vw;
         }
 
         ul {
@@ -392,7 +406,7 @@ const invitadosInfo: IInvitados[] = await invitados.json();
         }
         ul li span {
             flex-grow: 1;
-            padding-top: .65vh;
+            padding-top: .85vh;
             padding-left: 15px;
             background-color: var(--secondary-light);
             border-top-left-radius: 15px;

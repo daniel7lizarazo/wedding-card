@@ -1,0 +1,15 @@
+---
+import Index from "./index.astro";
+export function getStaticPaths() {
+    return [
+        {params: {tipo: "I", id: 'D2890F0A-20EA-11EE-A7FD-02F233CDF429'}},
+        {params: {tipo: "I", id: 'C941D84E-20E9-11EE-A7FD-02F233CDF429'}},
+        {params: {tipo: "F", id: '83F69940-2CA8-11EE-A7FD-02F233CDF429'}},
+        {params: {tipo: "F", id: 'D20429B8-2CA9-11EE-A7FD-02F233CDF429'}},
+    ]
+}
+
+const {tipo, id} = Astro.params
+---
+
+<Index tipo={tipo} id={id}></Index>

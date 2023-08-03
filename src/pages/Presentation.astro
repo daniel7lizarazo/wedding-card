@@ -1,7 +1,20 @@
 ---
-const idCharacter = Math.round(Math.random()*10);
-const invitado = await fetch(`https://rickandmortyapi.com/api/character/${idCharacter}`);
-const invitadoInfo = await invitado.json();
+const { tipo, id } = Astro.props;
+let tipoInvitacion;
+switch(tipo) {
+    case 'I':
+    case 'i':
+        tipoInvitacion = "invitados"
+        break;
+    case 'F':
+    case 'f':
+        tipoInvitacion = "familias"
+        break;
+    default:
+} 
+
+// const invitado = await fetch(`https://weddingback-daniel7lizarazo.b4a.run/${tipoInvitacion}/${id}`);
+// const invitadoInfo = await invitado?.json();
 ---
 <svg class="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg">
  <defs>
@@ -72,7 +85,8 @@ const invitadoInfo = await invitado.json();
   </g>
  </g>
 </svg>
-{invitadoInfo && <h1>{invitadoInfo.location.name}</h1>}
+<!-- {invitadoInfo && <h1>{invitadoInfo.Nombre_invitacion}</h1>} -->
+{tipo && id && <h1>{tipo} - {id}</h1>}
 
 <style>
     .our-logo{

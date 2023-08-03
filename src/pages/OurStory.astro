@@ -56,7 +56,7 @@
 	.mensaje-container{
 		position: absolute;
 		top: 3vh;
-		left: 50vw;
+		left: 24vw;
 		translate: -50%;
 		display: flex;
 		flex-direction: column;
@@ -64,7 +64,7 @@
 		row-gap: .5em;
 	}
     .decoracion-horizontal-size img{
-		width: 48em;
+		width: 38em;
 		scale: 1;
 		object-fit: cover;
 	}
@@ -86,7 +86,7 @@
 	.mensaje {
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		color: var(--accent);
-		font-size: 2em;
+		font-size: 1.7em;
 		font-weight: 500;
 		text-align: center;
 		width: 25em;
@@ -95,7 +95,7 @@
 	.contador {
 		position: absolute;
 		bottom: 7vh;
-		left: 50vw;
+		left: 25vw;
 		translate: -50%;		
 		background-color: var(--basic-light);
 		width: 32em;
@@ -155,7 +155,7 @@
 	.decoracion-contador{
 		position: absolute;
 		bottom: 7vh;
-		left: 50vw;
+		left: 25vw;
 		translate: -21.5em -9.5em;
 	}
 
@@ -168,8 +168,10 @@
 
 	@media (max-width: 430px){
 		.mensaje-container{
-			top: 13vh;
-			row-gap: 1.5em;
+			top: auto;
+			bottom: calc(11em + 10vh);
+			left: 50vw;
+			row-gap: .5em;
 		}
 
 		.decoracion-horizontal-size img{
@@ -185,6 +187,7 @@
 			
 		.contador {
 			bottom: 5vh;
+			left: 50vw;
 			width: 20em;
 			height: 11em;
 			border-radius: 25px;
@@ -214,6 +217,7 @@
 
 		.decoracion-contador{
 			bottom: 5vh;
+			left: 50vw;
 			translate: -14.5em -7.2em;
 		}
 
