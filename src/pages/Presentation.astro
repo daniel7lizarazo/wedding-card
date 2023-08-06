@@ -13,8 +13,8 @@ switch(tipo) {
     default:
 } 
 
-// const invitado = await fetch(`https://weddingback-daniel7lizarazo.b4a.run/${tipoInvitacion}/${id}`);
-// const invitadoInfo = await invitado?.json();
+const invitado = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
+const invitadoInfo = await invitado?.json();
 ---
 <svg class="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg">
  <defs>
@@ -85,8 +85,8 @@ switch(tipo) {
   </g>
  </g>
 </svg>
-<!-- {invitadoInfo && <h1>{invitadoInfo.Nombre_invitacion}</h1>} -->
-{tipo && id && <h1>{tipo} - {id}</h1>}
+{invitadoInfo && <h1>{invitadoInfo.Nombre_invitacion}</h1>}
+<!-- {tipo && id && <h1>{tipo} - {id}</h1>} -->
 
 <style>
     .our-logo{

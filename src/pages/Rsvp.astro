@@ -14,8 +14,16 @@ switch(tipo) {
     default:
 }
 import type { IInvitados } from '../schemas/Invitados.js';
-// const invitados = await fetch(`https://weddingback-daniel7lizarazo.b4a.run/${tipoInvitacion}/${id}`);
-// const invitadosInfo: IInvitados[] = await invitados?.json();
+let invitadosInfo: IInvitados[] = [];
+const invitados = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
+const invitadosObj: IInvitados[] = await invitados?.json();
+if(invitadosObj.length != null) {
+    invitadosInfo = invitadosObj;
+}
+else{
+    invitadosInfo = invitadosInfo.concat(invitadosObj);
+}
+
 
 ---
 <div class="pareja-container">
@@ -60,10 +68,9 @@ import type { IInvitados } from '../schemas/Invitados.js';
     </picture>
     <ul>
         {
-        // invitadosInfo.map((invitado) => (
+        invitadosInfo.map((invitado) => (
             <li>
-                <!--<span>{invitado.Nombre}</span>-->
-                <span>{id}</span>
+                <span>{invitado.Nombre}</span>
                 <button class="aceptar">
                     <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -112,7 +119,7 @@ import type { IInvitados } from '../schemas/Invitados.js';
                     </svg>
                 </button>
             </li>
-        // ))
+        ))
         }
     </ul>
     <picture class="deco-invitados deco-invitados-inferior">
