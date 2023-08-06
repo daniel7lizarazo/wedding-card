@@ -1,30 +1,37 @@
 ---
+import type { IInvitados } from '../schemas/Invitados.js';
 
 const { tipo, id } = Astro.props;
 let tipoInvitacion;
 switch(tipo) {
     case 'I':
     case 'i':
-        tipoInvitacion = "invitados"
+        tipoInvitacion = "invitados";
         break;
     case 'F':
     case 'f':
-        tipoInvitacion = "invitados/byfamilia"
+        tipoInvitacion = "invitados/byfamilia";
         break;
     default:
+        tipoInvitacion = "invitados";
+
 }
-import type { IInvitados } from '../schemas/Invitados.js';
+
 let invitadosInfo: IInvitados[] = [];
-const invitados = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
+let invitados;
+
+if(tipo && id){
+    invitados = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
+}
+
 const invitadosObj: IInvitados[] = await invitados?.json();
-if(invitadosObj.length != null) {
+
+if(invitadosObj?.length != null || !invitadosObj) {
     invitadosInfo = invitadosObj;
 }
 else{
     invitadosInfo = invitadosInfo.concat(invitadosObj);
 }
-
-
 ---
 <div class="pareja-container">
     <picture class="pareja-rsvp">
@@ -60,77 +67,77 @@ else{
 </h1>
 
 <p>¿Vienes a celebrar con nosotros?</p>
+{invitadosInfo &&
+    <div class="seccion-invitados">
+        <picture class="deco-invitados deco-invitados-superior">
+            <source srcset="/img/SeparadorHorizontal_1.png">
+            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+        </picture>
+        <ul>
+            {
+            invitadosInfo.map((invitado) => (
+                <li>
+                    <span>{invitado?.Nombre}</span>
+                    <button class="aceptar">
+                        <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                        <clipPath id="21d8b0576d-0">
+                        <path d="m550.25 1h473.75v492h-473.75z"/>
+                        </clipPath>
+                        </defs>
+                        <metadata>
+                        <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                            <dc:title/>
+                        </cc:Work>
+                        </rdf:RDF>
+                        </metadata>
+                        <g transform="translate(-143.57 -26.461)">
+                        <g transform="matrix(.35278 0 0 .35278 -50.548 25.877)" clip-path="url(#21d8b0576d-0)">
+                        <path d="m1006.1 1.6562-21.289 14.574c-111.31 76.172-225.3 233.87-282.17 362.08-8.7852-12.301-11.438-16.375-19.949-30.051-34.766-46.977-78.848-87.293-99.766-102.18l-32.684 13.664 1.0352 1.9414c22.566 24.711 62.164 79.543 121.84 200.37 3.6602 5.2188 7.5625 10.34 12.004 15.117 11.68 12.512 23.652 15.145 31.641 15.145h0.0117c22.781 0 36.215-17.992 45.465-39.055 59.77-221.92 201.01-374.69 262.09-427.02z" fill="#f9eae6"/>
+                        </g>
+                        </g>
+                        </svg>
 
-<div class="seccion-invitados">
-    <picture class="deco-invitados deco-invitados-superior">
-        <source srcset="/img/SeparadorHorizontal_1.png">
-        <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
-    </picture>
-    <ul>
-        {
-        invitadosInfo.map((invitado) => (
-            <li>
-                <span>{invitado.Nombre}</span>
-                <button class="aceptar">
-                    <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                    <clipPath id="21d8b0576d-0">
-                    <path d="m550.25 1h473.75v492h-473.75z"/>
-                    </clipPath>
-                    </defs>
-                    <metadata>
-                    <rdf:RDF>
-                    <cc:Work rdf:about="">
+                    </button>
+                    <button class="rechazar">
+                        <svg version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                        <clipPath id="577a602fa9">
+                        <path d="m3 4h516v514.39h-516z"/>
+                        </clipPath>
+                        </defs>
+                        <metadata>
+                        <rdf:RDF>
+                        <cc:Work rdf:about="">
                         <dc:format>image/svg+xml</dc:format>
                         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
                         <dc:title/>
-                    </cc:Work>
-                    </rdf:RDF>
-                    </metadata>
-                    <g transform="translate(-143.57 -26.461)">
-                    <g transform="matrix(.35278 0 0 .35278 -50.548 25.877)" clip-path="url(#21d8b0576d-0)">
-                    <path d="m1006.1 1.6562-21.289 14.574c-111.31 76.172-225.3 233.87-282.17 362.08-8.7852-12.301-11.438-16.375-19.949-30.051-34.766-46.977-78.848-87.293-99.766-102.18l-32.684 13.664 1.0352 1.9414c22.566 24.711 62.164 79.543 121.84 200.37 3.6602 5.2188 7.5625 10.34 12.004 15.117 11.68 12.512 23.652 15.145 31.641 15.145h0.0117c22.781 0 36.215-17.992 45.465-39.055 59.77-221.92 201.01-374.69 262.09-427.02z" fill="#f9eae6"/>
-                    </g>
-                    </g>
-                    </svg>
-
-                </button>
-                <button class="rechazar">
-                    <svg version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                    <clipPath id="577a602fa9">
-                    <path d="m3 4h516v514.39h-516z"/>
-                    </clipPath>
-                    </defs>
-                    <metadata>
-                    <rdf:RDF>
-                    <cc:Work rdf:about="">
-                    <dc:format>image/svg+xml</dc:format>
-                    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                    <dc:title/>
-                    </cc:Work>
-                    </rdf:RDF>
-                    </metadata>
-                    <g transform="translate(34.777 -51.84)">
-                    <g transform="matrix(.35278 0 0 .35278 -36.182 50.389)" clip-path="url(#577a602fa9)">
-                    <path d="m317.32 261.29 189.34-189.36c15.516-15.516 15.516-40.672 0-56.184-15.516-15.516-40.668-15.516-56.18 0l-189.34 189.36-189.34-189.36c-15.516-15.516-40.664-15.516-56.18 0-15.512 15.516-15.512 40.668 0 56.184l189.34 189.36-189.34 189.36c-15.512 15.516-15.512 40.668 0 56.18 7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637l189.34-189.36 189.34 189.36c7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637c15.516-15.516 15.516-40.668 0-56.18z" fill="#f9eae6"/>
-                    </g>
-                    </g>
-                    </svg>
-                </button>
-            </li>
-        ))
-        }
-    </ul>
-    <picture class="deco-invitados deco-invitados-inferior">
-        <source srcset="/img/SeparadorHorizontal_1.png">
-        <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
-    </picture>
-    <button class="enviar-confirmacion">
-        ENVIAR
-    </button>
-</div>
-
+                        </cc:Work>
+                        </rdf:RDF>
+                        </metadata>
+                        <g transform="translate(34.777 -51.84)">
+                        <g transform="matrix(.35278 0 0 .35278 -36.182 50.389)" clip-path="url(#577a602fa9)">
+                        <path d="m317.32 261.29 189.34-189.36c15.516-15.516 15.516-40.672 0-56.184-15.516-15.516-40.668-15.516-56.18 0l-189.34 189.36-189.34-189.36c-15.516-15.516-40.664-15.516-56.18 0-15.512 15.516-15.512 40.668 0 56.184l189.34 189.36-189.34 189.36c-15.512 15.516-15.512 40.668 0 56.18 7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637l189.34-189.36 189.34 189.36c7.7578 7.7578 17.922 11.637 28.09 11.637s20.332-3.8789 28.09-11.637c15.516-15.516 15.516-40.668 0-56.18z" fill="#f9eae6"/>
+                        </g>
+                        </g>
+                        </svg>
+                    </button>
+                </li>
+            ))
+            }
+        </ul>
+        <picture class="deco-invitados deco-invitados-inferior">
+            <source srcset="/img/SeparadorHorizontal_1.png">
+            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+        </picture>
+        <button class="enviar-confirmacion">
+            ENVIAR
+        </button>
+    </div>
+}
 
 
 <style>
