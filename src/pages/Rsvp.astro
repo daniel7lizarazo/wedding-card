@@ -78,7 +78,7 @@ else{
             invitadosInfo.map((invitado) => (
                 <li>
                     <span>{invitado?.Nombre}</span>
-                    <button class="aceptar">
+                    <button type="button" class="aceptar" data-invitado={invitado.Id_text}>
                         <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                         <clipPath id="21d8b0576d-0">
@@ -100,9 +100,9 @@ else{
                         </g>
                         </g>
                         </svg>
-
                     </button>
-                    <button class="rechazar">
+
+                    <button type="button" class="rechazar" data-invitado={invitado.Id_text}>
                         <svg version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                         <clipPath id="577a602fa9">
@@ -125,6 +125,7 @@ else{
                         </g>
                         </svg>
                     </button>
+                    <input type="checkbox" class="check-verificacion" name="verificacion-invitado" data-invitado={invitado.Id_text}>
                 </li>
             ))
             }
@@ -133,7 +134,7 @@ else{
             <source srcset="/img/SeparadorHorizontal_1.png">
             <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
         </picture>
-        <button class="enviar-confirmacion">
+        <button type="submit" class="enviar-confirmacion">
             ENVIAR
         </button>
     </div>
@@ -293,7 +294,7 @@ else{
         color: var(--secondary-light) 
     }
     ul li .aceptar{
-        background-color: var(--accept);
+        background-color: var(--accept); 
     }
     ul li .aceptar svg{
         width: 16px;
@@ -318,6 +319,14 @@ else{
         width: 6em;
         height: 2em;
         border-radius: 1em;
+    }
+
+    .check-verificacion{
+        // position: absolute;
+        // opacity: 0;
+        // cursor: pointer;
+        // height: 0;
+        // width: 0;
     }
 
 	@media (max-width: 430px){
@@ -446,5 +455,56 @@ else{
             width: 14px;
         }
     }
-
 </style>
+
+<script>
+
+    const checkInvitados = document.querySelectorAll("input.check-verificacion");
+    checkInvitados.forEach(element => {
+        element.addEventListener('input', () => {
+            console.log('El valor cambió')
+        })
+    })
+
+    function aceptarInvitacion(e: Event){
+        const invitadoButtonId = e.target?.dataset.invitado;
+        let checkBox;
+        for (const checkElement of checkInvitados) {
+            const checkId = checkElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                checkBox = checkElement;
+            }
+        }
+        if(!checkBox) return;
+        checkBox.checked = true;
+    }
+
+    function rechazarInvitacion(e: Event){
+        const invitadoButtonId = e.target?.dataset.invitado;
+        let checkBox;
+        for (const checkElement of checkInvitados) {
+            const checkId = checkElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                checkBox = checkElement;
+            }
+        }
+        if(!checkBox) return;
+        checkBox.checked = false;
+    }
+
+    const acceptButtons = document.querySelectorAll("button.aceptar");
+    acceptButtons.forEach(element => {
+        element.addEventListener('click', aceptarInvitacion);
+    });
+
+    const rejectButtons = document.querySelectorAll("button.rechazar");
+    rejectButtons.forEach(element => {
+        element.addEventListener('click', rechazarInvitacion);
+    })
+
+
+    const sendButton = document.querySelector("button.enviar-confirmacion");
+    sendButton?.addEventListener('click', (e: Event) => {
+        console.log(e)
+    })
+</script>
