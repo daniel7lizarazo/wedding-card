@@ -74,12 +74,11 @@ else{
             <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
         </picture>
         <ul>
-            {
-            invitadosInfo.map((invitado) => (
+            {invitadosInfo.map((invitado) => (
                 <li>
                     <span>{invitado?.Nombre}</span>
-                    <button type="button" class="aceptar" data-invitado={invitado.Id_text}>
-                        <svg version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
+                    <button type="button" class:list={[{aceptar: !invitado.Asiste.Bool}, {aceptarSeleccionado: invitado.Asiste.Bool}]}data-invitado={invitado.Id_text}>
+                        <svg class="aceptar-svg" version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                         <clipPath id="21d8b0576d-0">
                         <path d="m550.25 1h473.75v492h-473.75z"/>
@@ -102,8 +101,8 @@ else{
                         </svg>
                     </button>
 
-                    <button type="button" class="rechazar" data-invitado={invitado.Id_text}>
-                        <svg version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
+                    <button type="button" class:list={[{rechazar: invitado.Asiste.Bool}, {rechazarSeleccionado: !invitado.Asiste.Bool}]} data-invitado={invitado.Id_text}>
+                        <svg class="rechazar-svg" version="1.1" viewBox="0 0 181.44 181.43" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                         <clipPath id="577a602fa9">
                         <path d="m3 4h516v514.39h-516z"/>
@@ -125,7 +124,7 @@ else{
                         </g>
                         </svg>
                     </button>
-                    <input type="checkbox" class="check-verificacion" name="verificacion-invitado" data-invitado={invitado.Id_text}>
+                    {invitado.Asiste.Bool ? <input type="checkbox" class="check-verificacion" name="verificacion-invitado" checked data-invitado={invitado.Id_text}> : <input type="checkbox" class="check-verificacion" name="verificacion-invitado" data-invitado={invitado.Id_text}>}
                 </li>
             ))
             }
@@ -134,7 +133,14 @@ else{
             <source srcset="/img/SeparadorHorizontal_1.png">
             <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
         </picture>
-        <button type="submit" class="enviar-confirmacion">
+        <!--<button hx-get="https://wedding-back.fly.dev/invitados" type="submit" class="enviar-confirmacion">-->
+        <!--<form id="enviar-confirmacion-form" hx-post="http://localhost:8080/prueba">-->
+        <form id="enviar-confirmacion-form" hx-post="http://localhost:8080/prueba" hx-ext="json-enc">
+            <label for="my-input">input</label> 
+            <input type="text" name="input" id="my-input" value="holamundo">
+            <button type="submit" class="enviar-confirmacion">
+        </form>
+        <!--<button type="submit" class="enviar-confirmacion">-->
             ENVIAR
         </button>
     </div>
@@ -296,7 +302,14 @@ else{
     ul li .aceptar{
         background-color: var(--accept); 
     }
-    ul li .aceptar svg{
+    
+    ul li .rechazarSeleccionado {
+        background-color: var(--decline-selected); 
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    ul li button .aceptar-svg {
+        pointer-events: none;
         width: 16px;
     }
     ul li .rechazar {
@@ -304,7 +317,13 @@ else{
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
     }
-    ul li .rechazar svg {
+
+    ul li .aceptarSeleccionado {
+        background-color: var(--accept-selected); 
+    }
+
+    ul li button .rechazar-svg {
+        pointer-events: none;
         width: 14px;
     }
 
@@ -431,66 +450,25 @@ else{
             flex-grow: 1;
             padding-top: .85vh;
             padding-left: 15px;
-            background-color: var(--secondary-light);
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
         }
         ul li button {
             border: none;
             width: 50px;
             color: var(--secondary-light) 
         }
-        ul li .aceptar{
-            background-color: var(--accept);
-        }
-        ul li .aceptar svg{
+        ul li button .aceptar-svg {
             width: 16px;
         }
-        ul li .rechazar {
-            background-color: var(--decline);
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-        ul li .rechazar svg {
+        ul li button .rechazar-svg {
             width: 14px;
         }
     }
 </style>
 
+<script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 <script>
 
     const checkInvitados = document.querySelectorAll("input.check-verificacion");
-    checkInvitados.forEach(element => {
-        element.addEventListener('input', () => {
-            console.log('El valor cambió')
-        })
-    })
-
-    function aceptarInvitacion(e: Event){
-        const invitadoButtonId = e.target?.dataset.invitado;
-        let checkBox;
-        for (const checkElement of checkInvitados) {
-            const checkId = checkElement.dataset.invitado;
-            if(invitadoButtonId === checkId) {
-                checkBox = checkElement;
-            }
-        }
-        if(!checkBox) return;
-        checkBox.checked = true;
-    }
-
-    function rechazarInvitacion(e: Event){
-        const invitadoButtonId = e.target?.dataset.invitado;
-        let checkBox;
-        for (const checkElement of checkInvitados) {
-            const checkId = checkElement.dataset.invitado;
-            if(invitadoButtonId === checkId) {
-                checkBox = checkElement;
-            }
-        }
-        if(!checkBox) return;
-        checkBox.checked = false;
-    }
 
     const acceptButtons = document.querySelectorAll("button.aceptar");
     acceptButtons.forEach(element => {
@@ -502,9 +480,83 @@ else{
         element.addEventListener('click', rechazarInvitacion);
     })
 
+    function aceptarInvitacion(e: Event){
+        if(!e) return;
+        const invitadoButtonId = e.target?.dataset.invitado;
+        let checkBox;
+        for (const checkElement of checkInvitados) {
+            const checkId = checkElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                checkBox = checkElement;
+                break;
+            }
+        }
+
+        if(!checkBox) return;
+        checkBox.checked = true;
+
+        e.target?.classList.add('aceptarSeleccionado');
+        e.target?.classList.remove('aceptar');
+
+        let rejectButton;
+        for (const rechazarElement of rejectButtons) {
+            const checkId = rechazarElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                rejectButton = rechazarElement;
+                break;
+            }
+        }
+        if(!rejectButton) return;
+        rejectButton.classList.add('rechazar');
+        rejectButton.classList.remove('rechazarSeleccionado');
+
+    }
+
+    function rechazarInvitacion(e: Event){
+        const invitadoButtonId = e.target?.dataset.invitado;
+        let checkBox;
+        for (const checkElement of checkInvitados) {
+            const checkId = checkElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                checkBox = checkElement;
+            }
+        }
+
+        if(!checkBox) return;
+        checkBox.checked = false;
+
+        e.target?.classList.add('rechazarSeleccionado')
+        e.target?.classList.remove('rechazar')
+
+        let aceptarButton;
+        for (const aceptarElement of acceptButtons) {
+            const checkId = aceptarElement.dataset.invitado;
+            if(invitadoButtonId === checkId) {
+                aceptarButton = aceptarElement;
+                break;
+            }
+        }
+
+        if(!aceptarButton) return;
+        aceptarButton.classList.add('aceptar');
+        aceptarButton.classList.remove('aceptarSeleccionado');
+    }
 
     const sendButton = document.querySelector("button.enviar-confirmacion");
+    console.log("🚀 ~ file: Rsvp.astro:544 ~ sendButton:", sendButton)
     sendButton?.addEventListener('click', (e: Event) => {
         console.log(e)
+    })
+    
+    const formulario = document.querySelector("#enviar-confirmacion-form")
+
+    formulario?.addEventListener('htmx:configRequest', (e: Event) => {
+        console.log('Entró al config')
+        e.detail.headers = {};
+        e.detail.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8"
+        e.detail.headers['Access-Control-Allow-Origin'] = "*";
+        e.detail.headers['Access-Control-Allow-Headers'] = "Access-Control-Allow-Origin, Access-Control-Allow-Headers";
+
+        // e.detail.parameters['input'] = "mundo"
     })
 </script>

@@ -10,6 +10,8 @@ import MusicaMensaje from './MusicaMensaje.astro'
 import Rsvp from './Rsvp.astro'
 import '@fontsource/great-vibes';
 import '@fontsource-variable/montserrat';
+
+
 const { tipo = "", id = "" } = Astro.props;
 ---
 
@@ -121,7 +123,7 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 
 </style>
-
+<script src="../../src/htmx.min.js"></script>
 <script>
 	let touchPositionY: number = 0;
 	let touchStartY: number = 0;
