@@ -1,6 +1,7 @@
 ---
 import AceptarSVG from "../../components/Aceptar-SVG.astro";
 import RechazarSVG from "../../components/Rechazar-SVG.astro";
+const base_url = import.meta.env.PUBLIC_URL;
 export function getStaticPaths() {
     return [
         {params: {id: 'D2890F0A-20EA-11EE-A7FD-02F233CDF429'}},
@@ -14,6 +15,6 @@ const {id} = Astro.params
 ---
 
 <button type="button" id="rechazar" name="invitado_id" value={id} class="rechazar"
-hx-post="http://localhost:8080/asistencia/rechazar" hx-swap="outerHTML" hx-ext="json-enc">
+hx-post={`${base_url}/asistencia/rechazar`} hx-swap="outerHTML" hx-ext="json-enc">
     <RechazarSVG></RechazarSVG> 
 </button>

@@ -2,6 +2,7 @@
 import AceptarSVG from '../components/Aceptar-SVG.astro';
 import RechazarSVG from '../components/Rechazar-SVG.astro';
 import type { IInvitados } from '../schemas/Invitados.js';
+const base_url = import.meta.env.PUBLIC_URL;
 
 const { tipo, id } = Astro.props;
 let tipoInvitacion;
@@ -16,14 +17,13 @@ switch(tipo) {
         break;
     default:
         tipoInvitacion = "invitados";
-
 }
 
 let invitadosInfo: IInvitados[] = [];
 let invitados;
 
 if(tipo && id){
-    invitados = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
+    invitados = await fetch(`${base_url}/${tipoInvitacion}/${id}`);
 }
 
 const invitadosObj: IInvitados[] = await invitados?.json();
@@ -34,6 +34,7 @@ if(invitadosObj?.length != null || !invitadosObj) {
 else{
     invitadosInfo = invitadosInfo.concat(invitadosObj);
 }
+
 ---
 <div class="pareja-container">
     <picture class="pareja-rsvp">
@@ -83,48 +84,38 @@ else{
 
                     {!invitado.Asiste.Valid &&
                         <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post="http://localhost:8080/asistencia/aceptar" hx-swap="outerHTML" hx-ext="json-enc">
+                        hx-post={`${base_url}/asistencia/aceptar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
                             <AceptarSVG></AceptarSVG>
                         </button>
 
                         <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post="http://localhost:8080/asistencia/rechazar" hx-swap="outerHTML" hx-ext="json-enc">
+                        hx-post={`${base_url}/asistencia/rechazar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
                             <RechazarSVG></RechazarSVG>
                         </button>    
                     }
                     {invitado.Asiste.Valid && invitado.Asiste.Bool && 
                         <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptarSeleccionado"
-                        hx-get={`/components/aceptar-button-${invitado.Id_text}`} hx-trigger={`click from:button#rechazar[value="${invitado.Id_text}"`} hx-swap="outerHTML">
+                        hx-get={`/components/aceptar-button-${invitado.Id_text}`} hx-trigger={`click from:button#rechazar[value="${invitado.Id_text}" queue:last delay:.5s`} hx-swap="outerHTML transition:true">
 						    <span>Aceptado</span>
                         </button>
 
                         <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post="http://localhost:8080/asistencia/rechazar" hx-swap="outerHTML" hx-ext="json-enc">
+                        hx-post={`${base_url}/asistencia/rechazar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
                             <RechazarSVG></RechazarSVG>
                         </button>
                     }
                     {invitado.Asiste.Valid && !invitado.Asiste.Bool && 
                         <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post="http://localhost:8080/asistencia/aceptar" hx-swap="outerHTML" hx-ext="json-enc">
+                        hx-post={`${base_url}/asistencia/aceptar`}  hx-swap="outerHTML transition:true" hx-ext="json-enc">
                             <AceptarSVG></AceptarSVG>
                         </button>
 
                         <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazarSeleccionado"
-                        hx-get={`/components/rechazar-button-${invitado.Id_text}`} hx-trigger={`click from:button#aceptar[value="${invitado.Id_text}"`} hx-swap="outerHTML">
+                        hx-get={`/components/rechazar-button-${invitado.Id_text}`} hx-trigger={`click from:button#aceptar[value="${invitado.Id_text}" queue:last delay:.5s`} hx-swap="outerHTML transition:true">
                             <span>Rechazado</span>
                         </button>
                     }
                     
-                    <!--<button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class:list={[{aceptar: invitado.Asiste.Valid && !invitado.Asiste.Bool}, {aceptarSeleccionado: invitado.Asiste.Valid && invitado.Asiste.Bool}]} 
-                    hx-post="http://localhost:8080/asistencia/aceptar" hx-swap="outerHTML" hx-ext="json-enc">
-                        <AceptarSVG></AceptarSVG>
-                    </button>
-
-                    <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class:list={[{rechazar: invitado.Asiste.Bool}, {rechazarSeleccionado: !invitado.Asiste.Bool}]} 
-                    hx-post="http://localhost:8080/asistencia/rechazar" hx-swap="outerHTML" hx-ext="json-enc">
-                       <RechazarSVG></RechazarSVG>
-                    </button>-->
-
                 </li>
             ))
             }
@@ -441,124 +432,4 @@ else{
         }
     }
 </style>
-
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-<script>
-
-
-    // const acceptButtons = document.querySelectorAll("button#aceptar");
-    // acceptButtons.forEach(element => {
-    //     element.addEventListener('click', aceptarInvitacion);
-    // });
-
-    // const rejectButtons = document.querySelectorAll("button#rechazar");
-    // rejectButtons.forEach(element => {
-    //     element.addEventListener('click', rechazarInvitacion);
-    // })
-
-    // function aceptarInvitacion(e: Event){
-
-    //     if(!e || !e.target) return;
-    //     const invitadoButtonId = e.target.dataset.invitado;
-        
-    //     let aceptarButton;
-    //     for (const aceptarElement of acceptButtons) {
-    //         const checkId = aceptarElement.dataset.invitado;
-    //         if(invitadoButtonId === checkId) {
-    //             aceptarButton = aceptarElement;
-    //             break;
-    //         }
-    //     }
-
-    //     if(!aceptarButton) return;
-    //     aceptarButton.classList.add('aceptarSeleccionado');
-    //     aceptarButton.classList.remove('aceptar');
-        
-    //     let rechazarButton;
-    //     for (const rechazarElement of rejectButtons) {
-    //         const checkId = rechazarElement.dataset.invitado;
-    //         if(invitadoButtonId === checkId) {
-    //             rechazarButton = rechazarElement;
-    //             break;
-    //         }
-    //     }
-
-    //     if(!rechazarButton) return;
-    //     rechazarButton.classList.add('rechazar');
-    //     rechazarButton.classList.remove('rechazarSeleccionado');
-    // }
-
-    // function rechazarInvitacion(e: Event){
-
-    //     if(!e || !e.target) return;
-    //     const invitadoButtonId = e.target.dataset.invitado;
-
-    //     let rechazarButton;
-    //     for (const rechazarElement of rejectButtons) {
-    //         const checkId = rechazarElement.dataset.invitado;
-    //         if(invitadoButtonId === checkId) {
-    //             rechazarButton = rechazarElement;
-    //             break;
-    //         }
-    //     }
-
-    //     if(!rechazarButton) return;
-    //     rechazarButton.classList.add('rechazarSeleccionado');
-    //     rechazarButton.classList.remove('rechazar');
-
-
-    //     let aceptarButton;
-    //     for (const aceptarElement of acceptButtons) {
-    //         const checkId = aceptarElement.dataset.invitado;
-    //         if(invitadoButtonId === checkId) {
-    //             aceptarButton = aceptarElement;
-    //             break;
-    //         }
-    //     }
-
-    //     if(!aceptarButton) return;
-    //     aceptarButton.classList.add('aceptar');
-    //     aceptarButton.classList.remove('aceptarSeleccionado');
-    // }
-
-    // const botonesFormulario = document.querySelectorAll("#enviar-confirmacion-form button")
-
-    // for(const boton of botonesFormulario) {
-    //     boton.addEventListener('htmx:configRequest', (e: Event) => {
-    //         // console.log("🚀 ~ file: Rsvp.astro:527 ~ boton.addEventListener ~ e.detail.headers:", e.detail.headers)
-    //         // e.detail.headers = {};
-    //         e.detail.headers['HX-Trigger'] = "pruebaEvent";
-    //         // e.detail.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8";
-    //         // e.detail.headers['Access-Control-Allow-Origin'] = "*";
-    //         // e.detail.headers['Access-Control-Allow-Headers'] = "Access-Control-Allow-Origin, Access-Control-Allow-Headers";
-    //         // console.log("🚀 ~ file: Rsvp.astro:527 ~ boton.addEventListener ~ e.detail.headers:", e.detail.headers)
-    //     })
-    // }
-    
-    // TODO
-    // for(const boton of botonesFormulario) {
-    //     boton.addEventListener('htmx:confirm', (e: Event) => {
-    //         e.preventDefault();
-    //         if(e.detail.elt.classList.contains("aceptarSeleccionado") || e.detail.elt.classList.contains("rechazarSeleccionado")) return;
-    //         e.detail.issueRequest();
-    //     })
-    // }
-
-    // for(const boton of botonesFormulario) {
-    //     boton.addEventListener('htmx:afterOnLoad', (e: Event) => {
-    //         // console.log("afterOnLoad")
-    //         // console.log(e.detail.elt)
-    //         // console.log(e.detail.elt.children.item(0))
-    //         // console.log(e.detail.target)
-    //         // const aceptarSVG = document.querySelector("h1")
-    //         // console.log("🚀 ~ file: Rsvp.astro:505 ~ boton.addEventListener ~ aceptarSVG:", aceptarSVG)
-    //         // e.detail.target.replaceChild(aceptarSVG, e.detail.target.children.item(0))
-    //         // console.log(e.detail.requestConfig)
-            
-    //     })
-    // }
-
-    document.body.addEventListener("pruebaEvent", function(e: Event){
-        console.log("se activo el evento por HX-Trigger")
-    })
-</script>
