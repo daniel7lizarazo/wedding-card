@@ -1,4 +1,7 @@
-<svg class="aceptar-svg" version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
+---
+const {invitado_id} = Astro.props
+---
+<svg id={`aceptar-svg${invitado_id}`} class="aceptar-svg response-svg" version="1.1" viewBox="0 0 167.13 173.09" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <clipPath id="21d8b0576d-0">
 <path d="m550.25 1h473.75v492h-473.75z"/>
@@ -21,14 +24,14 @@
 </svg>
 
 <style>
-    .aceptar-svg {
+    :global(.aceptar-svg) {
         pointer-events: none;
         margin-top: 3px;
         width: 18px;
     }
 
 	@media (max-width: 430px){
-        .aceptar-svg {
+        :global(.aceptar-svg) {
             width: 16px;
         }
     }

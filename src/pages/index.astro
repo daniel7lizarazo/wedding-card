@@ -34,7 +34,7 @@ const { tipo = "", id = "" } = Astro.props;
 	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
 		<LluviaSobres></LluviaSobres>
 	</section>
-	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
+	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="-2" data-status="unknown">
 		<MusicaMensaje tipo={tipo} id={id}></MusicaMensaje>
 	</section>
 	<section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
@@ -61,7 +61,7 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 	.seccion-presentation{
 		background-color: var(--third);
-		top: 0px;
+		top: 100vh;
 	}
 	.seccion-intro {
 		background-image: url(/img/BackgroundImage.png);
@@ -89,7 +89,7 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 	.seccion-rsvp{
 		background-image: url(/img/BackgroundImage.png);
-		top: 100vh;
+		top: 0px;
 	}
 
 	.move-up{

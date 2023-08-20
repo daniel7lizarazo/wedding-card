@@ -1,6 +1,7 @@
 ---
 import AceptarSVG from '../components/Aceptar-SVG.astro';
 import RechazarSVG from '../components/Rechazar-SVG.astro';
+import LoadingSVG from '../components/Loading-SVG.astro'; 
 import type { IInvitados } from '../schemas/Invitados.js';
 const base_url = import.meta.env.PUBLIC_URL;
 
@@ -70,6 +71,7 @@ else{
 </h1>
 
 <p>¿Vienes a celebrar con nosotros?</p>
+
 {invitadosInfo &&
     <form class="seccion-invitados" id="enviar-confirmacion-form">
         <picture class="deco-invitados deco-invitados-superior">
@@ -80,38 +82,64 @@ else{
             {invitadosInfo.map((invitado) => (
                 <li>
 
-                    <span>{invitado?.Nombre}</span>
+                    <span>
+                        {invitado?.Nombre}
+                    </span>
 
                     {!invitado.Asiste.Valid &&
-                        <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post={`${base_url}/asistencia/aceptar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
-                            <AceptarSVG></AceptarSVG>
+                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptar"
+                        hx-post={`${base_url}/asistencia/aceptar`}  
+                        hx-select={`#aceptar${invitado.Id_text}`} 
+                        hx-swap="outerHTML" 
+                        hx-select-oob={`#rechazar${invitado.Id_text}`} 
+                        hx-indicator={`#svg-load${invitado.Id_text}, #aceptar-svg${invitado.Id_text}`} 
+                        hx-ext="json-enc">
+                            <AceptarSVG invitado_id={invitado.Id_text}></AceptarSVG>
+                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
                         </button>
 
-                        <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post={`${base_url}/asistencia/rechazar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
-                            <RechazarSVG></RechazarSVG>
+                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazar"
+                        hx-post={`${base_url}/asistencia/rechazar`} 
+                        hx-select={`#rechazar${invitado.Id_text}`} 
+                        hx-swap="outerHTML" 
+                        hx-select-oob={`#aceptar${invitado.Id_text}`} 
+                        hx-indicator={`#svg-load${invitado.Id_text}, #rechazar-svg${invitado.Id_text}`} 
+                        hx-ext="json-enc">
+                            <RechazarSVG invitado_id={invitado.Id_text}></RechazarSVG>
+                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
                         </button>    
                     }
-                    {invitado.Asiste.Valid && invitado.Asiste.Bool && 
-                        <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptarSeleccionado"
-                        hx-get={`/components/aceptar-button-${invitado.Id_text}`} hx-trigger={`click from:button#rechazar[value="${invitado.Id_text}" queue:last delay:.5s`} hx-swap="outerHTML transition:true">
+
+                    {invitado.Asiste.Valid && invitado.Asiste.Bool &&
+                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptarSeleccionado">
 						    <span>Aceptado</span>
                         </button>
 
-                        <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post={`${base_url}/asistencia/rechazar`} hx-swap="outerHTML transition:true" hx-ext="json-enc">
-                            <RechazarSVG></RechazarSVG>
+                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazar"
+                        hx-post={`${base_url}/asistencia/rechazar`} 
+                        hx-select={`#rechazar${invitado.Id_text}`} 
+                        hx-swap="outerHTML" 
+                        hx-select-oob={`#aceptar${invitado.Id_text}`} 
+                        hx-indicator={`#svg-load${invitado.Id_text}, #rechazar-svg${invitado.Id_text}`} 
+                        hx-ext="json-enc">
+                            <RechazarSVG invitado_id={invitado.Id_text}></RechazarSVG>
+                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
                         </button>
                     }
+
                     {invitado.Asiste.Valid && !invitado.Asiste.Bool && 
-                        <button type="button" id="aceptar" name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post={`${base_url}/asistencia/aceptar`}  hx-swap="outerHTML transition:true" hx-ext="json-enc">
-                            <AceptarSVG></AceptarSVG>
+                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptar"
+                        hx-post={`${base_url}/asistencia/aceptar`}  
+                        hx-select={`#aceptar${invitado.Id_text}`} 
+                        hx-swap="outerHTML" 
+                        hx-select-oob={`#rechazar${invitado.Id_text}`} 
+                        hx-indicator={`#svg-load${invitado.Id_text}, #aceptar-svg${invitado.Id_text}`} 
+                        hx-ext="json-enc">
+                            <AceptarSVG invitado_id={invitado.Id_text}></AceptarSVG>
+                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
                         </button>
 
-                        <button type="button" id="rechazar" name="invitado_id" value={invitado.Id_text} class="rechazarSeleccionado"
-                        hx-get={`/components/rechazar-button-${invitado.Id_text}`} hx-trigger={`click from:button#aceptar[value="${invitado.Id_text}" queue:last delay:.5s`} hx-swap="outerHTML transition:true">
+                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazarSeleccionado">
                             <span>Rechazado</span>
                         </button>
                     }
@@ -129,6 +157,13 @@ else{
 
 
 <style>
+
+    :global(.response-svg .htmx-request){
+        opacity: 0;
+    }
+    :global(.response-svg.htmx-request){
+        opacity: 0;
+    }
     .pareja-container{
         position: relative;
         left: 10%;
@@ -270,6 +305,7 @@ else{
     }
     ul li > span {
         flex-grow: 1;
+        padding-top: 4px;
         padding-left: 15px;
         background-color: var(--secondary-light);
         border-top-left-radius: 15px;
@@ -284,6 +320,7 @@ else{
         background-color: var(--accept); 
     }
     ul li :global(.aceptarSeleccionado) {
+        cursor: default;
         width: 7rem;
         background-color: var(--accept-selected); 
         outline: solid 2px rgba(255, 255, 255, 0.5);;
@@ -295,6 +332,7 @@ else{
         border-bottom-right-radius: 15px;
     }
     ul li :global(.rechazarSeleccionado) {
+        cursor: default;
         width: 7rem;
         background-color: var(--decline-selected); 
         border-top-right-radius: 15px;
@@ -321,7 +359,7 @@ else{
         height: 2em;
         border-radius: 1em;
     }
-
+    
 	@media (max-width: 430px){
         .pareja-container{
             left: 0px;
@@ -430,6 +468,6 @@ else{
             width: 50px;
             color: var(--secondary-light) 
         }
-    }
+    
 </style>
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
