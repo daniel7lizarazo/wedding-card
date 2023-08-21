@@ -1,4 +1,4 @@
-import "./htmx.min.js"
+import "/src/htmx.min.js"
 
 htmx.defineExtension('json-enc', {
     onEvent: function (name, evt) {
