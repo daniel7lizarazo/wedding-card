@@ -14,6 +14,8 @@ import '@fontsource-variable/montserrat';
 
 const { tipo = "", id = "" } = Astro.props;
 ---
+<script src="/src/htmx.min.js"></script>
+<script src="/src/htmx-json-enc.js"></script>
 
 <Layout>
 	<section class="seccion seccion-presentation" id="presentation" data-index="-1" data-status="active">
@@ -123,8 +125,6 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 
 </style>
-<script src="../../src/htmx.min.js"></script>
-<script src="../../src/htmx-json-enc.js"></script>
 <script>
 	let touchPositionY: number = 0;
 	let touchStartY: number = 0;
