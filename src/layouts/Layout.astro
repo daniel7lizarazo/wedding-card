@@ -16,7 +16,7 @@
 <style is:global>
 
 	:root {
-		--vh: 1px;
+		--vh: 1vh;
 		--accent: #6B1C18;
 		--accent-light: #946161;
 		--basic: #895F5F;
@@ -60,13 +60,6 @@
 
 <script>
 
-	function setVisualHeight() {
-		const vh = window.innerHeight * .01;
-		document.documentElement.style.setProperty('--vh', `${vh}px`)
-	};
-
-	setVisualHeight();
-
-	window.addEventListener('resize', setVisualHeight);
+	
 
 </script>
