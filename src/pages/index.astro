@@ -152,7 +152,6 @@ const { tipo = "", id = "" } = Astro.props;
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
-
 		if(deltaY < 0) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
@@ -190,6 +189,20 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 
 	document.addEventListener('wheel', onScroll)
+
+	document.addEventListener('keydown', function(e: KeyboardEvent){
+		
+		if(e.key === "ArrowDown"){
+			deltaY = 100
+			debounceUpOrDown();
+			return;
+		}
+		if(e.key === "ArrowUp"){
+			deltaY = -100
+			debounceUpOrDown();
+			return;
+		}
+	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
 		touchStartY	= e.touches[0].clientY;

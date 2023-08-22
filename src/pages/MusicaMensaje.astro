@@ -1,5 +1,6 @@
 ---
 const { tipo, id } = Astro.props;
+const base_url = import.meta.env.PUBLIC_URL;
 ---
 <div class="seccion-musica">
     <svg class="icono-disco-musica" version="1.1" viewBox="0 0 175.88 180.98" xmlns="http://www.w3.org/2000/svg">
@@ -62,9 +63,14 @@ const { tipo, id } = Astro.props;
     <h5 class="titulo titulo-musica">
         ¡AYÚDANOS A ARMAR LA PLAYLIST!
     </h5>
-    <form class="ingreso-cancion" hx-post="http://localhost:8080/cancion" hx-ext="json-enc">
+    <form class="ingreso-cancion" 
+    hx-post={`${base_url}/cancion`}
+    hx-indicator="#cancion-loader, #cancion-sender"
+    hx-target="#cancion-input"
+    hx-swap="outerHTML" 
+    hx-ext="json-enc">
 
-        <input type="text" name="nombre_cancion" required>
+        <input type="text" id="cancion-input" name="nombre_cancion" placeholder="Escribe el nombre" required>
 
         <svg class="cancion-icon" version="1.1" viewBox="0 0 103.42 156.54" xmlns="http://www.w3.org/2000/svg">
             <metadata>
@@ -82,7 +88,7 @@ const { tipo, id } = Astro.props;
         </svg>
 
         <button class="send-cancion" name="invitado_id" value={id}>
-            <svg version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
+            <svg class="response-svg" id="cancion-sender" version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                 <clipPath id="3a3d4f8924">
                 <path d="m0 0.14062h198.75v180.86h-198.75z"/>
@@ -105,6 +111,48 @@ const { tipo, id } = Astro.props;
             </svg>
 
         </button>
+
+        <svg class="cancion-loader htmx-indicator" id="cancion-loader" width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#6B1C18">
+            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                    <animate attributeName="r"
+                        begin="1.5s" dur="3s"
+                        values="6;22"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-opacity"
+                        begin="1.5s" dur="3s"
+                        values="1;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-width"
+                        begin="1.5s" dur="3s"
+                        values="2;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                    <animate attributeName="r"
+                        begin="3s" dur="3s"
+                        values="6;22"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-opacity"
+                        begin="3s" dur="3s"
+                        values="1;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-width"
+                        begin="3s" dur="3s"
+                        values="2;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+                <circle cx="22" cy="22" r="8">
+                    <animate attributeName="r"
+                        begin="0s" dur="1.5s"
+                        values="6;1;2;3;4;5;6"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+            </g>
+        </svg>
 
     </form>
 </div>
@@ -195,33 +243,39 @@ const { tipo, id } = Astro.props;
     <h5 class="titulo titulo-mensaje">
         ¡ESTAREMOS FELICES DE RECIBIRLO!
     </h5>
-    <form class="ingreso-mensaje">
+    <form class="ingreso-mensaje"
+    hx-post={`${base_url}/mensaje`}
+    hx-indicator="#mensaje-loader, #mensaje-sender"
+    hx-target="#mensaje-textarea"
+    hx-swap="outerHTML" 
+    hx-ext="json-enc">
 
-        <textarea name="" id="" rows="30"></textarea>
+        <textarea name="mensaje" id="mensaje-textarea" placeholder="Ingresa tu mensaje" rows="30"></textarea>
 
-        <svg version="1.1" viewBox="0 0 144.17 144.17" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-        <clipPath id="e36faf8330">
-        <path d="m376.2 20h408.8v409.63h-408.8z"/>
-        </clipPath>
-        </defs>
-        <metadata>
-        <rdf:RDF>
-        <cc:Work rdf:about="">
-            <dc:format>image/svg+xml</dc:format>
-            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-            <dc:title/>
-        </cc:Work>
-        </rdf:RDF>
-        </metadata>
-        <g transform="translate(-32.452 -84.982)">
-        <g transform="matrix(.35278 0 0 .35278 -100.26 77.587)" clip-path="url(#e36faf8330)">
-        <path d="m376.2 344.48v85.152h85.152l251.25-251.26-85.152-85.148zm402.03-231.73c8.8555-8.8555 8.8555-23.277 0-32.133l-53.023-53.02c-8.8555-8.8555-23.273-8.8555-32.129 0l-41.555 41.555 85.152 85.152z" fill="#6b1c18"/>
-        </g>
-        </g>
+        <svg class="svg-mensaje" version="1.1" viewBox="0 0 144.17 144.17" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+            <clipPath id="e36faf8330">
+            <path d="m376.2 20h408.8v409.63h-408.8z"/>
+            </clipPath>
+            </defs>
+            <metadata>
+            <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title/>
+            </cc:Work>
+            </rdf:RDF>
+            </metadata>
+            <g transform="translate(-32.452 -84.982)">
+            <g transform="matrix(.35278 0 0 .35278 -100.26 77.587)" clip-path="url(#e36faf8330)">
+            <path d="m376.2 344.48v85.152h85.152l251.25-251.26-85.152-85.148zm402.03-231.73c8.8555-8.8555 8.8555-23.277 0-32.133l-53.023-53.02c-8.8555-8.8555-23.273-8.8555-32.129 0l-41.555 41.555 85.152 85.152z" fill="#6b1c18"/>
+            </g>
+            </g>
         </svg>
-        <button class="send-mensaje">
-            <svg version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
+
+        <button class="send-mensaje" name="invitado_id" value={id}>
+            <svg id="mensaje-sender" class="response-svg" version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
             <defs>
             <clipPath id="3a3d4f8924">
             <path d="m0 0.14062h198.75v180.86h-198.75z"/>
@@ -244,6 +298,48 @@ const { tipo, id } = Astro.props;
             </svg>
         </button>
         
+        <svg class="mensaje-loader htmx-indicator" id="mensaje-loader" width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#6B1C18">
+            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                    <animate attributeName="r"
+                        begin="1.5s" dur="3s"
+                        values="6;22"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-opacity"
+                        begin="1.5s" dur="3s"
+                        values="1;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-width"
+                        begin="1.5s" dur="3s"
+                        values="2;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                    <animate attributeName="r"
+                        begin="3s" dur="3s"
+                        values="6;22"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-opacity"
+                        begin="3s" dur="3s"
+                        values="1;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                    <animate attributeName="stroke-width"
+                        begin="3s" dur="3s"
+                        values="2;0" calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+                <circle cx="22" cy="22" r="8">
+                    <animate attributeName="r"
+                        begin="0s" dur="1.5s"
+                        values="6;1;2;3;4;5;6"
+                        calcMode="linear"
+                        repeatCount="indefinite" />
+                </circle>
+            </g>
+        </svg>
+
     </form>
     
 </div>
@@ -403,28 +499,35 @@ const { tipo, id } = Astro.props;
         left: 1%;
         width: 15px;
     }
-    .ingreso-cancion input {
+    :global(.ingreso-cancion input) {
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
         color: var(--accent);
-        width: 35%;
+        width: 39%;
         height: 35px;
         border: none;
         border-radius: 10px;
         padding-left: 30px;
+        padding-right: 35px;
     }
-    .ingreso-cancion input:focus {
+    :global(.ingreso-cancion input:focus) {
         outline: solid 2px var(--third);
         outline-offset: -3px;
     }
     .send-cancion{
         position: absolute;
         top: 20%;
-        right: 51%;
+        left: calc(62px - 25px + 38%);
         background-color: transparent;
         border: none;
     }
     .send-cancion svg{
-        width: 20px;
+        width: 25px;
+    }
+    .cancion-loader{
+        position: absolute;
+        pointer-events: none;
+        top: -12%;
+        left: calc(62px - 25px + 37%);
     }
 
     .ingreso-mensaje {
@@ -434,39 +537,45 @@ const { tipo, id } = Astro.props;
         left: 35%;
         height: fit-content;
     }
-    .ingreso-mensaje svg {
+    .ingreso-mensaje .svg-mensaje {
         position: absolute;
         top: 6%;
         left: 1%;
         width: 15px;
     }
-    .ingreso-mensaje textarea {
+    :global(.ingreso-mensaje textarea) {
         font-family: 'Montserrat Variable', Helvetica, sans-serif;
         color: var(--accent);
         resize: none;
-        width: 45%;
+        width: 40%;
         height: 8vw;
         padding-top: 6px;
-        padding-right: 8px;
+        padding-right: 35px;
+        padding-left: 30px;
         border: none;
         border-radius: 10px;
-        padding-left: 30px;
     }
-    .ingreso-mensaje textarea:focus {
+    :global(.ingreso-mensaje textarea:focus) {
         outline: solid 2px var(--third);
         outline-offset: -3px;
     }
     .send-mensaje{
         z-index: 1;
         position: absolute;
-        bottom: 14%;
-        right: 52%;
+        bottom: 4%;
+        left: calc(65px + 35%);
         background-color: transparent;
         border: none;
     }
     .send-mensaje svg{
-        width: 20px;
+        width: 25px;
     }
+    .mensaje-loader {
+        position: absolute;
+        bottom: 3%;
+        left: calc(65px + 34%);
+    }
+
 	@media (max-width: 430px){
         .seccion-musica{
             top: 10vh;
@@ -545,24 +654,29 @@ const { tipo, id } = Astro.props;
             left: 1%;
             width: 15px;
         }
-        .ingreso-cancion input {
+        :global(.ingreso-cancion input) {
             width: 36%;
             height: 30px;
-            padding-right: 25px;
+            padding-right: 30px;
         }
-        .ingreso-cancion input:focus {
+        :global(.ingreso-cancion input:focus) {
             outline: solid 2px var(--third);
             outline-offset: -4px;
         }
         .send-cancion{
             position: absolute;
             top: 20%;
-            right: 46%;
+            left: calc(60px - 20px + 33%);
             background-color: transparent;
             border: none;
         }
         .send-cancion svg{
             width: 20px;
+        }
+        .cancion-loader{
+            width: 35px;
+            top: -28%;
+            left: calc(62px - 25px + 33%);
         }
 
         .ingreso-mensaje {
@@ -570,36 +684,41 @@ const { tipo, id } = Astro.props;
             left: 30%;
             width: 90vw;
         }
-        .ingreso-mensaje svg {
+        .ingreso-mensaje .svg-mensaje {
             position: absolute;
             top: 6%;
             left: 1%;
             width: 15px;
         }
-        .ingreso-mensaje textarea {
+        :global(.ingreso-mensaje textarea) {
             resize: none;
-            width: 40%;
-            height: 16vw;
+            width: 35%;
+            height: 20vw;
             padding-top: 6px;
-            padding-right: 8px;
+            padding-right: 30px;
+            padding-left: 25px;
             border: none;
             border-radius: 10px;
-            padding-left: 25px;
         }
-        .ingreso-mensaje textarea:focus {
+        :global(.ingreso-mensaje textarea:focus) {
             outline: solid 2px var(--third);
             outline-offset: -3px;
         }
         .send-mensaje{
             z-index: 5;
             position: absolute;
-            bottom: 28%;
-            right: 55%;
+            bottom: 5%;
+            left: calc(55px - 20px + 32%);
             background-color: transparent;
             border: none;
         }
         .send-mensaje svg{
             width: 20px;
+        }
+        .mensaje-loader {
+            width: 35px;
+            bottom: -2%;
+            left: calc(55px + 25.5%);
         }
 
     }
