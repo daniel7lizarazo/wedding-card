@@ -175,7 +175,7 @@ const { tipo = "", id = "" } = Astro.props;
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
-		if(deltaY < 0) {
+		if(deltaY < -20) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -190,7 +190,7 @@ const { tipo = "", id = "" } = Astro.props;
 			touchPositionY = 0;
 			return true;
 		}
-		if(deltaY > 0) {
+		if(deltaY > 50) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -235,11 +235,6 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
-		console.log("🚀 ~ file: index.astro:244 ~ document.addEventListener ~ e:", e)
-		console.log("🚀 ~ file: index.astro:247 ~ document.addEventListener ~ e.target?.nodeName:", e.target?.nodeName)
-		console.log("🚀 ~ file: index.astro:251 ~ document.addEventListener ~ e.target?.parentElement?.nodeName:", e.target?.parentElement?.nodeName)
-		console.log("🚀 ~ file: index.astro:255 ~ document.addEventListener ~ e.target?.parentElement?.parentElement?.nodeName:", e.target?.parentElement?.parentElement?.nodeName)
-		console.log("🚀 ~ file: index.astro:255 ~ document.addEventListener ~ e.target?.parentElement?.parentElement?.nodeName:", e.target?.parentElement?.parentElement?.parentElement?.nodeName)
 
 		if(e.target?.nodeName === 'INPUT'){
 			return;
@@ -250,10 +245,19 @@ const { tipo = "", id = "" } = Astro.props;
 		if(e.target?.nodeName === 'BUTTON'){
 			return;
 		}
+		if(e.target?.nodeName === 'A'){
+			return;
+		}
 		if(e.target?.parentElement?.nodeName === 'BUTTON'){
 			return;
 		}
+		if(e.target?.parentElement?.nodeName === 'A'){
+			return;
+		}
 		if(e.target?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.nodeName === 'A'){
 			return;
 		}
 		if(e.target?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){

@@ -250,7 +250,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     hx-swap="outerHTML" 
     hx-ext="json-enc">
 
-        <textarea name="mensaje" id="mensaje-textarea" placeholder="Ingresa tu mensaje" rows="30"></textarea>
+        <textarea name="mensaje" id="mensaje-textarea" placeholder="Ingresa tu mensaje" rows="30" required></textarea>
 
         <svg class="svg-mensaje" version="1.1" viewBox="0 0 144.17 144.17" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -574,6 +574,21 @@ const base_url = import.meta.env.PUBLIC_URL;
         position: absolute;
         bottom: 3%;
         left: calc(65px + 34%);
+    }
+
+	@media (max-width: 1366px){
+        .send-mensaje{
+            bottom: 4%;
+            left: calc(65px + 31%);
+        }
+        .mensaje-loader {
+            bottom: 0%;
+            left: calc(65px + 29.5%);
+        }
+        .cancion-loader{
+            top: -18%;
+            left: calc(62px - 25px + 36%);
+        }
     }
 
 	@media (max-width: 430px){
