@@ -1,13 +1,13 @@
 <div class="deco-superior-container">
   <picture class="decoracion-info-superior decoracion-info-size">
     <source srcset="/img/DecoFlorarlLarga.png" />
-    <img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores" />
+    <img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores"  loading="lazy">
   </picture>
 </div>
 <div class="deco-inferior-container">
   <picture class="decoracion-info-inferior decoracion-info-size">
     <source srcset="/img/DecoFlorarlLarga.png" />
-    <img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores" />
+    <img src="/img/DecoFlorarlLarga.png" alt="Decoracion Flores" loading="lazy">
   </picture>
 </div>
 
@@ -59,7 +59,7 @@
     >
       <picture class="mapa">
         <source srcset="/img/MapaParroquia.png" />
-        <img src="/img/MapaParroquia.png" alt="Mapa Parroquia" />
+        <img src="/img/MapaParroquia.png" alt="Mapa Parroquia" loading="lazy">
       </picture>
     </a>
 
@@ -250,7 +250,7 @@
     >
       <picture class="mapa">
         <source srcset="/img/MapaClub.png" />
-        <img src="/img/MapaClub.png" alt="Mapa Club" />
+        <img src="/img/MapaClub.png" alt="Mapa Club" loading="lazy">
       </picture>
     </a>
 
@@ -333,8 +333,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1vh;
-    font-size: 2.8vh;
+    gap: calc(var(--vh) * 1);
+    font-size: calc(var(--vh) * 2.8);
     font-family: "Montserrat Variable", Helvetica, sans-serif;
   }
   .detalles-info h3 {
@@ -356,12 +356,12 @@
 
   @media (max-width: 430px) {
     .deco-superior-container {
-      height: 100vh;
+      height: calc(var(--vh) * 100);
       top: 0px;
       left: 0px;
     }
     .deco-inferior-container {
-      height: 100vh;
+      height: calc(var(--vh) * 100);
       top: 0px;
       right: 0px;
     }
@@ -376,7 +376,7 @@
       transform: rotate(-90deg);
     }
     .decoracion-info-inferior {
-      top: 50vh;
+      top: calc(var(--vh) * 50);
       left: -63.2vw;
     }
     .decoracion-info-inferior img {

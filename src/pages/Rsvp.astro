@@ -39,32 +39,32 @@ else{
 ---
 <div class="pareja-container">
     <picture class="pareja-rsvp">
-        <source srcset="/img/FotoEsquina.webp">
-        <img src="/img/FotoEsquina.webp" alt="Pareja abrazandose">
+        <source srcset="/img/FotoEsquina.png">
+        <img src="/img/FotoEsquina.png" alt="Pareja abrazandose" >
     </picture>
 </div>
 
 <div class="container-deco-grande-izq">
     <picture class="deco-grande deco-grande-izq">
         <source srcset="/img/DecoGrandeRSVP.png">
-        <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral">
+        <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral" loading="lazy">
     </picture>
 </div>
 
 <div class="container-deco-grande-der">
     <picture class="deco-grande deco-grande-der">
         <source srcset="/img/DecoGrandeRSVP.png">
-        <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral">
+        <img src="/img/DecoGrandeRSVP.png" alt="Decoración floral" loading="lazy">
     </picture>
 </div>
 
 <picture class="deco-peque deco-peque-der">
     <source srcset="/img/DecoPequeRSVP.png">
-    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral">
+    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral" loading="lazy">
 </picture>
 <picture class="deco-peque deco-peque-izq">
     <source srcset="/img/DecoPequeRSVP.png">
-    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral">
+    <img src="/img/DecoPequeRSVP.png" alt="Decoración floral" loading="lazy">
 </picture>
 <h1>
     RSPV
@@ -76,7 +76,7 @@ else{
     <form class="seccion-invitados" id="enviar-confirmacion-form">
         <picture class="deco-invitados deco-invitados-superior">
             <source srcset="/img/SeparadorHorizontal_1.png">
-            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral" loading="lazy">
         </picture>
         <ul>
             {invitadosInfo.map((invitado) => (
@@ -150,7 +150,7 @@ else{
         </ul>
         <picture class="deco-invitados deco-invitados-inferior">
             <source srcset="/img/SeparadorHorizontal_1.png">
-            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral">
+            <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral" loading="lazy">
         </picture>
     </form>
 }
@@ -289,16 +289,12 @@ else{
     ul li{
         display: flex;
         list-style: none;
-        
-        font-size: 1.2vw;
+        font-size: .8vw;
         font-weight: 500;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
         color: var(--accent-light);
-
-        margin-bottom: 2vh;
-
+        margin-bottom: calc(var(--vh) * 2);
         height: 30px;
-
     }
     ul li:last-child{
         margin-bottom: 0;
@@ -365,7 +361,7 @@ else{
             left: 0px;
             top: 0px;
             width: 100vw;
-            height: 45vh;
+            height: calc(var(--vh) * 45);
             border-bottom-left-radius: 50%;
             border-bottom-right-radius: 50%;
         }
@@ -375,13 +371,13 @@ else{
 
         .deco-grande img{
             width: auto;
-            height: 27vh;
+            height: calc(var(--vh) * 27);
         }
 
         .container-deco-grande-izq{
             top: 23%;
             left: 0px;
-            width: 40vh;
+            width: calc(var(--vh) * 40);
         }
         .deco-grande-izq {
             left: 4%;
@@ -391,7 +387,7 @@ else{
             top: 22%;
             left: auto;
             right: 0px;        
-            width: 40vh;
+            width: calc(var(--vh) * 40);
         }
         .deco-grande-der {
             left: 43%;
@@ -426,7 +422,7 @@ else{
             right: auto;
             width: 100%;
             text-align: center;
-            font-size: 1.8vh;
+            font-size: calc(var(--vh) * 1.8);
         }
         
         .seccion-invitados{
@@ -460,7 +456,7 @@ else{
         }
         ul li > span {
             flex-grow: 1;
-            padding-top: .55vh;
+            padding-top: calc(var(--vh) * .55);
             padding-left: 15px;
         }
         ul li :global(button) {

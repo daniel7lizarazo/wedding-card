@@ -1,28 +1,28 @@
 <div class="top-right-frame-container">
 	<picture class="top-frame top-frame-left">
 		<source srcset="/img/FloresMarcoSuperior_1.png">
-		<img src="/img/FloresMarcoSuperior_1.png" alt="Marco superior">
+		<img src="/img/FloresMarcoSuperior_1.png" alt="Marco superior" loading="lazy">
 	</picture>
 </div>
 <div class="top-left-frame-container">
 	<picture class="top-frame top-frame-right">
 		<source srcset="/img/FloresMarcoSuperior_1.png">
-		<img src="/img/FloresMarcoSuperior_1.png" alt="Marco superior">
+		<img src="/img/FloresMarcoSuperior_1.png" alt="Marco superior" loading="lazy">
 	</picture>
 </div>
 
 <span class="sub-titulo-portada">¡NOS CASAMOS!</span>
 <picture class="main-content main-photo">
-    <source srcset="/img/FotoPortada.webp">
-    <img src="/img/FotoPortada.webp" alt="Foto de los novios">
+    <source srcset="/img/FotoPortada.png">
+    <img src="/img/FotoPortada.png" alt="Foto de los novios" loading="lazy">
 </picture>
 <picture class="main-content golden-frame">
     <source srcset="/img/MarcoDorado_1.png">
-    <img src="/img/MarcoDorado_1.png" alt="Marco superior">
+    <img src="/img/MarcoDorado_1.png" alt="Marco superior" loading="lazy">
 </picture>
 <picture class="golden-frame-decoration">
     <source srcset="/img/FloresDecoracionMarco_1.png">
-    <img src="/img/FloresDecoracionMarco_1.png" alt="Marco superior">
+    <img src="/img/FloresDecoracionMarco_1.png" alt="Marco superior" loading="lazy">
 </picture>
 <span class="our-names">Daniel & Ayde</span>
 <span class="texto-portada">
@@ -36,13 +36,13 @@
 <div class="bottom-left-frame-container">
 	<picture class="bottom-frame bottom-frame-left">
 		<source srcset="/img/FloresMarcoInferior_1.png">
-		<img src="/img/FloresMarcoInferior_1.png" alt="Marco superior">
+		<img src="/img/FloresMarcoInferior_1.png" alt="Marco superior" loading="lazy">
 	</picture>
 </div>
 <div class="bottom-right-frame-container">
 	<picture class="bottom-frame bottom-frame-right">
 		<source srcset="/img/FloresMarcoInferior_1.png">
-		<img src="/img/FloresMarcoInferior_1.png" alt="Marco superior">
+		<img src="/img/FloresMarcoInferior_1.png" alt="Marco superior" loading="lazy">
 	</picture>
 </div>
 
@@ -62,7 +62,7 @@
 	}
     .top-frame {
 		position: relative;
-		top: -8vh;
+		top: calc(var(--vh) * -8);
 	}
 	.top-frame img {
 		height: 30vw;
@@ -81,14 +81,14 @@
 	
 	.bottom-left-frame-container{
 		position: absolute;
-		top:  100vh;
+		top:  calc(var(--vh) * 100);
 		width: fit-content;
 		translate: 0% -100%;
 	}
 	.bottom-right-frame-container
 	{
 		position: absolute;
-		top:  100vh;
+		top:  calc(var(--vh) * 100);
 		left: 100vw;
 		width: fit-content;
 		translate: -100% -100%;
@@ -118,7 +118,7 @@
 	
 	.main-content {
 		position: absolute;
-		top: 35vh;
+		top: calc(var(--vh) * 35);
 		left: 50vw;
 		translate: -50% -50%;
 	}
@@ -131,7 +131,7 @@
 	
 	.golden-frame-decoration{
 		position: absolute;
-		top: 28vh;
+		top: calc(var(--vh) * 28);
 		left: 37vw;
 	}
 	.golden-frame-decoration img{
@@ -139,10 +139,10 @@
 		scale: 1;
 		object-fit: cover;
 		rotate: -15deg;
-		/* translate: -50% -50%;		 */
 	}
 
 	.main-photo{
+		border-radius: 50%;
 	}
 	.main-photo img{
 		width: 20vw;
@@ -155,7 +155,7 @@
 
 	.our-names{
 		position: absolute;
-		top: 62vh;
+		top: calc(var(--vh) * 62);
 		width: 100%;
 		text-align: center;
 		font-size: 5vw;
@@ -170,20 +170,20 @@
 		font-size: 30px;
 		font-weight: 500;
 		position: absolute;
-		top: 5vh;
+		top: calc(var(--vh) * 5);
 		width: 100%;
 		text-align: center;
 	}
 
 	.texto-portada{
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
-		line-height: 3.5vh;
+		line-height: calc(var(--vh) * 3.5);
 		color: var(--basic);
 		font-size: 15px;
 		text-align: center;
 		width: 43vw;
 		position: absolute;
-		top: 77vh;
+		top: calc(var(--vh) * 77);
 		left: 50vw;
 		translate: -50%;
 	}
@@ -191,7 +191,7 @@
 	.autor-cita	{
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		position: absolute;
-		top: 86vh;
+		top: calc(var(--vh) * 86);
 		left: 50vw;
 		translate: -50%;
 		font-size: 15px;
@@ -200,7 +200,7 @@
 
 	.fecha{
 		position: absolute;
-		top: 92vh;
+		top: calc(var(--vh) * 92);
 		left: 50vw;
 		translate: -50%;
 		color: var(--accent);
@@ -227,7 +227,7 @@
 			height: 70vw;
 		}
 		.top-frame {
-			top: -8vh;
+			top: calc(var(--vh) * -8);
 		}
 		.top-frame-left {
 			left: -15vw;
@@ -237,13 +237,13 @@
 		}
 
 		.main-content {
-			top: 33vh;
+			top: calc(var(--vh) * 33);
 		}
 		.golden-frame img {
 			height: 70vw;
 		}
 		.golden-frame-decoration{
-			top: 32vh;
+			top: calc(var(--vh) * 32);
 			left: 15vw;
 		}
 		.golden-frame-decoration img{
@@ -257,24 +257,24 @@
 		.sub-titulo-portada{
 			font-size: 18px;
 			font-weight: 500;
-			top: 8vh;
+			top: calc(var(--vh) * 8);
 		}
 		.our-names{
-			top: 55vh;
+			top: calc(var(--vh) * 55);
 			font-size: 12vw;
 		}
 		.texto-portada{
-			line-height: 2.5vh;
+			line-height: calc(var(--vh) * 2.5);
 			font-size: 12px;
 			width: 63vw;
-			top: 65vh;
+			top: calc(var(--vh) * 65);
 		}
 		.autor-cita	{
-			top: 78vh;
+			top: calc(var(--vh) * 78);
 			font-size: 12px;
 		}
 		.fecha{
-			top: 85vh;
+			top: calc(var(--vh) * 85);
 			font-size: 17px;
 		}
 		

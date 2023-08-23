@@ -70,17 +70,17 @@
 <div class="deco-flores-izq-container">
     <picture class="deco-flores deco-flores-lluvia-izq">
         <source srcset="/img/SeparadorHorizontal_1.png">
-        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral" loading="lazy">
     </picture>
 </div>
 <picture class="deco-flores deco-flores-lluvia-bot">
     <source srcset="/img/SeparadorHorizontal_1.png">
-    <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+    <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral" loading="lazy">
 </picture>
 <div class="deco-flores-der-container">
     <picture class="deco-flores deco-flores-lluvia-der">
         <source srcset="/img/SeparadorHorizontal_1.png">
-        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral">
+        <img src="/img/SeparadorHorizontal_1.png" alt="Decoracion Floral" loading="lazy">
     </picture>
 </div>
 
@@ -89,27 +89,27 @@
 		background-color: var(--secondary);
 		position: relative;
 		left: 12vw;
-		top: 0vh;
+		top: calc(var(--vh) * 0);
 		width: 25vw;
-		height: 60vh;
+		height: calc(var(--vh) * 60);
 	}
 
 	.sobre-lluvia{
 		position: relative;
-		top: 15vh;
+		top: calc(var(--vh) * 15);
 		left: 50%;
 		translate: -50%;
-		height: 11vh;
+		height: calc(var(--vh) * 11);
 	}
 	
 	.lluvia-de-titulo{
 		color: white;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		position: relative;
-		top: 12vh;
+		top: calc(var(--vh) * 12);
 		width: 100%;
 		text-align: center;
-		font-size: 3.5vh;
+		font-size: calc(var(--vh) * 3.5);
 		font-weight: 700;
 	}
 
@@ -117,16 +117,16 @@
 		color: white;
 		font-family: 'Great Vibes', sans-serif;;
         font-weight: 100;
-		font-size: 8vh;
+		font-size: calc(var(--vh) * 8);
 		position: relative;
-		top: -2vh;
+		top: calc(var(--vh) * -2);
 		width: 100%;
 		text-align: center;
 	}
 	
 	.separador-lluvia {
 		position: absolute;
-		top: 37vh;
+		top: calc(var(--vh) * 37);
 		width: 16vw;
 	}
 	.separador-derecha{
@@ -148,10 +148,10 @@
 		position: absolute;
 		top: 0%;
 		left: -8vw;
-        height: 70vh;
+        height: calc(var(--vh) * 70);
     }
 	.deco-flores-lluvia-izq{
-        top: 27vh;
+        top: calc(var(--vh) * 27);
 		right: 0%;
 	}
 	.deco-flores-lluvia-izq img{
@@ -163,10 +163,10 @@
 		position: absolute;
 		top: 0%;
 		left: 22.4vw;
-        height: 70vh;
+        height: calc(var(--vh) * 70);
     }
 	.deco-flores-lluvia-der{
-		top: 26vh;
+		top: calc(var(--vh) * 26);
 	}
 	.deco-flores-lluvia-der img{
 		height: 5.5vw;
@@ -177,7 +177,7 @@
 		left: 9vw;
 	}
 	.deco-flores-lluvia-bot img{
-		width: 69vh;
+		width: calc(var(--vh) * 69);
 	}
 
 	@media (max-width: 430px){
@@ -187,17 +187,17 @@
 			top: auto;
 			bottom: 0px;
 			width: 60vw;
-			height: 35vh;
+			height: calc(var(--vh) * 35);
 		}
 
 		.sobre-lluvia{
 			top: 15%;
-			height: 10vh;
+			height: calc(var(--vh) * 10);
 		}
 		
 		.lluvia-de-titulo{
 			top: 5%;
-			font-size: 3.5vh;
+			font-size: calc(var(--vh) * 3.5);
 		}
 
 		.sobres-titulo{
@@ -207,7 +207,7 @@
 		
 		.separador-lluvia {
 			position: absolute;
-			top: 91.5vh;
+			top: calc(var(--vh) * 91.5);
 			width: 30vw;
 		}
 		.separador-derecha{
@@ -225,10 +225,10 @@
 			top: auto;
 			bottom: 0px;
 			left: 0px;
-			height: 42vh;
+			height: calc(var(--vh) * 42);
 		}
 		.deco-flores-lluvia-izq{
-			top: 21vh;
+			top: calc(var(--vh) * 21);
 			right: 31vw;
 		}
 		.deco-flores-lluvia-izq img{
@@ -241,10 +241,10 @@
 			bottom: 0px;
 			left: auto;
 			right: 0px;
-			height: 42vh;
+			height: calc(var(--vh) * 42);
 		}
 		.deco-flores-lluvia-der{
-			top: 20vh;
+			top: calc(var(--vh) * 20);
 			right: -31vw;
 		}
 		.deco-flores-lluvia-der img{
@@ -255,7 +255,7 @@
 		.deco-flores-lluvia-bot{
 			position: absolute;
 			left: 10vw;
-			bottom: 34.5vh;
+			bottom: calc(var(--vh) * 34.5);
 
 		}
 		.deco-flores-lluvia-bot img{

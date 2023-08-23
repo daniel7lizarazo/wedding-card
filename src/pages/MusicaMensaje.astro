@@ -160,13 +160,13 @@ const base_url = import.meta.env.PUBLIC_URL;
 <div class="container-deco-grande-musica">
     <picture class="deco-grande deco-grande-musica">
         <source srcset="/img/DecoGrandeMusicaMensaje.png">
-        <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral">
+        <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral" loading="lazy">
     </picture>
 </div>
 <div class="container-deco-peque-musica">
     <picture class="deco-peque deco-peque-musica">
         <source srcset="/img/DecoPequeMusicaMensaje.png">
-        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
+        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral" loading="lazy">
     </picture>
 </div>
 
@@ -348,21 +348,21 @@ const base_url = import.meta.env.PUBLIC_URL;
 
 <picture class="deco-grande deco-grande-mensaje">
     <source srcset="/img/DecoGrandeMusicaMensaje.png">
-    <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral">
+    <img src="/img/DecoGrandeMusicaMensaje.png" alt="Decoracion Floral" loading="lazy">
 </picture>
 <div class="container-deco-peque-mensaje">
     <picture class="deco-peque deco-peque-mensaje">
         <source srcset="/img/DecoPequeMusicaMensaje.png">
-        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral">
+        <img src="/img/DecoPequeMusicaMensaje.png" alt="Decoracion Floral" loading="lazy">
     </picture>
 </div>
 
 <style>
     .seccion-musica{
         position: absolute;
-        top: 5vh;
+        top: calc(var(--vh) * 5);
         left: 0vw;
-        height: 60vh;
+        height: calc(var(--vh) * 60);
         width: 35vw;
         border: solid 5px var(--accent);
         border-left: none;
@@ -372,9 +372,9 @@ const base_url = import.meta.env.PUBLIC_URL;
 
     .seccion-mensaje{
         position: absolute;
-        top: 30vh;
+        top: calc(var(--vh) * 30);
         right: 0vw;
-        height: 60vh;
+        height: calc(var(--vh) * 60);
         width: 35vw;
         border: solid 5px var(--accent);
         border-right: none;
@@ -393,7 +393,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     .container-deco-grande-musica{
         position: absolute;
         left: 19vw;
-        top: 7.5vh;
+        top: calc(var(--vh) * 7.5);
         width: 25vw;
         height: 26vw;
     }
@@ -405,7 +405,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     }
     .deco-grande-mensaje{
         right: 18vw;
-        top: 32vh;
+        top: calc(var(--vh) * 32);
     }
     .deco-grande-mensaje img{
         rotate: 155deg;
@@ -418,7 +418,7 @@ const base_url = import.meta.env.PUBLIC_URL;
 
     .container-deco-peque-musica{
         position: absolute;
-        top: 57vh;
+        top: calc(var(--vh) * 57);
         left: 0px;
     }
     .deco-peque-musica{
@@ -428,7 +428,7 @@ const base_url = import.meta.env.PUBLIC_URL;
 
     .container-deco-peque-mensaje{
         position: absolute;
-        top: 81vh;
+        top: calc(var(--vh) * 81);
         right: 0px;
     }
     .deco-peque-mensaje{
@@ -453,7 +453,7 @@ const base_url = import.meta.env.PUBLIC_URL;
         position: relative;
         translate: -50%;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
-        font-size: 2vh;
+        font-size: calc(var(--vh) * 2);
         color: var(--accent-light);
         width: 55%;
         text-align: center;
@@ -462,7 +462,7 @@ const base_url = import.meta.env.PUBLIC_URL;
         position: relative;
         translate: -50%;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
-        font-size: 2vh;
+        font-size: calc(var(--vh) * 2);
         color: var(--accent);
         width: 55%;
         text-align: center;
@@ -578,16 +578,16 @@ const base_url = import.meta.env.PUBLIC_URL;
 
 	@media (max-width: 430px){
         .seccion-musica{
-            top: 10vh;
-            height: 35vh;
+            top: calc(var(--vh) * 10);
+            height: calc(var(--vh) * 35);
             width: 75vw;
             border: solid 3px var(--accent);
             border-left: none;
         }
 
         .seccion-mensaje{
-            top: 55vh;
-            height: 35vh;
+            top: calc(var(--vh) * 55);
+            height: calc(var(--vh) * 35);
             width: 75vw;
             border: solid 3px var(--accent);
             border-right: none;
@@ -598,13 +598,13 @@ const base_url = import.meta.env.PUBLIC_URL;
         }
         .container-deco-grande-musica{
             left: 35vw;
-            top: 11vh;
+            top: calc(var(--vh) * 11);
             width: 64vw;
             height: 70.5vw;
         }
         .deco-grande-mensaje{
             right: 31vw;
-            top: 56vh;
+            top: calc(var(--vh) * 56);
         }
 
         .deco-peque img{
@@ -613,7 +613,7 @@ const base_url = import.meta.env.PUBLIC_URL;
 
         .container-deco-peque-musica{
             z-index: 2;
-            top: 39.4vh;
+            top: calc(var(--vh) * 39.4);
         }
         .deco-peque-musica{
             left: -19vw;
@@ -621,7 +621,7 @@ const base_url = import.meta.env.PUBLIC_URL;
 
         .container-deco-peque-mensaje{
             z-index: 2;
-            top: 83vh;
+            top: calc(var(--vh) * 83);
         }
         .deco-peque-mensaje{
             right: -23vw;
@@ -636,11 +636,11 @@ const base_url = import.meta.env.PUBLIC_URL;
         }
 
         .subtitulo {
-            font-size: 1.2vh;
+            font-size: calc(var(--vh) * 1.2);
             width: 70%;
         }
         .titulo {
-            font-size: 1.2vh;
+            font-size: calc(var(--vh) * 1.2);
             width: 70%;
         }
 

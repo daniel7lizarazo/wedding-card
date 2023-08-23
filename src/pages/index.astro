@@ -18,28 +18,28 @@ const { tipo = "", id = "" } = Astro.props;
 <script src="/src/htmx-json-enc.js"></script>
 
 <Layout>
-	<section class="seccion seccion-presentation" id="presentation" data-index="-1" data-status="active">
+	<section class="seccion seccion-presentation" id="presentation" data-index="0" data-status="active">
 		<Presentation tipo={tipo} id={id}></Presentation>
 	</section>
-	<section class="seccion seccion-intro" id="intro" data-index="0" data-status="unknown">
+	<section class="seccion seccion-intro" id="intro" data-index="1" data-status="unknown">
 		<Intro></Intro>
 	</section>
-	<section class="seccion seccion-our-story" id="our-story" data-index="1" data-status="unknown">
+	<section class="seccion seccion-our-story" id="our-story" data-index="2" data-status="unknown">
 		<OurStory></OurStory>
 	</section>
-	<section class="seccion seccion-info" id="info" data-index="2" data-status="unknown">
+	<section class="seccion seccion-info" id="info" data-index="3" data-status="unknown">
 		<Info></Info>
 	</section>
-	<section class="seccion seccion-dresscode" id="dress-code" data-index="3" data-status="unknown">
+	<section class="seccion seccion-dresscode" id="dress-code" data-index="4" data-status="unknown">
 		<DressCode></DressCode>
 	</section>
-	<section class="seccion seccion-lluvia" id="lluvia" data-index="4" data-status="unknown">
+	<section class="seccion seccion-lluvia" id="lluvia" data-index="5" data-status="unknown">
 		<LluviaSobres></LluviaSobres>
 	</section>
-	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="5" data-status="unknown">
+	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="6" data-status="unknown">
 		<MusicaMensaje tipo={tipo} id={id}></MusicaMensaje>
 	</section>
-	<section class="seccion seccion-rsvp" id="rsvp" data-index="6" data-status="unknown">
+	<section class="seccion seccion-rsvp" id="rsvp" data-index="7" data-status="unknown">
 		<Rsvp tipo={tipo} id={id}></Rsvp>
 	</section>
 </Layout>
@@ -70,7 +70,7 @@ const { tipo = "", id = "" } = Astro.props;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-our-story {
-		background-image: url(/img/FondoPlaya.webp);
+		background-image: url(/img/FondoPlaya.png);
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-info {
@@ -82,7 +82,7 @@ const { tipo = "", id = "" } = Astro.props;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-lluvia{
-		background-image: url(/img/FondoPlayaLluvia.webp);
+		background-image: url(/img/FondoPlayaLluvia.png);
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-musica-mensaje{
@@ -116,10 +116,10 @@ const { tipo = "", id = "" } = Astro.props;
 	@media (max-width: 430px){
 
 		.seccion-our-story {
-			background-position-x: -104vh;
+			background-position-x: calc(var(--vh) * -104);
 		}
 		.seccion-lluvia{
-			background-position-x: -98vh;
+			background-position-x: calc(var(--vh) * -98);
 		}
 
 	}

@@ -1,7 +1,7 @@
 <div class="mensaje-container">
 	<picture class="decoracion-horizontal-superior decoracion-horizontal-size">
 		<source srcset="/img/SeparadorHorizontal_1.png">
-		<img src="/img/SeparadorHorizontal_1.png" alt="Divisor superior">
+		<img src="/img/SeparadorHorizontal_1.png" alt="Divisor superior" loading="lazy">
 	</picture>
 
 	<span class="mensaje">
@@ -10,7 +10,7 @@
 
 	<picture class="decoracion-horizontal-inferior decoracion-horizontal-size">
 		<source srcset="/img/SeparadorHorizontal_1.png">
-		<img src="/img/SeparadorHorizontal_1.png" alt="Divisor inferior">
+		<img src="/img/SeparadorHorizontal_1.png" alt="Divisor inferior" loading="lazy">
 	</picture>
 </div>
 
@@ -49,14 +49,14 @@
 </div>
 <picture class="decoracion-contador">
     <source srcset="/img/DecoracionTemporizador_1.png">
-    <img src="/img/DecoracionTemporizador_1.png" alt="Decoración Contador">
+    <img src="/img/DecoracionTemporizador_1.png" alt="Decoración Contador" loading="lazy">
 </picture>
 
 <style>
 	.mensaje-container{
 		position: absolute;
-		top: 3vh;
-		left: 24vw;
+		top: calc(var(--vh) * 7);
+		left: 30vw;
 		translate: -50%;
 		display: flex;
 		flex-direction: column;
@@ -64,7 +64,7 @@
 		row-gap: .5em;
 	}
     .decoracion-horizontal-size img{
-		width: 38em;
+		width: 50em;
 		scale: 1;
 		object-fit: cover;
 	}
@@ -86,7 +86,7 @@
 	.mensaje {
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		color: var(--accent);
-		font-size: 1.7em;
+		font-size: 2.5em;
 		font-weight: 500;
 		text-align: center;
 		width: 25em;
@@ -94,18 +94,18 @@
     	
 	.contador {
 		position: absolute;
-		bottom: 7vh;
-		left: 25vw;
+		bottom: calc(var(--vh) * 7);
+		left: 30vw;
 		translate: -50%;		
 		background-color: var(--basic-light);
-		width: 32em;
-		height: 14em;
+		width: 44em;
+		height: 18em;
 		border-radius: 25px;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 	}
 
 	.contador .contador-texto{
-		font-size: 3em;
+		font-size: 4em;
 		font-weight: bold;
 		color: var(--secondary-light);
 		text-align: center;
@@ -118,7 +118,7 @@
 		position: relative;
 		top: .6em;
 		color: var(--secondary-light);
-		font-size: 3em;
+		font-size: 4em;
 		width: 100%;
 		display: flex;
 		gap: .4em;
@@ -148,15 +148,15 @@
 		gap: 3.2em;
 		width: 100%;
 		color: var(--secondary-light);
-		font-size: 1.7em;
+		font-size: 2.5em;
 		font-weight: bold;
 	}
 
 	.decoracion-contador{
 		position: absolute;
-		bottom: 7vh;
-		left: 25vw;
-		translate: -21.5em -9.5em;
+		bottom: calc(var(--vh) * 14);
+		left: 25.5vw;
+		translate: -22em -9em;
 	}
 
 	.decoracion-contador img{
@@ -186,7 +186,7 @@
 		}
 			
 		.contador {
-			bottom: 5vh;
+			bottom: calc(var(--vh) * 5);
 			left: 50vw;
 			width: 20em;
 			height: 11em;
@@ -216,7 +216,7 @@
 		}
 
 		.decoracion-contador{
-			bottom: 5vh;
+			bottom: calc(var(--vh) * 5);
 			left: 50vw;
 			translate: -14.5em -7.2em;
 		}
