@@ -185,7 +185,9 @@ const { tipo = "", id = "" } = Astro.props;
 			nextSection.dataset.status = "active";
 			nextSection.classList.remove('move-up');
 			nextSection.classList.add('move-center');
-
+			
+			touchStartY = 0;
+			touchPositionY = 0;
 			return true;
 		}
 		if(deltaY > 0) {
@@ -198,9 +200,14 @@ const { tipo = "", id = "" } = Astro.props;
 			nextSection.dataset.status = "active";
 			nextSection.classList.remove('move-down');
 			nextSection.classList.add('move-center');
+
+			touchStartY = 0;
+			touchPositionY = 0;
 			return true;
 
 		}
+		touchStartY = 0;
+		touchPositionY = 0;
 		return false;
 	}
 
@@ -228,6 +235,34 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
+		console.log("🚀 ~ file: index.astro:244 ~ document.addEventListener ~ e:", e)
+		console.log("🚀 ~ file: index.astro:247 ~ document.addEventListener ~ e.target?.nodeName:", e.target?.nodeName)
+		console.log("🚀 ~ file: index.astro:251 ~ document.addEventListener ~ e.target?.parentElement?.nodeName:", e.target?.parentElement?.nodeName)
+		console.log("🚀 ~ file: index.astro:255 ~ document.addEventListener ~ e.target?.parentElement?.parentElement?.nodeName:", e.target?.parentElement?.parentElement?.nodeName)
+		console.log("🚀 ~ file: index.astro:255 ~ document.addEventListener ~ e.target?.parentElement?.parentElement?.nodeName:", e.target?.parentElement?.parentElement?.parentElement?.nodeName)
+
+		if(e.target?.nodeName === 'INPUT'){
+			return;
+		}
+		if(e.target?.nodeName === 'TEXTAREA'){
+			return;
+		}
+		if(e.target?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+
 		touchStartY	= e.touches[0].clientY;
 	})
 
