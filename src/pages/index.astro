@@ -140,8 +140,8 @@ const { tipo = "", id = "" } = Astro.props;
 
 </style>
 <script>
-	let touchPositionY: number = 0;
-	let touchStartY: number = 0;
+	let touchPositionY: number|null = null;
+	let touchStartY: number|null = null;
 	let deltaY: number = 0;
 
 	function setVisualHeight() {
@@ -186,8 +186,8 @@ const { tipo = "", id = "" } = Astro.props;
 			nextSection.classList.remove('move-up');
 			nextSection.classList.add('move-center');
 			
-			touchStartY = 0;
-			touchPositionY = 0;
+			touchStartY = null;
+			touchPositionY = null;
 			return true;
 		}
 		if(deltaY > 50) {
@@ -201,13 +201,13 @@ const { tipo = "", id = "" } = Astro.props;
 			nextSection.classList.remove('move-down');
 			nextSection.classList.add('move-center');
 
-			touchStartY = 0;
-			touchPositionY = 0;
+			touchStartY = null;
+			touchPositionY = null;
 			return true;
 
 		}
-		touchStartY = 0;
-		touchPositionY = 0;
+		touchStartY = null;
+		touchPositionY = null;
 		return false;
 	}
 
@@ -235,6 +235,10 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
+
+		if(e.touches.length > 1) {
+			return;
+		}
 
 		if(e.target?.nodeName === 'INPUT'){
 			return;
@@ -275,7 +279,13 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchend', () => {
-		deltaY = touchStartY - touchPositionY;
+		if(!Number.isInteger(touchStartY)) {
+			return;
+		}
+		if(!Number.isInteger(touchPositionY)) {
+			return;
+		}
+		deltaY = (touchStartY ?? 0) - (touchPositionY ?? 0);
 		debounceUpOrDown();
 	})
 

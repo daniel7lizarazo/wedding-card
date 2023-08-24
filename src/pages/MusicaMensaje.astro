@@ -526,7 +526,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     .cancion-loader{
         position: absolute;
         pointer-events: none;
-        top: -12%;
+        top: -15%;
         left: calc(62px - 25px + 37%);
     }
 
@@ -562,8 +562,8 @@ const base_url = import.meta.env.PUBLIC_URL;
     .send-mensaje{
         z-index: 1;
         position: absolute;
-        bottom: 4%;
-        left: calc(65px + 35%);
+        top: 75%;
+        left: calc(40% + 30px);
         background-color: transparent;
         border: none;
     }
@@ -572,22 +572,19 @@ const base_url = import.meta.env.PUBLIC_URL;
     }
     .mensaje-loader {
         position: absolute;
-        bottom: 3%;
-        left: calc(65px + 34%);
+        top: 65%;
+        left: calc(40% + 25px);
     }
 
 	@media (max-width: 1366px){
-        .send-mensaje{
-            bottom: 4%;
-            left: calc(65px + 31%);
-        }
-        .mensaje-loader {
-            bottom: 0%;
-            left: calc(65px + 29.5%);
-        }
         .cancion-loader{
             top: -18%;
-            left: calc(62px - 25px + 36%);
+        }
+        .send-mensaje{
+            top: 70%;
+        }
+        .mensaje-loader {
+            top: 55%;
         }
     }
 
@@ -700,19 +697,16 @@ const base_url = import.meta.env.PUBLIC_URL;
             width: 90vw;
         }
         .ingreso-mensaje .svg-mensaje {
-            position: absolute;
             top: 6%;
             left: 1%;
             width: 15px;
         }
         :global(.ingreso-mensaje textarea) {
-            resize: none;
             width: 35%;
             height: 20vw;
             padding-top: 6px;
             padding-right: 30px;
             padding-left: 25px;
-            border: none;
             border-radius: 10px;
         }
         :global(.ingreso-mensaje textarea:focus) {
@@ -720,21 +714,18 @@ const base_url = import.meta.env.PUBLIC_URL;
             outline-offset: -3px;
         }
         .send-mensaje{
-            z-index: 5;
-            position: absolute;
-            bottom: 5%;
-            left: calc(55px - 20px + 32%);
-            background-color: transparent;
-            border: none;
+            top: 70%;
+            left: calc(35% + 27px);
         }
         .send-mensaje svg{
             width: 20px;
         }
         .mensaje-loader {
             width: 35px;
-            bottom: -2%;
-            left: calc(55px + 25.5%);
+            top: 53%;
+            left: calc(35% + 25px);
         }
+
 
     }
 
