@@ -236,6 +236,7 @@ const { tipo = "", id = "" } = Astro.props;
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
 
+		console.log("🚀 ~ file: index.astro:241 ~ document.addEventListener ~ e.touches.length:", e.touches.length)
 		if(e.touches.length > 1) {
 			return;
 		}
