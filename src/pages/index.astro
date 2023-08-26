@@ -235,37 +235,37 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
-
-		// if(e.target?.nodeName === 'INPUT'){
-		// 	return;
-		// }
-		// if(e.target?.nodeName === 'TEXTAREA'){
-		// 	return;
-		// }
-		// if(e.target?.nodeName === 'BUTTON'){
-		// 	return;
-		// }
-		// if(e.target?.nodeName === 'A'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.nodeName === 'BUTTON'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.nodeName === 'A'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.parentElement?.nodeName === 'BUTTON'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.parentElement?.nodeName === 'A'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
-		// 	return;
-		// }
-		// if(e.target?.parentElement?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
-		// 	return;
-		// }
+		
+		if(e.target?.nodeName === 'INPUT'){
+			return;
+		}
+		if(e.target?.nodeName === 'TEXTAREA'){
+			return;
+		}
+		if(e.target?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.nodeName === 'A'){
+			return;
+		}
+		if(e.target?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.nodeName === 'A'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.nodeName === 'A'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
+		if(e.target?.parentElement?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
+			return;
+		}
 
 		touchStartY	= e.touches[0].clientY;
 	})
