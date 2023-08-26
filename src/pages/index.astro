@@ -274,6 +274,9 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchmove', (e: TouchEvent) => {
+		if(e.touches.length > 1){
+			return;
+		}
 		touchPositionY = e.touches[0].clientY;
 	})
 
