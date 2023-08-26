@@ -175,7 +175,7 @@ const { tipo = "", id = "" } = Astro.props;
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
-		if(deltaY < -20) {
+		if(deltaY < 0) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -190,7 +190,7 @@ const { tipo = "", id = "" } = Astro.props;
 			touchPositionY = null;
 			return true;
 		}
-		if(deltaY > 50) {
+		if(deltaY > 0) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -235,7 +235,6 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
-		
 		if(e.target?.nodeName === 'INPUT'){
 			return;
 		}
@@ -266,7 +265,6 @@ const { tipo = "", id = "" } = Astro.props;
 		if(e.target?.parentElement?.parentElement?.parentElement?.parentElement?.nodeName === 'BUTTON'){
 			return;
 		}
-
 		touchStartY	= e.touches[0].clientY;
 	})
 
@@ -275,10 +273,10 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchend', () => {
-		if(!Number.isInteger(touchStartY)) {
+		if(touchStartY === null) {
 			return;
 		}
-		if(!Number.isInteger(touchPositionY)) {
+		if(touchPositionY === null) {
 			return;
 		}
 		deltaY = (touchStartY ?? 0) - (touchPositionY ?? 0);
