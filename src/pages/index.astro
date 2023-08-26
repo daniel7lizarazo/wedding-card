@@ -175,7 +175,7 @@ const { tipo = "", id = "" } = Astro.props;
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
-		if(deltaY < 0) {
+		if(deltaY < -30) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -190,7 +190,7 @@ const { tipo = "", id = "" } = Astro.props;
 			touchPositionY = null;
 			return true;
 		}
-		if(deltaY > 0) {
+		if(deltaY > 30) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
 			if(!nextSection) return false;
@@ -235,6 +235,11 @@ const { tipo = "", id = "" } = Astro.props;
 	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
+
+		if(e.touches.length > 1){
+			return;
+		}
+
 		if(e.target?.nodeName === 'INPUT'){
 			return;
 		}
