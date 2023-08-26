@@ -67,44 +67,54 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 	.seccion-intro {
 		background-image: url(/img/BackgroundImage.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-our-story {
 		background-image: url(/img/FondoPlaya.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-info {
 		background-image: url(/img/BackgroundImage.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-dresscode{
 		background-image: url(/img/BackgroundImage.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-lluvia{
 		background-image: url(/img/FondoPlayaLluvia.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-musica-mensaje{
 		background-image: url(/img/BackgroundImage.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 	.seccion-rsvp{
 		background-image: url(/img/BackgroundImage.png);
+		opacity: 0;
 		top: calc(var(--vh) * 100);
 	}
 
 	.move-up{
 		top: calc(var(--vh) * -100);
-		transition: all 1s;
+		opacity: 0;
+		transition: top 1s, opacity 3s;
 	}
 	.move-down{
 		top: calc(var(--vh) * 100);
-		transition: all 1s;
+		opacity: 0;
+		transition: top 1s, opacity 3s;
 	}
 	.move-center{
 		top: 0px;
-		transition: all 1s;
+		opacity: 1;
+		transition: top 1s;
 	}
 
 	@media (max-width: 1920px){
