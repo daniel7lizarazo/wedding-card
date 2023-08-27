@@ -18,6 +18,7 @@ const { tipo = "", id = "" } = Astro.props;
 <script src="/src/htmx-json-enc.js"></script>
 
 <Layout>
+	
 	<section class="seccion seccion-presentation" id="presentation" data-index="0" data-status="active">
 		<Presentation tipo={tipo} id={id}></Presentation>
 	</section>
@@ -42,6 +43,52 @@ const { tipo = "", id = "" } = Astro.props;
 	<section class="seccion seccion-rsvp" id="rsvp" data-index="7" data-status="unknown">
 		<Rsvp tipo={tipo} id={id}></Rsvp>
 	</section>
+
+	<button class="arrow-up-container fade-button">
+		<svg width="106.82mm" height="56.294mm" version="1.1" viewBox="0 0 106.82 56.294" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<defs>
+				<linearGradient id="linearGradient866" x1="105.96" x2="106.95" y1="132.71" y2="94.159" gradientTransform="matrix(1 0 0 -1 0 248.79)" gradientUnits="userSpaceOnUse">
+					<stop style="stop-color:#6b1c18" offset="0"/>
+					<stop style="stop-color:#946161;stop-opacity:0" offset="1"/>
+				</linearGradient>
+			</defs>
+			<metadata>
+				<rdf:RDF>
+					<cc:Work rdf:about="">
+						<dc:format>image/svg+xml</dc:format>
+						<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+						<dc:title/>
+					</cc:Work>
+				</rdf:RDF>
+			</metadata>
+			<g transform="translate(-52.67 -96.25)">
+				<path d="m56.205 149.01 35.983-35.983c3.2366-3.2366 6.4984-6.6199 9.7896-9.7846 1.1792-1.134 2.2638-1.9092 3.9688-1.9868 1.7949-0.0815 3.0401 0.839 4.2333 1.9868 3.2022 3.0792 6.3757 6.3706 9.525 9.52l36.248 36.248" style="fill:none;stroke-linejoin:round;stroke-width:10;stroke:url(#linearGradient866)"/>
+			</g>
+		</svg>
+	</button>
+	
+	<button class="arrow-down-container">
+		<svg width="106.82mm" height="56.294mm" version="1.1" viewBox="0 0 106.82 56.294" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<defs>
+				<linearGradient id="linearGradient867" x1="105.96" x2="106.95" y1="132.71" y2="94.159" gradientTransform="translate(0)" gradientUnits="userSpaceOnUse">
+					<stop style="stop-color:#6b1c18" offset="0"/>
+					<stop style="stop-color:#946161;stop-opacity:0" offset="1"/>
+				</linearGradient>
+			</defs>
+			<metadata>
+				<rdf:RDF>
+					<cc:Work rdf:about="">
+						<dc:format>image/svg+xml</dc:format>
+						<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+						<dc:title/>
+					</cc:Work>
+				</rdf:RDF>
+			</metadata>
+			<g transform="translate(-52.67 -96.25)">
+				<path d="m56.205 99.786 35.983 35.983c3.2366 3.2366 6.4984 6.6199 9.7896 9.7846 1.1792 1.134 2.2638 1.9092 3.9688 1.9868 1.7949 0.0815 3.0401-0.839 4.2333-1.9868 3.2022-3.0792 6.3757-6.3706 9.525-9.52l36.248-36.248" style="fill:none;stroke-linejoin:round;stroke-width:10;stroke:url(#linearGradient867)"/>
+			</g>
+		</svg>
+	</button>
 </Layout>
 
 <style>
@@ -117,6 +164,35 @@ const { tipo = "", id = "" } = Astro.props;
 		transition: top 1s;
 	}
 
+	button {
+		border: none;
+		background-color: transparent;
+		width: 100vw;
+		transition: all .5s;
+	}
+
+	button svg {
+		margin-top: calc(var(--vh) * 1);
+		margin-bottom: calc(var(--vh) * 1);
+		height: calc(var(--vh) * 5);
+		opacity: .3;
+	}
+	button:hover svg {
+		opacity: .8;
+		transition: all .5s;
+	}
+	.arrow-up-container{
+		position: absolute;
+		top: 0px;
+	}
+	.arrow-down-container{
+		position: absolute;
+		bottom: 0px;
+	}
+	.fade-button{
+		display: none;
+	}
+
 	@media (max-width: 1920px){
 	}
 
@@ -153,6 +229,8 @@ const { tipo = "", id = "" } = Astro.props;
 	let touchPositionY: number|null = null;
 	let touchStartY: number|null = null;
 	let deltaY: number = 0;
+	const arrowDown = document.querySelector('button.arrow-down-container')
+	const arrowUp = document.querySelector('button.arrow-up-container')
 
 	function setVisualHeight() {
 		const vh = window.innerHeight * .01;
@@ -185,6 +263,7 @@ const { tipo = "", id = "" } = Astro.props;
 		const currentSection: HTMLElement|null = document.querySelector(`[data-status="active"]`);
 
 		if(!currentSection || !currentSection.getAttribute('data-index')) return false;
+		// scroll up
 		if(deltaY < -30) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? 1) - 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
@@ -195,11 +274,17 @@ const { tipo = "", id = "" } = Astro.props;
 			nextSection.dataset.status = "active";
 			nextSection.classList.remove('move-up');
 			nextSection.classList.add('move-center');
+
+			arrowDown?.classList.remove('fade-button')
+			if(+(nextSection.getAttribute('data-index') ?? 1) == 0){
+				arrowUp?.classList.add('fade-button')
+			}
 			
 			touchStartY = null;
 			touchPositionY = null;
 			return true;
 		}
+		// scroll down
 		if(deltaY > 30) {
 			const nextIndex = +(currentSection.getAttribute('data-index') ?? -1) + 1;
 			const nextSection: HTMLElement|null = document.querySelector(`[data-index="${nextIndex}"]`);
@@ -213,6 +298,12 @@ const { tipo = "", id = "" } = Astro.props;
 
 			touchStartY = null;
 			touchPositionY = null;
+
+			arrowUp?.classList.remove('fade-button')
+			if(+(nextSection.getAttribute('data-index') ?? 1) == 7){
+				arrowDown?.classList.add('fade-button')
+			}
+
 			return true;
 
 		}
@@ -229,20 +320,6 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 
 	document.addEventListener('wheel', onScroll)
-
-	document.addEventListener('keydown', function(e: KeyboardEvent){
-		
-		if(e.key === "ArrowDown"){
-			deltaY = 100
-			debounceUpOrDown();
-			return;
-		}
-		if(e.key === "ArrowUp"){
-			deltaY = -100
-			debounceUpOrDown();
-			return;
-		}
-	})
 
 	document.addEventListener('touchstart', (e: TouchEvent) => {
 
@@ -298,6 +375,30 @@ const { tipo = "", id = "" } = Astro.props;
 			return;
 		}
 		deltaY = (touchStartY ?? 0) - (touchPositionY ?? 0);
+		debounceUpOrDown();
+	})
+
+	document.addEventListener('keydown', function(e: KeyboardEvent){
+		if(e.key === "ArrowUp"){
+			deltaY = -100
+			debounceUpOrDown();
+			return;
+		}
+		if(e.key === "ArrowDown"){
+			deltaY = 100
+			debounceUpOrDown();
+			return;
+		}
+	})
+
+	arrowUp?.addEventListener('click', function(){
+		deltaY = -100
+		debounceUpOrDown();
+
+	})
+
+	arrowDown?.addEventListener('click', function(){
+		deltaY = 100
 		debounceUpOrDown();
 	})
 
