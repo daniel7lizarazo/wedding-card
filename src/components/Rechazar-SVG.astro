@@ -27,12 +27,13 @@ const {invitado_id} = Astro.props
 
     :global(.rechazar-svg) {
         pointer-events: none;
-        margin-top: 3px;
-        width: 18px;
+        margin-top: calc(var(--vh) * .7);
+        width: calc(var(--vh) * 2);
     }
     
 	@media (max-width: 430px){
         :global(.rechazar-svg) {
+            margin-top: calc(var(--vh) * .5);
             width: 14px;
         }
     }

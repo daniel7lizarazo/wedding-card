@@ -64,7 +64,7 @@
 		row-gap: .5em;
 	}
     .decoracion-horizontal-size img{
-		width: 45em;
+		height: calc(var(--vh) * 13);
 		scale: 1;
 		object-fit: cover;
 	}
@@ -86,7 +86,7 @@
 	.mensaje {
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
 		color: var(--accent);
-		font-size: 2.0em;
+		font-size: calc(var(--vh) * 4);
 		font-weight: 500;
 		text-align: center;
 		width: 25em;
@@ -94,7 +94,7 @@
     	
 	.contador {
 		position: absolute;
-		bottom: calc(var(--vh) * 7);
+		top: calc(2rem  + var(--vh) * 55);
 		left: 30vw;
 		translate: -50%;		
 		background-color: var(--basic-light);
@@ -154,9 +154,9 @@
 
 	.decoracion-contador{
 		position: absolute;
-		bottom: calc(var(--vh) * 8);
-		left: 27vw;
-		translate: -22em -9em;
+		top: calc(-.6em + var(--vh) * 55);
+		left: 30vw;
+		translate: -25em;
 	}
 
 	.decoracion-contador img{
@@ -209,19 +209,20 @@
 		.decoracion-contador{
 			bottom: calc(var(--vh) * 11);
 			left: 32vw;
+			translate: -22em;
 		}
 
 	}
 	@media (max-width: 430px){
 		.mensaje-container{
-			top: auto;
-			bottom: calc(11em + 10vh);
+			top: calc(var(--vh) * 20);
 			left: 50vw;
 			row-gap: .5em;
 		}
 
 		.decoracion-horizontal-size img{
-			width: 22em;
+			height: calc(var(--vh) * 7);
+			width: auto;
 		}
 
 		.mensaje {
@@ -232,7 +233,7 @@
 		}
 			
 		.contador {
-			bottom: calc(var(--vh) * 5);
+			top: calc(2em + var(--vh) * 55);
 			left: 50vw;
 			width: 20em;
 			height: 11em;
@@ -262,7 +263,7 @@
 		}
 
 		.decoracion-contador{
-			bottom: calc(var(--vh) * 5);
+			top: calc(7em + var(--vh) * 55);
 			left: 50vw;
 			translate: -14.5em -7.2em;
 		}

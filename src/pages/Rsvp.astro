@@ -272,7 +272,7 @@ else{
     }
     .deco-invitados img {
         object-fit: cover;
-        width: 20vw;
+        width: 25vw;
     }
     .deco-invitados-superior{
         margin-bottom: -0.2vw;
@@ -289,12 +289,12 @@ else{
     ul li{
         display: flex;
         list-style: none;
-        font-size: .8vw;
+        font-size: calc(var(--vh) * 2.2);
         font-weight: 500;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
         color: var(--accent-light);
         margin-bottom: calc(var(--vh) * 2);
-        height: 30px;
+        height: calc(var(--vh) * 4);
     }
     ul li:last-child{
         margin-bottom: 0;
@@ -337,7 +337,7 @@ else{
         outline-offset: -3px;
     }
     ul li :global(button > span) {
-        font-size: 1.2rem;
+        font-size: calc(var(--vh) * 1.8);
         opacity: .9;
     }
     .enviar-confirmacion-form{
