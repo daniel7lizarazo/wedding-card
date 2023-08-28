@@ -165,6 +165,7 @@ const { tipo = "", id = "" } = Astro.props;
 	}
 
 	button {
+		position: absolute;
 		border: none;
 		background-color: transparent;
 		width: 100vw;
@@ -174,7 +175,8 @@ const { tipo = "", id = "" } = Astro.props;
 	button svg {
 		margin-top: calc(var(--vh) * 1);
 		margin-bottom: calc(var(--vh) * 1);
-		height: calc(var(--vh) * 5);
+		height: calc(var(--vh) * 4);
+		width: auto;
 		opacity: .3;
 	}
 	button:hover svg {
@@ -182,11 +184,9 @@ const { tipo = "", id = "" } = Astro.props;
 		transition: all .5s;
 	}
 	.arrow-up-container{
-		position: absolute;
 		top: 0px;
 	}
 	.arrow-down-container{
-		position: absolute;
 		bottom: 0px;
 	}
 	.fade-button{

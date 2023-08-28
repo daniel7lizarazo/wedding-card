@@ -1,8 +1,4 @@
 ---
-import AceptarSVG from '../components/Aceptar-SVG.astro';
-import RechazarSVG from '../components/Rechazar-SVG.astro';
-import LoadingSVG from '../components/Loading-SVG.astro'; 
-import type { IInvitados } from '../schemas/Invitados.js';
 const base_url = import.meta.env.PUBLIC_URL;
 
 const { tipo, id } = Astro.props;
@@ -10,30 +6,14 @@ let tipoInvitacion;
 switch(tipo) {
     case 'I':
     case 'i':
-        tipoInvitacion = "invitados";
+        tipoInvitacion = "verificarInvitado";
         break;
     case 'F':
     case 'f':
-        tipoInvitacion = "invitados/byfamilia";
+        tipoInvitacion = "verificarFamilia";
         break;
     default:
         tipoInvitacion = "invitados";
-}
-
-let invitadosInfo: IInvitados[] = [];
-let invitados;
-
-if(tipo && id){
-    invitados = await fetch(`${base_url}/${tipoInvitacion}/${id}`);
-}
-
-const invitadosObj: IInvitados[] = await invitados?.json();
-
-if(invitadosObj?.length != null || !invitadosObj) {
-    invitadosInfo = invitadosObj;
-}
-else{
-    invitadosInfo = invitadosInfo.concat(invitadosObj);
 }
 
 ---
@@ -72,81 +52,13 @@ else{
 
 <p>¿Vienes a celebrar con nosotros?</p>
 
-{invitadosInfo &&
+{id &&
     <form class="seccion-invitados" id="enviar-confirmacion-form">
         <picture class="deco-invitados deco-invitados-superior">
             <source srcset="/img/SeparadorHorizontal_1.png">
             <img src="/img/SeparadorHorizontal_1.png" alt="Decoración floral" loading="lazy">
         </picture>
-        <ul>
-            {invitadosInfo.map((invitado) => (
-                <li>
-
-                    <span>
-                        {invitado?.Nombre}
-                    </span>
-
-                    {!invitado.Asiste.Valid &&
-                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post={`${base_url}/asistencia/aceptar`}  
-                        hx-select={`#aceptar${invitado.Id_text}`} 
-                        hx-swap="outerHTML" 
-                        hx-select-oob={`#rechazar${invitado.Id_text}`} 
-                        hx-indicator={`#svg-load${invitado.Id_text}, #aceptar-svg${invitado.Id_text}`} 
-                        hx-ext="json-enc">
-                            <AceptarSVG invitado_id={invitado.Id_text}></AceptarSVG>
-                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
-                        </button>
-
-                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post={`${base_url}/asistencia/rechazar`} 
-                        hx-select={`#rechazar${invitado.Id_text}`} 
-                        hx-swap="outerHTML" 
-                        hx-select-oob={`#aceptar${invitado.Id_text}`} 
-                        hx-indicator={`#svg-load${invitado.Id_text}, #rechazar-svg${invitado.Id_text}`} 
-                        hx-ext="json-enc">
-                            <RechazarSVG invitado_id={invitado.Id_text}></RechazarSVG>
-                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
-                        </button>    
-                    }
-
-                    {invitado.Asiste.Valid && invitado.Asiste.Bool &&
-                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptarSeleccionado">
-						    <span>Aceptado</span>
-                        </button>
-
-                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazar"
-                        hx-post={`${base_url}/asistencia/rechazar`} 
-                        hx-select={`#rechazar${invitado.Id_text}`} 
-                        hx-swap="outerHTML" 
-                        hx-select-oob={`#aceptar${invitado.Id_text}`} 
-                        hx-indicator={`#svg-load${invitado.Id_text}, #rechazar-svg${invitado.Id_text}`} 
-                        hx-ext="json-enc">
-                            <RechazarSVG invitado_id={invitado.Id_text}></RechazarSVG>
-                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
-                        </button>
-                    }
-
-                    {invitado.Asiste.Valid && !invitado.Asiste.Bool && 
-                        <button type="button" id={`aceptar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="aceptar"
-                        hx-post={`${base_url}/asistencia/aceptar`}  
-                        hx-select={`#aceptar${invitado.Id_text}`} 
-                        hx-swap="outerHTML" 
-                        hx-select-oob={`#rechazar${invitado.Id_text}`} 
-                        hx-indicator={`#svg-load${invitado.Id_text}, #aceptar-svg${invitado.Id_text}`} 
-                        hx-ext="json-enc">
-                            <AceptarSVG invitado_id={invitado.Id_text}></AceptarSVG>
-                            <LoadingSVG invitado_id={invitado.Id_text}></LoadingSVG>
-                        </button>
-
-                        <button type="button" id={`rechazar${invitado.Id_text}`} name="invitado_id" value={invitado.Id_text} class="rechazarSeleccionado">
-                            <span>Rechazado</span>
-                        </button>
-                    }
-                    
-                </li>
-            ))
-            }
+        <ul hx-get={`${base_url}/${tipoInvitacion}/${id}`} hx-trigger="load">
         </ul>
         <picture class="deco-invitados deco-invitados-inferior">
             <source srcset="/img/SeparadorHorizontal_1.png">
@@ -186,7 +98,7 @@ else{
         position: relative;
     }
     .deco-grande img{
-		object-fit: cover;	
+		object-fit: cover;
         width: 15vw
     }
 
@@ -286,7 +198,7 @@ else{
         padding-left: 0;
         width: 25vw;
     }
-    ul li{
+    ul :global(li) {
         display: flex;
         list-style: none;
         font-size: calc(var(--vh) * 2.2);
@@ -296,10 +208,10 @@ else{
         margin-bottom: calc(var(--vh) * 2);
         height: calc(var(--vh) * 4);
     }
-    ul li:last-child{
+    ul :global(li:last-child) {
         margin-bottom: 0;
     }
-    ul li > span {
+    ul :global(li > span) {
         flex-grow: 1;
         padding-top: 4px;
         padding-left: 15px;
@@ -307,27 +219,34 @@ else{
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
     }
-    ul li :global(button) {
+    ul :global(li button) {
         border: none;
         width: 50px;
         color: var(--secondary-light) 
     }
-    ul li :global(.aceptar){
+    
+    
+    ul :global(li .aceptar){
         background-color: var(--accept); 
     }
-    ul li :global(.aceptarSeleccionado) {
+    ul :global(li .aceptarSeleccionado) {
         cursor: default;
         width: 7rem;
         background-color: var(--accept-selected); 
         outline: solid 2px rgba(255, 255, 255, 0.5);;
         outline-offset: -3px;
     }    
-    ul li :global(.rechazar) {
+    ul :global(li button .rechazar-svg) {
+        pointer-events: none;
+        margin-top: calc(var(--vh) * .7);
+        width: calc(var(--vh) * 2);
+    }
+    ul :global(li .rechazar) {
         background-color: var(--decline);
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
     }
-    ul li :global(.rechazarSeleccionado) {
+    ul :global(li .rechazarSeleccionado) {
         cursor: default;
         width: 7rem;
         background-color: var(--decline-selected); 
@@ -336,7 +255,21 @@ else{
         outline: solid 2px rgba(255, 255, 255, 0.5);;
         outline-offset: -3px;
     }
-    ul li :global(button > span) {
+    ul :global(li button .aceptar-svg) {
+        pointer-events: none;
+        margin-top: calc(var(--vh) * .7);
+        width: calc(var(--vh) * 2);
+    }
+    ul :global(li button .loader-svg) {
+        pointer-events: none;
+        display:inline-block;
+        position: relative;
+        bottom: calc(4px + var(--vh) * 2);
+        right: 6px;
+        width: 45px; 
+        height: 25px;
+    }
+    ul :global(li button > span) {
         font-size: calc(var(--vh) * 1.8);
         opacity: .9;
     }
@@ -369,6 +302,9 @@ else{
             top: 43%;
         }
 
+        ul :global(li button .loader-svg) {
+            bottom: calc(7px + var(--vh) * 2);
+        }
     }
     
 	@media (max-width: 430px){
@@ -458,26 +394,37 @@ else{
             padding-left: 0;
             width: 80vw;
         }
-        ul li{
+        ul :global(li){
             display: flex;
             list-style: none;
-            font-size: .8em;
+            font-size: calc(var(--vh) * 1.5);
             margin-bottom: .5em;
-            height: 2em;
-
+            height: calc(var(--vh) * 4);
         }
-        ul li:last-child{
+        ul :global(li:last-child) {
             margin-bottom: 0;
         }
-        ul li > span {
+        ul :global(li > span) {
             flex-grow: 1;
-            padding-top: calc(var(--vh) * .55);
+            padding-top: calc(var(--vh) * .65);
             padding-left: 15px;
         }
-        ul li :global(button) {
+        ul :global(li button) {
             border: none;
             width: 50px;
             color: var(--secondary-light) 
+        }
+        ul :global(li button .aceptar-svg) {
+            margin-top: calc(var(--vh) * .9);
+            width: 16px;
+        }
+        ul :global(li button .rechazar-svg) {
+            margin-top: calc(var(--vh) * .9);
+            width: 14px;
+        }
+
+        ul :global(li button .loader-svg) {
+            bottom: calc(25px - var(--vh) * .3);
         }
     }
     
