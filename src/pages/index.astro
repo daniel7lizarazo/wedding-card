@@ -175,12 +175,12 @@ const { tipo = "", id = "" } = Astro.props;
 	button svg {
 		margin-top: calc(var(--vh) * 1);
 		margin-bottom: calc(var(--vh) * 1);
-		height: calc(var(--vh) * 4);
+		height: calc(var(--vh) * 2);
 		width: auto;
 		opacity: .3;
 	}
 	button:hover svg {
-		opacity: .8;
+		opacity: 1;
 		transition: all .5s;
 	}
 	.arrow-up-container{
@@ -222,6 +222,11 @@ const { tipo = "", id = "" } = Astro.props;
 		.seccion-rsvp{
 			background-image: url(/img/BackgroundImage_small.png);
 		}
+
+		button svg {
+			height: calc(var(--vh) * 2.5);
+		}
+
 	}
 
 </style>
