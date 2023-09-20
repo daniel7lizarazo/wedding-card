@@ -1,5 +1,6 @@
 ---
 const { tipo, id } = Astro.props;
+const base_url = import.meta.env.PUBLIC_URL;
 
 let tipoInvitacion;
 
@@ -90,8 +91,8 @@ const invitadoInfo = await invitado?.json();
   </g>
  </g>
 </svg>
-{invitadoInfo && <h1>{invitadoInfo?.Nombre_invitacion}</h1>}
-
+<!--{invitadoInfo && <h1 class="nombre-presentacion nombre-principal">{invitadoInfo?.Nombre_invitacion}</h1> <h1 class="nombre-presentacion nombre-secundario"></h1>}-->
+<h1 hx-get={`${base_url}/${tipoInvitacion}/presentacion/${id}`} hx-trigger="load" hx-swap="outerHTML"></h1>
 <style>
     .our-logo{
         width: 14vw;
@@ -100,7 +101,7 @@ const invitadoInfo = await invitado?.json();
         left: 50vw;
         translate: -50%;
     }
-    h1{
+    :global(.nombre-presentacion){
         width: 100%;
         text-align: center;
         position: absolute;
@@ -109,6 +110,12 @@ const invitadoInfo = await invitado?.json();
         font-weight: 100;
         font-size: 6vw;
         color: var(--accent-light)
+    }
+    :global(.nombre-principal){
+        top: calc(var(--vh) * 55);
+    }
+    :global(.nombre-secundario){
+        top: calc(var(--vh) * 70);
     }
 
 	@media (max-width: 430px){
@@ -123,3 +130,16 @@ const invitadoInfo = await invitado?.json();
         }
     }
 </style>
+<script>
+    const formulario = document.querySelectorAll("form")
+
+    for(const formularioElement of formulario){
+        formularioElement?.addEventListener('htmx:configRequest', (e: Event) => {
+            e.detail.headers = {};
+            e.detail.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8"
+            e.detail.headers['Access-Control-Allow-Origin'] = "*";
+            e.detail.headers['Access-Control-Allow-Headers'] = "Access-Control-Allow-Origin, Access-Control-Allow-Headers";
+        })
+    }
+        
+</script>
