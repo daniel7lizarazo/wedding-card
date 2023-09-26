@@ -16,12 +16,14 @@ switch(tipo) {
     default:
         tipoInvitacion = "invitados";
 } 
-let invitado;
-if(tipo && id){
-    invitado = await fetch(`https://wedding-back.fly.dev/${tipoInvitacion}/${id}`);
-}
-const invitadoInfo = await invitado?.json();
 ---
+{id && id == '83F69940-2CA8-11EE-A7FD-02F233CDF429' &&
+    <nav id="navbar">
+        <a href="/tablero-rsvp/">TABLERO RSVP</a>
+        <a href="/tablero-mensajes/">MENSAJES</a>
+        <a href="/tablero-canciones/">CANCIONES</a>
+    </nav>
+}
 <svg class="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg">
  <defs>
   <clipPath id="4aa7c87138">
@@ -116,6 +118,26 @@ const invitadoInfo = await invitado?.json();
     }
     :global(.nombre-secundario){
         top: calc(var(--vh) * 70);
+    }
+    nav {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+
+    }
+
+    nav a {
+        opacity: 0;
+        color: var(--accent-light);
+        font-family: "Montserrat Variable", Helvetica, sans-serif;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 500ms;
+    }
+
+    nav:hover a {
+        opacity: 1;
     }
 
 	@media (max-width: 430px){

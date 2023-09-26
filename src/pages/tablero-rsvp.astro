@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout>
+    <table>
+        <tr>
+            <th> Invitado </th>
+            <th> Familia </th>
+            <th> Asiste </th>
+        </tr>
+        <tr>
+            <td> Daniel </td>
+            <td> Lizarazo Parra </td>
+            <td class="asistencia si-asiste"> 
+            </td>
+        </tr>
+        <tr>
+            <td> Daniel </td>
+            <td> Lizarazo Parra </td>
+            <td class="asistencia no-asiste"> 
+            </td>
+        </tr>
+        <tr>
+            <td> Daniel </td>
+            <td> Lizarazo Parra </td>
+            <td class="asistencia sin-respuesta"> 
+            </td>
+        </tr>
+    </table>
+</Layout>
+
+
+<style>
+
+    tr {
+        border-bottom: 1px solid #000;
+    }
+
+    td {
+        background-color: transparent;
+    }
+
+    .asistencia {
+        display: block;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
+
+    .si-asiste {
+        background-color: var(--accept);
+    }
+    .no-asiste {
+        background-color: var(--decline);
+    }
+    .sin-respuesta {
+        background-color: #CDC7C5;
+    }
+
+</style>
