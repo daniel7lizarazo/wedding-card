@@ -1,36 +1,57 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const base_url = import.meta.env.PUBLIC_URL;
 ---
 <Layout>
-    <table>
-        <tr>
-            <th> Invitado </th>
-            <th> Familia </th>
-            <th> Asiste </th>
-        </tr>
-        <tr>
-            <td> Daniel </td>
-            <td> Lizarazo Parra </td>
-            <td class="asistencia si-asiste"> 
-            </td>
-        </tr>
-        <tr>
-            <td> Daniel </td>
-            <td> Lizarazo Parra </td>
-            <td class="asistencia no-asiste"> 
-            </td>
-        </tr>
-        <tr>
-            <td> Daniel </td>
-            <td> Lizarazo Parra </td>
-            <td class="asistencia sin-respuesta"> 
-            </td>
-        </tr>
-    </table>
+    <section id="table-rsvp">
+        <h1>Lista de asistencia</h1>
+        <div class="asistencia-container">
+            <div class="asistencia">
+                <span class="nombre"></span>
+                <span class="familia"></span>
+                <span class="asiste"></span>
+            </div>
+        </div>
+        <!-- <table hx-get={`${base_url}/invitados/tabla-rsvp`} hx-trigger="load" hx-swap="outerHTML">
+            <tr>
+                <th> Invitado </th>
+                <th> Familia </th>
+                <th> Asiste </th>
+            </tr>
+            <tr>
+                <td> Daniel </td>
+                <td> Lizarazo Parra </td>
+                <td class="asistencia si-asiste"> 
+                </td>
+            </tr>
+            <tr>
+                <td> Daniel </td>
+                <td> Lizarazo Parra </td>
+                <td class="asistencia no-asiste"> 
+                </td>
+            </tr>
+            <tr>
+                <td> Daniel </td>
+                <td> Lizarazo Parra </td>
+                <td class="asistencia sin-respuesta"> 
+                </td>
+            </tr>
+        </table> -->
+    </section>
+    
 </Layout>
 
 
-<style>
+<style is:global>
+
+    #table-rsvp {
+        /* overflow: scroll; */
+    }
+
+    table {
+        border-collapse: collapse;
+        overflow: visible;
+    }
 
     tr {
         border-bottom: 1px solid #000;
@@ -43,17 +64,33 @@ import Layout from "../layouts/Layout.astro";
     .asistencia {
         display: block;
         aspect-ratio: 1/1;
+        margin: .5rem;
         border-radius: 50%;
     }
 
     .si-asiste {
-        background-color: var(--accept);
+        background-color: var(--accept-selected);
     }
     .no-asiste {
-        background-color: var(--decline);
+        background-color: var(--decline-selected);
     }
     .sin-respuesta {
         background-color: #CDC7C5;
     }
 
 </style>
+<script>
+    const formulario = document.querySelectorAll("table")
+
+    for(const formularioElement of formulario){
+        formularioElement?.addEventListener('htmx:configRequest', (e: Event) => {
+            e.detail.headers = {};
+            e.detail.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8"
+            e.detail.headers['Access-Control-Allow-Origin'] = "*";
+            e.detail.headers['Access-Control-Allow-Headers'] = "Access-Control-Allow-Origin, Access-Control-Allow-Headers";
+        })
+    }
+        
+</script>
+<script src="/src/htmx.min.js"></script>
+<script src="/src/htmx-json-enc.js"></script>

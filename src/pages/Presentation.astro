@@ -93,7 +93,6 @@ switch(tipo) {
   </g>
  </g>
 </svg>
-<!--{invitadoInfo && <h1 class="nombre-presentacion nombre-principal">{invitadoInfo?.Nombre_invitacion}</h1> <h1 class="nombre-presentacion nombre-secundario"></h1>}-->
 <h1 hx-get={`${base_url}/${tipoInvitacion}/presentacion/${id}`} hx-trigger="load" hx-swap="outerHTML"></h1>
 <style>
     .our-logo{
@@ -150,6 +149,15 @@ switch(tipo) {
             top: calc(var(--vh) * 57);
             font-size: 7vw;
         }
+            
+        :global(.nombre-principal){
+            top: calc(var(--vh) * 55);
+        }
+        :global(.nombre-secundario){
+            top: calc(var(--vh) * 60);
+        }       
+    
+            
     }
 </style>
 <script>
