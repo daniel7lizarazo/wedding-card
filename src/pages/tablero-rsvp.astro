@@ -5,7 +5,7 @@ const base_url = import.meta.env.PUBLIC_URL;
 <Layout>
     <section class="lista-rsvp">
         <a class="our-logo-tablero" href="/F-83F69940-2CA8-11EE-A7FD-02F233CDF429"> 
-            <svg id="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg">
+            <svg id="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg" transition:animate="fade">
                 <defs>
                 <clipPath id="4aa7c87138">
                 <path d="m338 0.14062h8v7.8594h-8z"/>
@@ -109,9 +109,11 @@ const base_url = import.meta.env.PUBLIC_URL;
         grid-area: titulo;
         color: var(--accent);
 		font-family: 'Great Vibes', sans-serif;
-        font-size: 3.9rem;
+        font-size: 3.5rem;
         align-self: end;
         margin-left: 1rem;
+        padding-left: 5px;
+        padding-top: 5px;
     }
 
     .totales-invitados{
@@ -155,10 +157,16 @@ const base_url = import.meta.env.PUBLIC_URL;
         color: var(--accept-selected);
     }
 
-    .asistencia-container{
+    .outter-asistencia-container{
         grid-area: invitados;
+        height: 100%;
+    }
+
+    .asistencia-container{
+        position: relative;
 		font-family: 'Montserrat Variable', Helvetica, sans-serif;
-        width: auto;
+        height: 100%;
+        width: max-content;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -213,37 +221,40 @@ const base_url = import.meta.env.PUBLIC_URL;
 
 <script>
     let asistenciaContainer = document.querySelector("#asistencia-container");
+    const paso = 300;
+
+    function getNumericPropertyValue(element: Element, property: string): number {
+        const value = window.getComputedStyle(element).getPropertyValue(property);
+        return Number.parseFloat(value.slice(0, -2))
+    }
 
     function onScroll(e: WheelEvent){
         if(!asistenciaContainer){
             asistenciaContainer = document.querySelector("#asistencia-container") ?? new Element;
         }
 
-        const containerStyles = window.getComputedStyle(asistenciaContainer);
-
-        const paso = 300;
-
-        const widthComparar = - window.innerWidth * 2.78    
-
-        const marginLeft = containerStyles.getPropertyValue("margin-left")
-
-        const marginNumber = Number.parseInt(marginLeft.slice(0, -2))
-
-        let marginNew = marginNumber;
+        const rightPosition = getNumericPropertyValue(asistenciaContainer, "right")
+        const containerWidth = getNumericPropertyValue(asistenciaContainer, "width")
+        const widthComparar = containerWidth - window.innerWidth;
+        let rightNumber = rightPosition;
 
         if (e.deltaY > 0){
-            marginNew = marginNumber - paso
+            rightNumber = rightPosition + paso
+            if(rightNumber > widthComparar){
+                rightNumber = widthComparar;
+            }
         }
         if(e.deltaY < 0){
-            marginNew = marginNumber + paso;
-            if(marginNew > 0){
-                marginNew = 0;
+            rightNumber = rightPosition - paso;
+            if(rightNumber < 0){
+                rightNumber = 0;
             }
+
         }
 
         requestAnimationFrame(() => {
-            asistenciaContainer.style.transition = `margin-left .5s ease-out`
-            asistenciaContainer.style.marginLeft = `${marginNew}px`
+            asistenciaContainer.style.transition = `right .5s ease-out`
+            asistenciaContainer.style.right = `${rightNumber}px`
         })
 
     }

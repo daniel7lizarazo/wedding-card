@@ -1,6 +1,7 @@
 ---
 import '@fontsource/great-vibes';
 import '@fontsource-variable/montserrat';
+import { ViewTransitions } from 'astro:transitions';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +12,7 @@ import '@fontsource-variable/montserrat';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>D&A</title>
+		<ViewTransitions/>
 	</head>
 	<body>
 		<slot />
