@@ -222,27 +222,23 @@ const base_url = import.meta.env.PUBLIC_URL;
 <script>
     let asistenciaContainer = document.querySelector("#asistencia-container");
     const paso = 300;
-
     function getNumericPropertyValue(element: Element, property: string): number {
         const value = window.getComputedStyle(element).getPropertyValue(property);
         return Number.parseFloat(value.slice(0, -2))
     }
-
     function onScroll(e: WheelEvent){
         if(!asistenciaContainer){
             asistenciaContainer = document.querySelector("#asistencia-container") ?? new Element;
         }
-
         const rightPosition = getNumericPropertyValue(asistenciaContainer, "right")
         const containerWidth = getNumericPropertyValue(asistenciaContainer, "width")
         const widthComparar = containerWidth - window.innerWidth;
         let rightNumber = rightPosition;
-
         if (e.deltaY > 0){
-            rightNumber = rightPosition + paso
+            rightNumber = rightPosition + paso;
             if(rightNumber > widthComparar){
                 rightNumber = widthComparar;
-            // }
+            }
         }
         if(e.deltaY < 0){
             rightNumber = rightPosition - paso;
@@ -253,14 +249,14 @@ const base_url = import.meta.env.PUBLIC_URL;
         }
 
         requestAnimationFrame(() => {
-            asistenciaContainer.style.transition = `right .5s ease-out`
-            asistenciaContainer.style.right = `${rightNumber}px`
+            asistenciaContainer.style.transition = `right .5s ease-out`;
+            asistenciaContainer.style.right = `${rightNumber}px`;
         })
 
     }
 
-	document.addEventListener('wheel', onScroll)
-</script>
+	document.addEventListener('wheel', onScroll); 
 
+</>
 <script src="/src/htmx.min.js"></script>
 <script src="/src/htmx-json-enc.js"></script>
