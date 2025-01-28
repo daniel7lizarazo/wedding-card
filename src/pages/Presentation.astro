@@ -1,29 +1,3 @@
----
-const { tipo, id } = Astro.props;
-const base_url = import.meta.env.PUBLIC_URL;
-
-let tipoInvitacion;
-
-switch(tipo) {
-    case 'I':
-    case 'i':
-        tipoInvitacion = "invitados";
-        break;
-    case 'F':
-    case 'f':
-        tipoInvitacion = "familias";
-        break;
-    default:
-        tipoInvitacion = "invitados";
-} 
----
-{id && id == '83F69940-2CA8-11EE-A7FD-02F233CDF429' &&
-    <nav id="navbar">
-        <a href="/tablero-rsvp/" data-astro-reload>TABLERO RSVP</a>
-        <a href="/tablero-mensajes/">MENSAJES</a>
-        <a href="/tablero-canciones/">CANCIONES</a>
-    </nav>
-}
 <svg class="our-logo" id="our-logo" version="1.1" viewBox="0 0 203.82 202.91" xmlns="http://www.w3.org/2000/svg" transition:animate="fade">
  <defs>
   <clipPath id="4aa7c87138">
@@ -93,7 +67,8 @@ switch(tipo) {
   </g>
  </g>
 </svg>
-<h1 hx-get={`${base_url}/${tipoInvitacion}/presentacion/${id}`} hx-trigger="load" hx-swap="outerHTML"></h1>
+<h1 class='nombre-presentacion nombre-principal'>Familia</h1>
+<h1 class='nombre-presentacion nombre-secundario'>Lizarazo Parra</h1>
 <style>
     .our-logo{
         width: 14vw;
