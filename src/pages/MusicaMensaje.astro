@@ -1,7 +1,3 @@
----
-const { tipo, id } = Astro.props;
-const base_url = import.meta.env.PUBLIC_URL;
----
 <div class="seccion-musica">
     <svg class="icono-disco-musica" version="1.1" viewBox="0 0 175.88 180.98" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -63,12 +59,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     <h5 class="titulo titulo-musica">
         ¡AYÚDANOS A ARMAR LA PLAYLIST!
     </h5>
-    <form class="ingreso-cancion" 
-    hx-post={`${base_url}/cancion`}
-    hx-indicator="#cancion-loader, #cancion-sender"
-    hx-target="#cancion-input"
-    hx-swap="outerHTML" 
-    hx-ext="json-enc">
+    <form class="ingreso-cancion">
 
         <input type="text" id="cancion-input" name="nombre_cancion" placeholder="Escribe el nombre" required>
 
@@ -87,7 +78,7 @@ const base_url = import.meta.env.PUBLIC_URL;
             </g>
         </svg>
 
-        <button class="send-cancion" name="invitado_id" value={id}>
+        <button class="send-cancion" name="invitado_id">
             <svg class="response-svg" id="cancion-sender" version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                 <clipPath id="3a3d4f8924">
@@ -243,12 +234,7 @@ const base_url = import.meta.env.PUBLIC_URL;
     <h5 class="titulo titulo-mensaje">
         ¡ESTAREMOS FELICES DE RECIBIRLO!
     </h5>
-    <form class="ingreso-mensaje"
-    hx-post={`${base_url}/mensaje`}
-    hx-indicator="#mensaje-loader, #mensaje-sender"
-    hx-target="#mensaje-textarea"
-    hx-swap="outerHTML" 
-    hx-ext="json-enc">
+    <form class="ingreso-mensaje">
 
         <textarea name="mensaje" id="mensaje-textarea" placeholder="Ingresa tu mensaje" rows="30" required></textarea>
 
@@ -274,7 +260,7 @@ const base_url = import.meta.env.PUBLIC_URL;
             </g>
         </svg>
 
-        <button class="send-mensaje" name="invitado_id" value={id}>
+        <button class="send-mensaje" name="invitado_id">
             <svg id="mensaje-sender" class="response-svg" version="1.1" viewBox="0 0 69.763 63.666" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <clipPath id="3a3d4f8924">
@@ -730,16 +716,3 @@ const base_url = import.meta.env.PUBLIC_URL;
     }
 
 </style>
-<script>
-    const formulario = document.querySelectorAll("form")
-
-    for(const formularioElement of formulario){
-        formularioElement?.addEventListener('htmx:configRequest', (e: Event) => {
-            e.detail.headers = {};
-            e.detail.headers['Content-Type'] = "application/x-www-form-urlencoded; charset=UTF-8"
-            e.detail.headers['Access-Control-Allow-Origin'] = "*";
-            e.detail.headers['Access-Control-Allow-Headers'] = "Access-Control-Allow-Origin, Access-Control-Allow-Headers";
-        })
-    }
-        
-</script>
