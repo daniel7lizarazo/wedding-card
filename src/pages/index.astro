@@ -9,7 +9,6 @@ import DressCode from './DressCode.astro';
 import MusicaMensaje from './MusicaMensaje.astro'
 import Rsvp from './Rsvp.astro'
 
-const { tipo = "", id = "" } = Astro.props;
 ---
 <script src="/src/htmx.min.js"></script>
 <script src="/src/htmx-json-enc.js"></script>
@@ -35,10 +34,10 @@ const { tipo = "", id = "" } = Astro.props;
 		<LluviaSobres></LluviaSobres>
 	</section>
 	<section class="seccion seccion-musica-mensaje" id="musica-mensaje" data-index="6" data-status="unknown">
-		<MusicaMensaje tipo={tipo} id={id}></MusicaMensaje>
+		<MusicaMensaje></MusicaMensaje>
 	</section>
 	<section class="seccion seccion-rsvp" id="rsvp" data-index="7" data-status="unknown">
-		<Rsvp tipo={tipo} id={id}></Rsvp>
+		<Rsvp></Rsvp>
 	</section>
 
 	<button class="arrow-up-container fade-button">
@@ -89,13 +88,6 @@ const { tipo = "", id = "" } = Astro.props;
 </Layout>
 
 <style>
-
-	/* 1920×1080 (9.94%)
-	1536×864 (3.94%)
-	1366×768 (6.22%)
-	414×896 (4.21%)
-	375×667 (3.74%) 
-	360×640 (5.88%) */
 
 	.seccion {
 		width: 100vw;
